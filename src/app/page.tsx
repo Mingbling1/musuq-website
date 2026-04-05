@@ -3,6 +3,7 @@ import { Services } from "@/components/landing/services";
 import { TechStack } from "@/components/landing/tech-stack";
 import { Process } from "@/components/landing/process";
 import { Testimonials } from "@/components/landing/testimonials";
+import { FAQ } from "@/components/landing/faq";
 import { CTA } from "@/components/landing/cta";
 
 /** Subtle divider — a thin centered line with a small leaf dot in the middle */
@@ -57,6 +58,8 @@ export default function Home() {
       <SectionDivider />
       <Testimonials />
       <SectionFade to="tinted" />
+      <FAQ />
+      <SectionDivider />
       <CTA />
     </main>
   );
