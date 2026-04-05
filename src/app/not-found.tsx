@@ -1,17 +1,10 @@
-"use client";
-
 import Link from "next/link";
-import { motion } from "framer-motion";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-cream-100 flex items-center justify-center px-6">
       <div className="max-w-lg text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
+        <div className="animate-fade-in">
           <div className="relative inline-block mb-8">
             <svg
               width="64"
@@ -55,8 +48,8 @@ export default function NotFound() {
           </h1>
 
           <p className="text-warm-500 leading-relaxed text-lg mb-10">
-            Pero no te preocupes — como nosotros, siempre encontramos el rumbo.
-            talvez buscabas algo que aún no existe o迁移 a la home?
+            Pero no te preocupes — como toda buena semilla, siempre encontramos
+            el rumbo. Volvamos al inicio.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
@@ -66,14 +59,14 @@ export default function NotFound() {
             >
               Volver al inicio
             </Link>
-            <Link
-              href="#contacto"
-              className="link-underline text-sm font-medium text-warm-600 hover:text-warm-800 transition-colors"
+            <a
+              href="mailto:hello@musuq.tech"
+              className="text-sm font-medium text-warm-600 hover:text-warm-800 transition-colors underline decoration-warm-400/50 underline-offset-4 hover:decoration-warm-600"
             >
               Escribirnos
-            </Link>
+            </a>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

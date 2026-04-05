@@ -41,21 +41,12 @@ export const metadata: Metadata = {
     siteName: "musuq",
     locale: "es_PE",
     type: "website",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "musuq | estudio digital",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "musuq | estudio digital",
     description:
       "Construimos productos digitales con propósito. Landings, e-commerce, automatizaciones y software a medida.",
-    images: ["/opengraph-image.png"],
   },
 };
 
