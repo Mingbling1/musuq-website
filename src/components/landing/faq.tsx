@@ -7,19 +7,19 @@ const faqs = [
     id: "1",
     question: "¿Por qué mi pyme necesita una landing page si ya tengo Instagram?",
     answer:
-      "Las redes sociales son ventanas. Una landing page es tu tienda. En Instagram tu cliente navega entre cien publicaciones competing por su atención. En tu landing, cada pixel está diseñado para una sola cosa: convertir. Además, mientras másdependes de redes de terceros, menos control tienes sobre tu negocio. Una landingpage es activos tuyos — los indexa Google, los visitas tus clientes, no desaparecencuando cambia un algoritmo.",
+      "Las redes sociales son ventanas. Tu landing page es tu tienda. En Instagram tu cliente compite con cien publicaciones por su atención. En tu landing cada píxel está diseñado para una sola cosa: convertir. Además, mientras más dependes de redes de terceros, menos control tienes sobre tu negocio. Tu landing page es un activo tuyo que no desaparece cuando cambia un algoritmo.",
   },
   {
     id: "2",
     question: "¿Cuánto tiempo toma tener mi proyecto listo?",
     answer:
-      "Depende de la complejidad. Una landing page bien diseñada y desarrollada puede estar lista en 2 a 3 semanas. Una tienda online, entre 4 y 6 semanas. automatizaciones más complejas, de 6 a 8 semanas. El tiempo real lo definimos juntos en la primera reunión — sin sorpresas ni fechas que se estiran porque sí. trabajamos con pocos proyectos simultáneos para que el tuyo avance rápido.",
+      "Depende de la complejidad. Una landing page puede estar lista en 2 a 3 semanas. Una tienda online, entre 4 y 6 semanas. Automatizaciones más complejas, de 6 a 8 semanas. El tiempo real lo definimos juntos en la primera reunión, sin sorpresas ni fechas que se estiran.",
   },
   {
     id: "3",
     question: "¿Cuánto cuesta trabajar con ustedes?",
     answer:
-      "No tenemos precios estándar porque no hacemos proyectos estándar. Cada presupuesto se calcula según lo que realmente necesitas — no empaquetamos características que no vas a usar. Lo que sí te decimos: trabajamos con myisas y negocios pequeños que están comenzando. La primera reunión es gratuita y ahí definimos juntos qué tiene sentido para tu situación actual. Si no podemos ayudarte, te decimos qué alternativas hay.",
+      "No tenemos precios estándar porque no hacemos proyectos estándar. Cada presupuesto se calcula según lo que realmente necesitas, sin empaquetar funcionalidades que no vas a usar. La primera reunión es gratuita y ahí definimos juntos qué tiene sentido para tu situación actual.",
   },
 ];
 

@@ -60,7 +60,7 @@ export function CTA() {
           {/* Secondary actions */}
           <div className="flex flex-wrap items-center gap-6">
             <Link
-              href="https://calendly.com/hello-musuq/30min"
+              href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3SM54rwbpjCnArOYAC5cVcHGMYc0OQxr2XGlb2w2PtAI8aOAcNkSVndIkBztEKbPwGXj7TF0FI"
               target="_blank"
               rel="noopener noreferrer"
               className="rounded-full bg-warm-800 px-7 py-3.5 text-sm font-medium text-cream-50 transition-all hover:bg-warm-700 active:scale-95"
