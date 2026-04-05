@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import {
   Dialog,
@@ -144,77 +143,97 @@ export function Services() {
 
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Section header - left aligned, editorial */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-xl mb-20"
-        >
+        <div className="max-w-xl mb-20">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-4">
             Lo que hacemos
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl font-medium leading-[1.1] tracking-tight text-warm-800">
             Cinco formas de impulsar tu negocio
           </h2>
-        </motion.div>
+        </div>
 
-        {/* Services list - editorial style */}
+        {/* Services list */}
         <div className="space-y-0">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group border-t border-warm-800/[0.06] py-10 sm:py-14"
-            >
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-12 sm:gap-8">
-                {/* Number */}
-                <div className="sm:col-span-1">
-                  <span className="text-xs font-medium text-warm-400 tabular-nums">
-                    {service.number}
-                  </span>
-                </div>
+          {services.map((service, i) => {
+            const Visual = serviceVisuals[service.number];
+            const isEven = i % 2 === 1;
 
-                {/* Title */}
-                <div className="sm:col-span-4">
-                  <h3 className="font-serif text-2xl sm:text-3xl font-medium text-warm-800 leading-tight group-hover:text-terracotta transition-colors duration-300">
-                    {service.title}
-                  </h3>
-                </div>
-
-                {/* Description + details */}
-                <div className="sm:col-span-7">
-                  <p className="text-warm-500 leading-relaxed mb-5">
-                    {service.description}
-                  </p>
-                  <div className="flex flex-wrap gap-x-6 gap-y-2">
-                    {service.details.map((detail) => (
-                      <span
-                        key={detail}
-                        className="text-xs text-warm-400 before:content-['—_'] before:text-warm-400/40"
-                      >
-                        {detail}
+            return (
+              <div
+                key={service.number}
+                className="group border-t border-warm-800/[0.06] py-10 sm:py-14"
+              >
+                {/* ── Mobile layout (stacked) ── */}
+                <div className="lg:hidden">
+                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-12 sm:gap-8">
+                    <div className="sm:col-span-1">
+                      <span className="text-xs font-medium text-warm-400 tabular-nums">
+                        {service.number}
                       </span>
-                    ))}
+                    </div>
+                    <div className="sm:col-span-4">
+                      <h3 className="font-serif text-2xl sm:text-3xl font-medium text-warm-800 leading-tight group-hover:text-terracotta transition-colors duration-300">
+                        {service.title}
+                      </h3>
+                    </div>
+                    <div className="sm:col-span-7">
+                      <p className="text-warm-500 leading-relaxed mb-5">
+                        {service.description}
+                      </p>
+                      <div className="flex flex-wrap gap-x-6 gap-y-2">
+                        {service.details.map((detail) => (
+                          <span
+                            key={detail}
+                            className="text-xs text-warm-400 before:content-['—_'] before:text-warm-400/40"
+                          >
+                            {detail}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  {Visual && (
+                    <div>
+                      <Visual />
+                      <DemoButton serviceNumber={service.number} />
+                    </div>
+                  )}
+                </div>
+
+                {/* ── Desktop layout (side-by-side, alternating) ── */}
+                <div className="hidden lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center">
+                  {/* Text column */}
+                  <div className={`${isEven ? "lg:order-2" : "lg:order-1"}`}>
+                    <span className="text-xs font-medium text-warm-400 tabular-nums">
+                      {service.number}
+                    </span>
+                    <h3 className="mt-3 font-serif text-3xl xl:text-4xl font-medium text-warm-800 leading-tight group-hover:text-terracotta transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="mt-5 text-warm-500 leading-relaxed">
+                      {service.description}
+                    </p>
+                    <div className="mt-5 flex flex-wrap gap-x-6 gap-y-2">
+                      {service.details.map((detail) => (
+                        <span
+                          key={detail}
+                          className="text-xs text-warm-400 before:content-['—_'] before:text-warm-400/40"
+                        >
+                          {detail}
+                        </span>
+                      ))}
+                    </div>
+                    <DemoButton serviceNumber={service.number} />
+                  </div>
+
+                  {/* Visual column */}
+                  <div className={`${isEven ? "lg:order-1" : "lg:order-2"}`}>
+                    {Visual && <Visual />}
                   </div>
                 </div>
               </div>
-
-              {/* SVG Preview (always visible) + Demo button (desktop only) */}
-              {(() => {
-                const Visual = serviceVisuals[service.number];
-                return Visual ? (
-                  <div>
-                    <Visual />
-                    <DemoButton serviceNumber={service.number} />
-                  </div>
-                ) : null;
-              })()}
-            </motion.div>
-          ))}
+            );
+          })}
           {/* Bottom border */}
           <div className="border-t border-warm-800/[0.06]" />
         </div>
