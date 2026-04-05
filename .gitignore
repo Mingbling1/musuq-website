@@ -43,6 +43,9 @@ next-env.d.ts
 # OpenNext Cloudflare
 .open-next/
 
+# OpenCode skills
+.opencode/
+
 # Cloudflare
 .wrangler/
 .dev.vars
