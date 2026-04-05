@@ -17,20 +17,28 @@ Landing page profesional para estudio digital peruano. Nombre en quechua: "musuq
 ```
 src/
   app/
-    layout.tsx          -- Root layout, metadata, fuentes
-    page.tsx            -- Homepage: Hero > Services > TechStack > Process > CTA
-    globals.css         -- Tema Tailwind, utilidades, grain overlay
+    layout.tsx          -- Root layout, metadata, fuentes, Chatwoot, Vercel Analytics
+    page.tsx            -- Homepage: Hero > Services > TechStack > Process > Testimonials > FAQ > CTA
+    globals.css         -- Tema Tailwind, utilidades, animaciones, grain overlay
+    not-found.tsx       -- Pagina 404 custom (CSS fade-in, sin motion.div)
+    opengraph-image.tsx -- OG image (1200x630, semilla + musuq + tagline)
+    manifest.ts         -- PWA manifest
+    apple-icon.tsx      -- Apple touch icon 180x180 PNG
+    privacy/            -- Politica de privacidad (Ley 29733 Peru)
+    terms/              -- Terminos y condiciones
   components/
     landing/            -- Secciones de la landing
       hero.tsx          -- BatteryStack SVG animation + CTA principal
       navbar.tsx        -- Header fijo con scroll detection
-      footer.tsx        -- Footer con servicios y contacto
-      services.tsx      -- Grid de 5 servicios con demos modales
-      cta.tsx           -- Seccion contacto (hello@musuq.tech)
+      footer.tsx        -- Footer con servicios y contacto + legal links
+      services.tsx      -- 5 servicios, layout split desktop (alternado), hover-reveal wireframes
+      service-visuals.tsx -- SVG wireframes por servicio, grayscale → color en hover
+      cta.tsx           -- Seccion contacto (Calendly + mailto)
       process.tsx       -- 4 pasos del proceso
       tech-stack.tsx    -- Grid de tecnologias (17+ tools)
-      service-visuals.tsx -- SVG wireframes por servicio
-      demos/            -- Demos interactivos por servicio
+      testimonials.tsx  -- 3 proyectos (Empliq, Classiq, BDesign)
+      faq.tsx           -- 3 preguntas frecuentes para myisas
+      demos/            -- Demos interactivos por servicio (Dialog modales)
     ui/                 -- Componentes shadcn/ui base
     icons/              -- Logo musuq + iconos tech (Simple Icons)
   lib/
@@ -39,12 +47,13 @@ src/
 
 ## Reglas de desarrollo
 
-1. **Next.js 16 tiene breaking changes.** Siempre consultar `node_modules/next/dist/docs/01-app/` antes de escribir codigo que use APIs de Next (metadata, routing, server components, etc.)
-2. **Single-page con anchor nav.** IDs: `#servicios`, `#proceso`, `#contacto`. No crear rutas nuevas sin consultar.
+1. **Next.js 16 tiene breaking changes.** Siempre consultar `node_modules/next/dist/docs/01-app/` antes de tocar APIs de Next (metadata, routing, server components, etc.)
+2. **Single-page con anchor nav.** IDs: `#servicios`, `#proceso`, `#trabajo`, `#faq`, `#contacto`. No crear rutas nuevas sin consultar.
 3. **Animaciones SVG puras.** El BatteryStack en hero.tsx usa SVG + CSS, sin JS state. Mantener ese patron.
-4. **No agregar dependencias sin justificar.** El bundle ya tiene lo necesario.
-5. **Mobile-first.** Toda UI debe funcionar en movil. El BatteryStack solo se muestra en desktop.
-6. **Accesibilidad.** Respetar `prefers-reduced-motion`. Usar semantica HTML correcta.
+4. **No usar motion.div con whileInView** en secciones — causa flicker en iOS Safari. Usar CSS animations.
+5. **No agregar dependencias sin justificar.** El bundle ya tiene lo necesario.
+6. **Mobile-first.** Toda UI debe funcionar en movil. El BatteryStack solo se muestra en desktop.
+7. **Accesibilidad.** Respetar `prefers-reduced-motion`. Usar semantica HTML correcta.
 
 ## Skills (documentacion detallada)
 
@@ -65,38 +74,40 @@ Para informacion profunda sobre cada area, consultar los skills en `.claude/skil
 
 ## Auditoría pendiente (priorizada)
 
-### P0 — Critico
+### P0 — Critico ✅
 - [x] CTA "Agendar llamada" con Calendly
 - [x] Chatwoot widget integrado
 - [x] Open Graph + Twitter Cards en metadata
 - [x] robots.ts + sitemap.ts
 - [x] metadataBase + canonical URL
+- [x] Vercel Analytics instalado
 
-### P1 — SEO
+### P1 — SEO ✅
 - [x] JSON-LD structured data (Organization + Service)
-- [x] OG image (1200x630)
-- [x] Páginas legales (privacidad, términos)
-- [ ] manifest.ts + apple-icon.png
-- [ ] Pagina 404 personalizada
+- [x] OG image (1200x630) — rediseñado para WhatsApp crop-safe
+- [x] Páginas legales (privacidad, términos) — Ley 29733 Peru
+- [x] manifest.ts + apple-icon.tsx + icon-192/512.png
+- [x] Pagina 404 personalizada (CSS fade-in, mailto link, sin motion.div)
 - [ ] Analytics (Plausible/Umami recomendado para privacidad)
 
-### P2 — Conversion
-- [ ] Testimonios / social proof
-- [ ] Portafolio / casos de estudio
+### P2 — Conversion ⚠️
+- [ ] Testimonios reales — el componente existe con 3 proyectos pero necesita quotes de clientes
 - [ ] prefers-reduced-motion en todas las animaciones
 - [ ] Security headers en next.config.ts
+- [ ] Portafolio / casos de estudio reales
 
 ### P3 — Pulido
-- [ ] Seccion FAQ + schema
+- [x] FAQ section con 3 preguntas para myisas
 - [ ] Links redes sociales en footer
 - [ ] Skip-to-content link
 - [ ] Optimizar pesos de fuente (reducir de 4 a 3)
+- [ ] FAQ JSON-LD schema
 
 ## Deployment — Cloudflare Workers
 
 ```bash
-npm run deploy  # Build + deploy
-npm run preview # Build + preview local
+npm run deploy  # Build + deploy via GitHub Actions
+npm run preview # Build + preview local (npm start)
 ```
 
 Secrets requeridos en GitHub: `CF_WORKERS_API_TOKEN`, `CF_WORKERS_ACCOUNT_ID`
