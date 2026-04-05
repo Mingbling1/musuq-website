@@ -12,8 +12,8 @@ const faqs = [
   {
     id: "2",
     question: "¿Cuánto tiempo toma tener mi proyecto listo?",
-    answer:
-      "Semanas, no meses. Una landing page puede estar lista en 1 a 2 semanas. Una tienda online, en 3 a 5. Automatizaciones, en 4 a 6. Lo definimos juntos en la primera conversación sin estirar fechas.",
+      answer:
+        "2 a 3 días para una landing. 7 a 10 días para una tienda online. 3 a 5 días para automatizaciones. Son promedios — cada proyecto es diferente y lo conversamos desde el inicio. No usamos plantillas: todo es hiperpersonalizado desde cero.",
   },
   {
     id: "3",
