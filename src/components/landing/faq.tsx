@@ -13,7 +13,7 @@ const faqs = [
     id: "2",
     question: "¿Cuánto tiempo toma tener mi proyecto listo?",
     answer:
-      "Depende de la complejidad. Una landing page puede estar lista en 2 a 3 semanas. Una tienda online, entre 4 y 6 semanas. Automatizaciones más complejas, de 6 a 8 semanas. El tiempo real lo definimos juntos en la primera reunión, sin sorpresas ni fechas que se estiran.",
+      "Semanas, no meses. Una landing page puede estar lista en 1 a 2 semanas. Una tienda online, en 3 a 5. Automatizaciones, en 4 a 6. Lo definimos juntos en la primera conversación sin estirar fechas.",
   },
   {
     id: "3",
@@ -137,7 +137,7 @@ export function FAQ() {
             href="mailto:hello@musuq.tech"
             className="inline-flex items-center gap-2 text-sm font-medium text-terracotta hover:text-terracotta-light transition-colors underline decoration-warm-400/30 underline-offset-4"
           >
-            Escribenos
+            Escríbenos
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
               <path
                 d="M2 7H12M8 3L12 7L8 11"

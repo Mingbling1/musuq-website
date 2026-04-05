@@ -19,24 +19,33 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://musuq.tech"),
-  title: "musuq | estudio digital",
-  description:
-    "Construimos productos digitales con propósito. Landings, e-commerce, automatizaciones y software a medida para negocios que quieren crecer.",
-  keywords: [
-    "estudio digital",
-    "desarrollo web",
-    "landing pages",
-    "e-commerce",
-    "automatizaciones",
-    "software a medida",
-  ],
-  alternates: {
-    canonical: "https://musuq.tech",
+  title: {
+    default: "musuq | estudio digital",
+    template: "%s | musuq",
   },
+  description:
+    "Estudio digital peruano. Construimos landings, tiendas online, automatizaciones y software a medida para myisas y negocios que quieren crecer sin plantillas ni misterios.",
+  keywords: [
+    "estudio digital perú",
+    "landing page perú",
+    "desarrollo web perú",
+    "e-commerce perú",
+    "tienda online perú",
+    "automatizaciones perú",
+    "software a medida perú",
+    "paginas web lima",
+    "agencia digital perú",
+    "next.js perú",
+    "chatwoot perú",
+    "n8n automatizaciones",
+  ],
+  authors: [{ name: "musuq" }],
+  creator: "musuq",
+  publisher: "musuq",
   openGraph: {
     title: "musuq | estudio digital",
     description:
-      "Construimos productos digitales con propósito. Landings, e-commerce, automatizaciones y software a medida.",
+      "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida para myisas y negocios que quieren crecer.",
     url: "https://musuq.tech",
     siteName: "musuq",
     locale: "es_PE",
@@ -46,8 +55,79 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "musuq | estudio digital",
     description:
-      "Construimos productos digitales con propósito. Landings, e-commerce, automatizaciones y software a medida.",
+      "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida.",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Por qué mi pyme necesita una landing page si ya tengo Instagram?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Las redes sociales son ventanas. Tu landing page es tu tienda. En Instagram tu cliente compite con cien publicaciones por su atención. En tu landing cada píxel está diseñado para una sola cosa: convertir. Además, mientras más dependes de redes de terceros, menos control tienes sobre tu negocio. Tu landing page es un activo tuyo que no desaparece cuando cambia un algoritmo.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cuánto tiempo toma tener mi proyecto listo?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Semanas, no meses. Una landing page puede estar lista en 1 a 2 semanas. Una tienda online, en 3 a 5. Automatizaciones, en 4 a 6. Lo definimos juntos en la primera conversación sin estirar fechas.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cuánto cuesta trabajar con ustedes?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No tenemos precios estándar porque no hacemos proyectos estándar. Cada presupuesto se calcula según lo que realmente necesitas, sin empaquetar funcionalidades que no vas a usar. La primera reunión es gratuita y ahí definimos juntos qué tiene sentido para tu situación actual.",
+      },
+    },
+  ],
+};
+
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "musuq",
+  description:
+    "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida.",
+  url: "https://musuq.tech",
+  logo: "https://musuq.tech/icon.svg",
+  email: "hello@musuq.tech",
+  areaServed: {
+    "@type": "Country",
+    name: "Peru",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressRegion: "Lima",
+    addressLocality: "Lima",
+    addressCountry: "PE",
+  },
+  serviceType: [
+    "Landing Pages",
+    "E-commerce",
+    "Automatizaciones",
+    "Software a medida",
+    "Consultas técnicas",
+  ],
+  sameAs: [],
 };
 
 export default function RootLayout({
@@ -55,29 +135,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    name: "musuq",
-    description:
-      "Estudio digital que construye productos digitales con propósito. Landings, e-commerce, automatizaciones y software a medida.",
-    url: "https://musuq.tech",
-    logo: "https://musuq.tech/icon.svg",
-    email: "hello@musuq.tech",
-    areaServed: {
-      "@type": "Country",
-      name: "Peru",
-    },
-    serviceType: [
-      "Landing Pages",
-      "E-commerce",
-      "Automatizaciones",
-      "Software a medida",
-      "Consultas técnicas",
-    ],
-    sameAs: [],
-  };
-
   return (
     <html
       lang="es"
@@ -87,7 +144,11 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col font-sans">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
         <Navbar />
         {children}
