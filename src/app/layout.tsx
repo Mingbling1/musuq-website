@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | musuq",
   },
   description:
-    "Estudio digital peruano. Construimos landings, tiendas online, automatizaciones y software a medida para myisas y negocios que quieren crecer sin plantillas ni misterios.",
+    "Estudio digital peruano. Construimos landings, tiendas online, automatizaciones y software a medida para mypes y negocios que quieren crecer sin plantillas ni misterios.",
   keywords: [
     "estudio digital perú",
     "landing page perú",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "musuq | estudio digital",
     description:
-      "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida para myisas y negocios que quieren crecer.",
+      "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida para mypes y negocios que quieren crecer.",
     url: "https://musuq.tech",
     siteName: "musuq",
     locale: "es_PE",

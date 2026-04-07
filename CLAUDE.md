@@ -37,7 +37,7 @@ src/
       process.tsx       -- 4 pasos del proceso
       tech-stack.tsx    -- Grid de tecnologias (17+ tools)
       testimonials.tsx  -- 3 proyectos (Empliq, Classiq, BDesign)
-      faq.tsx           -- 3 preguntas frecuentes para myisas
+      faq.tsx           -- 3 preguntas frecuentes para mypes
       demos/            -- Demos interactivos por servicio (Dialog modales)
     ui/                 -- Componentes shadcn/ui base
     icons/              -- Logo musuq + iconos tech (Simple Icons)
@@ -97,7 +97,7 @@ Para informacion profunda sobre cada area, consultar los skills en `.claude/skil
 - [ ] Portafolio / casos de estudio reales
 
 ### P3 — Pulido
-- [x] FAQ section con 3 preguntas para myisas
+- [x] FAQ section con 3 preguntas para mypes
 - [ ] Links redes sociales en footer
 - [ ] Skip-to-content link
 - [ ] Optimizar pesos de fuente (reducir de 4 a 3)
