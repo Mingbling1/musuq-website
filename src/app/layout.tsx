@@ -50,12 +50,17 @@ export const metadata: Metadata = {
     siteName: "musuq",
     locale: "es_PE",
     type: "website",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+  },
+  alternates: {
+    canonical: "https://musuq.tech",
   },
   twitter: {
     card: "summary_large_image",
     title: "musuq | estudio digital",
     description:
       "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   robots: {
     index: true,
