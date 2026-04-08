@@ -1,6 +1,6 @@
 ---
 name: musuq-seo
-description: Estado SEO actual de musuq.tech - metadata, Open Graph, robots, sitemap, structured data, issues pendientes y prioritize
+description: Estado SEO actual de musuq.tech - metadata, Open Graph, robots, sitemap, structured data, issues pendientes y prioritario
 license: MIT
 compatibility: opencode
 metadata:
@@ -10,117 +10,66 @@ metadata:
 
 # musuq SEO
 
-Landing page en espanol para estudio digital peruano. Dominio: musuq.tech.
+Landing page en español para estudio digital peruano. Dominio: musuq.tech.
 
 ## Metadata actual (layout.tsx)
 
 ```ts
 title: "musuq | estudio digital"
-description: "Construimos productos digitales con proposito. Landings, e-commerce, automatizaciones y software a medida para negocios que quieren crecer."
-keywords: estudio digital, desarrollo web, landing pages, e-commerce, automatizaciones, software a medida
+description: "Estudio digital peruano. Construimos landings, tiendas online, automatizaciones y software a medida para mypes y negocios que quieren crecer sin plantillas ni misterios."
 lang: es
+metadataBase: new URL("https://musuq.tech")
+openGraph:
+  title: "musuq | estudio digital"
+  url: "https://musuq.tech"
+  siteName: "musuq"
+  locale: "es_PE"
+  type: "website"
+  images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
+alternates: { canonical: "https://musuq.tech" }
+twitter:
+  card: "summary_large_image"
+  images: [{ url: "/opengraph-image", width: 1200, height: 630 }]
+robots: { index: true, follow: true }
 ```
 
-## IMPLEMENTADO recently
+## Lighthouse SEO Score: 100/100
 
-- Title con pipe `|` en lugar de `--`
+Todos los audits SEO pasan:
+- canonical, meta-description, document-title, robots.txt, http-status-code
+- link-text, crawlable-anchors, hreflang, image-alt, is-crawlable
+
+## IMPLEMENTADO
+
+- Title con pipe `|`
 - SectionDivider y SectionFade en page.tsx
-
-## PENDIENTE - Prioridad alta
-
-### 1. Open Graph + Twitter Cards (CRITICO)
-
-Agregar en `layout.tsx` metadata export:
-```ts
-metadataBase: new URL('https://musuq.tech'),
-openGraph: {
-  title: "musuq | estudio digital",
-  description: "Construimos productos digitales con proposito...",
-  url: 'https://musuq.tech',
-  siteName: 'musuq',
-  locale: 'es_PE',
-  type: 'website',
-  images: [{ url: '/og-image.png', width: 1200, height: 630 }]
-},
-twitter: { card: 'summary_large_image', title: '...', description: '...', images: ['/og-image.png'] }
-```
-
-### 2. robots.ts (CRITICO)
-
-Crear `src/app/robots.ts`:
-```ts
-export default function robots() {
-  return {
-    rules: { userAgent: '*', allow: '/' },
-    sitemap: 'https://musuq.tech/sitemap.xml',
-  }
-}
-```
-
-### 3. sitemap.ts (CRITICO)
-
-Crear `src/app/sitemap.ts`:
-```ts
-export default function sitemap() {
-  return [{ url: 'https://musuq.tech', lastModified: new Date(), changeFrequency: 'monthly', priority: 1 }]
-}
-```
-
-### 4. Canonical URL
-
-Ya cubierto por `metadataBase` + `openGraph.url`
+- Open Graph + Twitter Cards con imágenes
+- Canonical URL (`alternates.canonical`)
+- robots.txt (src/app/robots.ts)
+- sitemap.xml (src/app/sitemap.ts)
+- JSON-LD: FAQPage schema + ProfessionalService schema
+- Redirect www → non-www via middleware (src/middleware.ts)
 
 ## PENDIENTE - Prioridad media
 
-### 5. JSON-LD Structured Data
+### 1. OG Image real
 
-Tipo: `Organization` + `ProfessionalService`. Agregar en `<head>` via metadata:
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "musuq",
-  "url": "https://musuq.tech",
-  "logo": "https://musuq.tech/icon.svg",
-  "email": "hello@musuq.tech",
-  "areaServed": "Peru",
-  "serviceType": ["Landing Pages", "E-commerce", "Automations", "Custom Software"]
-}
-```
+Crear `/public/og-image.png` (1200x630px) con branding musuq (terracotta + cream + logo). Actualmente usa `opengraph-image.tsx` generado dinámicamente.
 
-### 6. OG Image
+### 2. apple-icon.png
 
-Crear `/public/og-image.png` (1200x630px) con branding musuq (terracotta + cream + logo)
+Crear `/public/apple-icon.png` (180x180px) para bookmarks en iOS. Currently 404.
 
-### 7. manifest.ts
+### 3. OG image dinámina vs real
 
-Crear `src/app/manifest.ts` para PWA metadata:
-```ts
-export default function manifest() {
-  return {
-    name: "musuq | estudio digital",
-    short_name: "musuq",
-    description: "...",
-    start_url: "/",
-    display: "standalone",
-    background_color: "#FAF8F5",
-    theme_color: "#C8553D",
-    icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }]
-  }
-}
-```
-
-### 8. apple-icon.png
-
-Crear `/src/app/apple-icon.png` (180x180px) para bookmarks en iOS
+El `opengraph-image.tsx` genera imagen dinámicamente. Una imagen real en `/public/og-image.png` sería más confiable.
 
 ## PENDIENTE - Prioridad baja
 
-- Security headers en next.config.ts
+- Security headers en next.config.ts (ya parcialmente implementados)
 - prefers-reduced-motion en animaciones CSS
-- Legal pages (privacy, terms)
 - Social links en footer
-- FAQ section con FAQPage schema
+- Legal pages ya existen: /privacy, /terms
 
 ## Archivos basura en /public/
 
@@ -130,34 +79,38 @@ Eliminar: `file.svg`, `globe.svg`, `next.svg`, `vercel.svg`, `window.svg`
 
 # BACKLOG P0-P3
 
-## P0 — Critico
+## P0 — Crítico
 
 - [ ] CTA "Agendar llamada" es link muerto (href="#" en cta.tsx) — necesita Calendly/Cal.com
-- [ ] Open Graph + Twitter Cards en metadata
-- [ ] robots.ts + sitemap.ts
-- [ ] metadataBase + canonical URL
 
 ## P1 — SEO
 
-- [ ] JSON-LD structured data (Organization + Service)
-- [ ] OG image (1200x630)
-- [ ] manifest.ts + apple-icon.png
-- [ ] Pagina 404 personalizada
+- [x] Open Graph + Twitter Cards
+- [x] robots.ts + sitemap.xml
+- [x] metadataBase + canonical URL
+- [x] Redirect www → non-www
+- [ ] OG image real (1200x630)
+- [ ] apple-icon.png (180x180)
 - [ ] Analytics (Plausible/Umami recomendado para privacidad)
-- [ ] Limpiar archivos basura en /public/ (file.svg, globe.svg, next.svg, vercel.svg, window.svg)
 
 ## P2 — Conversion
 
 - [ ] Testimonios / social proof
 - [ ] Portafolio / casos de estudio
-- [ ] Boton WhatsApp flotante (importante para Peru/LATAM)
+- [ ] Botón WhatsApp flotante (importante para Perú/LATAM)
 - [ ] prefers-reduced-motion en todas las animaciones
-- [ ] Security headers en next.config.ts
 
 ## P3 — Pulido
 
-- [ ] Seccion FAQ + schema
+- [x] FAQ section con FAQPage schema
+- [x] Páginas legales (privacy, terms)
 - [ ] Links redes sociales en footer
 - [ ] Skip-to-content link
-- [ ] Paginas legales (privacidad, terminos)
 - [ ] Optimizar pesos de fuente (reducir de 4 a 3)
+
+## Notas técnicas SEO
+
+- `metadataBase` en Next.js define la URL base para todas las metadata relativas
+- `alternates.canonical` agrega `<link rel="canonical">` en el `<head>`
+- `openGraph.images` con objeto (no string) permite especificar width/height
+- Los schemas JSON-LD se injectan via `dangerouslySetInnerHTML` en el body
