@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ScrollReveal } from "./scroll-reveal";
 
 const steps = [
   {
@@ -68,13 +68,7 @@ export function Process() {
       </svg>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="max-w-xl mb-20"
-        >
+        <ScrollReveal className="max-w-xl mb-20" direction="left">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-4">
             Cómo trabajamos
           </p>
@@ -82,18 +76,15 @@ export function Process() {
             Sin misterios,<br />
             <span className="italic text-terracotta">sin sorpresas</span>
           </h2>
-        </motion.div>
+        </ScrollReveal>
 
         {/* Steps - asymmetric layout */}
         <div className="grid grid-cols-1 gap-16 sm:gap-20 md:grid-cols-2">
           {steps.map((step, i) => (
-            <motion.div
+            <ScrollReveal
               key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
               className={`${i % 2 === 1 ? "md:mt-16" : ""}`}
+              delay={i * 90}
             >
               <div className="flex items-baseline gap-4 mb-4">
                 <span className="text-xs font-medium text-warm-400 tabular-nums">
@@ -109,7 +100,7 @@ export function Process() {
               <p className="text-warm-500 leading-relaxed">
                 {step.description}
               </p>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

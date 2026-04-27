@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { ScrollReveal } from "./scroll-reveal";
 
 export function CTA() {
   return (
@@ -24,13 +24,7 @@ export function CTA() {
         <path d="M4 4l10 5-4 1.5L8.5 15z" fill="#B87333" fillOpacity="0.05" stroke="#B87333" strokeWidth="0.8" strokeOpacity="0.06" />
       </svg>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="max-w-2xl"
-        >
+        <ScrollReveal className="max-w-2xl" direction="left">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-6">
             Empecemos
           </p>
@@ -75,7 +69,7 @@ export function CTA() {
               Disponible para nuevos proyectos
             </div>
           </div>
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

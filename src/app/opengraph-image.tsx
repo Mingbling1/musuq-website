@@ -8,129 +8,181 @@ export default function OpenGraphImage() {
     (
       <div
         style={{
-          background: "#FAF8F5",
           width: 1200,
           height: 630,
+          background: "#FAF8F5",
           display: "flex",
-          flexDirection: "column",
-          fontFamily: "system-ui, sans-serif",
           position: "relative",
           overflow: "hidden",
+          fontFamily: "system-ui, sans-serif",
+          color: "#1A1A1A",
         }}
       >
-        {/* Top brand stripe */}
         <div
           style={{
+            position: "absolute",
+            inset: 0,
             background:
-              "linear-gradient(to right, #C8553D 0%, #6B7C5E 50%, #B87333 100%)",
-            height: "6px",
-            width: "100%",
+              "radial-gradient(circle at 86% 18%, rgba(200,85,61,0.18), transparent 26%), radial-gradient(circle at 16% 86%, rgba(107,124,94,0.16), transparent 30%), linear-gradient(135deg, #FDFCFA 0%, #FAF8F5 48%, #F5F0EB 100%)",
+            display: "flex",
           }}
         />
 
-        {/* Logo */}
         <div
           style={{
+            position: "absolute",
+            left: 68,
+            right: 68,
+            top: 56,
+            bottom: 56,
+            border: "1px solid rgba(45,41,38,0.08)",
+            borderRadius: 42,
+            display: "flex",
+          }}
+        />
+
+        <div
+          style={{
+            position: "absolute",
+            right: 104,
+            top: 82,
+            width: 330,
+            height: 466,
+            borderRadius: 36,
+            background: "rgba(253,252,250,0.68)",
+            border: "1px solid rgba(45,41,38,0.07)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flex: 1,
-            padding: "40px",
           }}
         >
-          <svg width="80" height="80" viewBox="0 0 40 40" fill="none">
-            <circle cx="20" cy="32" r="5" fill="#C8553D" opacity="0.25" />
-            <line x1="20" y1="34" x2="20" y2="16" stroke="#C8553D" strokeWidth="2.8" strokeLinecap="round" />
-            <path d="M20 20 C17 18 11 13 8 7 C12 9 17 12 20 17" fill="#C8553D" opacity="0.75" />
-            <path d="M20 18 C23 15 28 10 32 5 C29 8 24 12 20 16" fill="#C8553D" opacity="0.55" />
-            <path d="M20 14 C18.5 10 18 6 19.5 3 C20.5 3 21 6 21.5 10 C21.5 12 20 14 20 14" fill="#C8553D" opacity="0.92" />
-            <circle cx="20" cy="34" r="2.5" fill="#C8553D" />
+          <svg width="230" height="230" viewBox="0 0 230 230" fill="none">
+            <circle cx="115" cy="162" r="38" fill="#C8553D" opacity="0.1" />
+            <path d="M115 176V82" stroke="#C8553D" strokeWidth="10" strokeLinecap="round" />
+            <path d="M113 95C88 91 54 63 41 24C82 36 107 60 116 89Z" fill="#C8553D" opacity="0.72" />
+            <path d="M116 87C139 59 166 38 196 27C183 58 153 89 121 101Z" fill="#6B7C5E" opacity="0.72" />
+            <path d="M115 69C104 42 106 21 116 9C127 24 130 47 119 72Z" fill="#C8553D" opacity="0.92" />
+            <circle cx="115" cy="180" r="13" fill="#C8553D" />
           </svg>
         </div>
 
-        {/* musuq */}
         <div
           style={{
+            position: "absolute",
+            left: 104,
+            top: 86,
             display: "flex",
             alignItems: "center",
-            justifyContent: "center",
-            padding: "0 40px",
+            gap: 14,
           }}
         >
-          <span
+          <div
             style={{
-              fontFamily: "Georgia, serif",
-              fontSize: "88px",
-              fontWeight: 500,
-              color: "#1A1A1A",
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
+              width: 9,
+              height: 9,
+              borderRadius: 999,
+              background: "#C8553D",
+              display: "flex",
             }}
-          >
-            musuq
-          </span>
-        </div>
-
-        {/* Tagline */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: "16px 40px 32px",
-          }}
-        >
+          />
           <span
             style={{
-              fontFamily: "Georgia, serif",
-              fontSize: "26px",
-              fontStyle: "italic",
               color: "#8A8378",
-              letterSpacing: "0.01em",
-              textAlign: "center",
-              lineHeight: 1.5,
-            }}
-          >
-            Lo que tu negocio necesita para crecer
-          </span>
-        </div>
-
-        {/* Bottom bar */}
-        <div
-          style={{
-            background: "#2D2926",
-            height: "52px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "12px",
-          }}
-        >
-          <span
-            style={{
-              color: "#B5ADA3",
-              fontSize: "13px",
-              letterSpacing: "0.1em",
+              fontSize: 18,
+              fontWeight: 600,
+              letterSpacing: "0.22em",
               textTransform: "uppercase",
             }}
           >
-            estudio digital
+            estudio digital peruano
           </span>
-          <span style={{ color: "#4A4540", fontSize: "13px" }}>·</span>
-          <span
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            left: 100,
+            top: 154,
+            width: 690,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <div
             style={{
-              color: "#B5ADA3",
-              fontSize: "13px",
-              letterSpacing: "0.05em",
+              fontFamily: "Georgia, serif",
+              fontSize: 132,
+              fontWeight: 500,
+              letterSpacing: "-0.075em",
+              lineHeight: 0.9,
+              color: "#1A1A1A",
             }}
           >
-            musuq.tech
-          </span>
+            musuq
+          </div>
+          <div
+            style={{
+              marginTop: 28,
+              fontFamily: "Georgia, serif",
+              fontSize: 58,
+              fontWeight: 400,
+              letterSpacing: "-0.045em",
+              lineHeight: 1.05,
+              color: "#2D2926",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <span>Lo simple es</span>
+            <span style={{ color: "#C8553D", fontStyle: "italic" }}>lo que funciona.</span>
+          </div>
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            left: 104,
+            bottom: 90,
+            display: "flex",
+            alignItems: "center",
+            gap: 16,
+          }}
+        >
+          {['landings', 'tiendas', 'automatizaciones', 'software'].map((item) => (
+            <div
+              key={item}
+              style={{
+                border: "1px solid rgba(45,41,38,0.09)",
+                borderRadius: 999,
+                padding: "10px 18px",
+                color: "#4A4540",
+                fontSize: 17,
+                fontWeight: 500,
+                background: "rgba(253,252,250,0.52)",
+                display: "flex",
+              }}
+            >
+              {item}
+            </div>
+          ))}
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            right: 104,
+            bottom: 88,
+            color: "#8A8378",
+            fontSize: 24,
+            fontWeight: 600,
+            letterSpacing: "-0.02em",
+            display: "flex",
+          }}
+        >
+          musuq.tech
         </div>
       </div>
     ),
-    {
-      ...size,
-    }
+    size
   );
 }

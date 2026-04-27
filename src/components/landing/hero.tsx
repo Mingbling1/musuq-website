@@ -1,112 +1,241 @@
 "use client";
 
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import type { PointerEvent } from "react";
 
-/* ── Cinematic 3D hero visualization ────────────────────────────────── */
+/* ── Battery recharge visualization ────────────────────────────────── */
 
-const SCENE_LAYERS = [
-  { label: "idea", className: "left-7 top-24 w-40 rotate-[-9deg]", delay: "0s" },
-  { label: "diseño", className: "right-8 top-16 w-36 rotate-[7deg]", delay: "0.9s" },
-  { label: "código", className: "left-14 bottom-20 w-44 rotate-[4deg]", delay: "1.8s" },
+const SOURCE_NODES = [
+  { label: "Landings", x: 0, y: 20, delay: 0 },
+  { label: "Cloud", x: 12, y: 80, delay: 1.2 },
+  { label: "Automations", x: 5, y: 140, delay: 2.4 },
+  { label: "E-commerce", x: 15, y: 200, delay: 3.6 },
+  { label: "Software", x: 8, y: 260, delay: 4.8 },
 ];
 
 /**
- * Faux cinematic 3D scene: no heavy video asset, but it behaves like one.
- * Motion values keep pointer tilt and spotlight updates outside React renders.
+ * Pure-CSS animated battery + energy nodes.
+ * No useEffect, no useState, no timers — just SVG + CSS keyframes.
+ * The 8s cycle: nodes pulse sequentially → connection lines glow → battery fills.
  */
-function CinematicHeroScene() {
-  const reduceMotion = useReducedMotion();
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const smoothX = useSpring(pointerX, { stiffness: 120, damping: 24, mass: 0.35 });
-  const smoothY = useSpring(pointerY, { stiffness: 120, damping: 24, mass: 0.35 });
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], reduceMotion ? [0, 0] : [-8, 8]);
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], reduceMotion ? [0, 0] : [7, -7]);
-  const lightX = useTransform(smoothX, [-0.5, 0.5], ["18%", "82%"]);
-  const lightY = useTransform(smoothY, [-0.5, 0.5], ["22%", "78%"]);
-  const spotlight = useMotionTemplate`radial-gradient(circle at ${lightX} ${lightY}, rgba(200, 85, 61, 0.2), transparent 32%), radial-gradient(circle at 80% 18%, rgba(107, 124, 94, 0.18), transparent 28%), linear-gradient(145deg, rgba(253, 252, 250, 0.92), rgba(245, 240, 235, 0.72))`;
-
-  function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
-    if (reduceMotion) return;
-
-    const bounds = event.currentTarget.getBoundingClientRect();
-    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
-    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
-  }
-
-  function handlePointerLeave() {
-    pointerX.set(0);
-    pointerY.set(0);
-  }
-
+function BatteryStack() {
   return (
-    <div className="hero-cinema-perspective relative h-[460px] w-[420px] select-none">
-      <motion.div
-        aria-label="Escena 3D interactiva de musuq"
-        className="hero-cinema group relative h-full w-full rounded-[2.75rem] bg-warm-800/5 p-2 shadow-[0_34px_90px_-54px_rgba(74,69,64,0.7)] ring-1 ring-warm-800/5"
-        onPointerLeave={handlePointerLeave}
-        onPointerMove={handlePointerMove}
-        role="img"
-        style={{ rotateX, rotateY, transformPerspective: 1100 }}
+    <div className="relative w-[320px] h-[360px] select-none">
+      <svg
+        viewBox="0 0 320 360"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="absolute inset-0 w-full h-full"
+        aria-hidden="true"
       >
-        <motion.div
-          className="hero-cinema-core relative h-full overflow-hidden rounded-[2.25rem] border border-cream-50/70 bg-cream-100 shadow-[inset_0_1px_1px_rgba(255,255,255,0.85),inset_0_-28px_70px_rgba(200,85,61,0.08)]"
-          style={{ background: spotlight }}
-        >
-          <div className="absolute inset-x-7 top-7 z-10 flex items-center justify-between text-[10px] font-medium uppercase tracking-[0.24em] text-warm-500">
-            <span>musuq studio</span>
-            <span className="flex items-center gap-2 text-sage">
-              <span className="h-1.5 w-1.5 rounded-full bg-sage hero-cinema-pulse" />
-              en vivo
-            </span>
-          </div>
+        <defs>
+          {/* Glow filter for connection pulses */}
+          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
 
-          <div className="absolute inset-x-8 top-20 h-52 rounded-[2rem] bg-warm-800/[0.035] ring-1 ring-warm-800/5 hero-cinema-floor" />
+          {/* Gradient for battery fill */}
+          <linearGradient id="batteryFill" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stopColor="#6B7C5E" />
+            <stop offset="100%" stopColor="#C8553D" />
+          </linearGradient>
 
-          <div className="absolute left-1/2 top-[43%] h-48 w-48 -translate-x-1/2 -translate-y-1/2 rounded-full border border-terracotta/15 bg-[radial-gradient(circle,rgba(200,85,61,0.12),transparent_68%)] hero-cinema-orbit" />
+          {/* Clip for battery interior */}
+          <clipPath id="batteryClip">
+            <rect x="222" y="68" width="56" height="224" rx="6" />
+          </clipPath>
+        </defs>
 
-          {SCENE_LAYERS.map((layer) => (
-            <div
-              className={`hero-cinema-layer absolute rounded-[1.4rem] bg-cream-50/80 p-3 shadow-[0_18px_45px_-30px_rgba(74,69,64,0.7)] ring-1 ring-warm-800/[0.07] backdrop-blur-sm ${layer.className}`}
-              key={layer.label}
-              style={{ animationDelay: layer.delay }}
+        {/* ── Connection lines (source → battery) ──────────────── */}
+        {SOURCE_NODES.map((node, i) => {
+          const startX = node.x + 110;
+          const startY = node.y + 30;
+          const endX = 222;
+          const endY = 180;
+          const cpX = startX + 60;
+
+          return (
+            <g key={node.label}>
+              {/* Base line (always visible, faint) */}
+              <path
+                d={`M${startX} ${startY} C${cpX} ${startY}, ${endX - 30} ${endY}, ${endX} ${endY}`}
+                stroke="#2D2926"
+                strokeWidth="1"
+                strokeOpacity="0.06"
+                fill="none"
+              />
+              {/* Glowing pulse line */}
+              <path
+                d={`M${startX} ${startY} C${cpX} ${startY}, ${endX - 30} ${endY}, ${endX} ${endY}`}
+                stroke="#C8553D"
+                strokeWidth="1.5"
+                fill="none"
+                filter="url(#glow)"
+                className="hero-conn-pulse"
+                style={{
+                  animationDelay: `${node.delay}s`,
+                }}
+              />
+              {/* Traveling energy dot */}
+              <circle r="3" fill="#C8553D" className="hero-energy-dot" style={{ animationDelay: `${node.delay}s` }}>
+                <animateMotion
+                  dur="8s"
+                  repeatCount="indefinite"
+                  begin={`${node.delay}s`}
+                  keyTimes="0;0.12;0.15;1"
+                  keyPoints="0;1;1;1"
+                  calcMode="spline"
+                  keySplines="0.4 0 0.2 1;0 0 1 1;0 0 1 1"
+                >
+                  <mpath href={`#connPath${i}`} />
+                </animateMotion>
+              </circle>
+              {/* Invisible path for animateMotion */}
+              <path
+                id={`connPath${i}`}
+                d={`M${startX} ${startY} C${cpX} ${startY}, ${endX - 30} ${endY}, ${endX} ${endY}`}
+                fill="none"
+                stroke="none"
+              />
+            </g>
+          );
+        })}
+
+        {/* ── Source node pills ─────────────────────────────────── */}
+        {SOURCE_NODES.map((node) => (
+          <g key={`pill-${node.label}`}>
+            {/* Pill background */}
+            <rect
+              x={node.x}
+              y={node.y + 14}
+              width="110"
+              height="32"
+              rx="16"
+              fill="#FDFCFA"
+              stroke="#2D2926"
+              strokeOpacity="0.08"
+              strokeWidth="1"
+            />
+            {/* Active ring glow */}
+            <rect
+              x={node.x}
+              y={node.y + 14}
+              width="110"
+              height="32"
+              rx="16"
+              fill="none"
+              stroke="#C8553D"
+              strokeWidth="1.5"
+              className="hero-node-ring"
+              style={{ animationDelay: `${node.delay}s` }}
+            />
+            {/* Dot indicator */}
+            <circle
+              cx={node.x + 20}
+              cy={node.y + 30}
+              r="4"
+              fill="#6B7C5E"
+              fillOpacity="0.2"
+              className="hero-node-dot"
+              style={{ animationDelay: `${node.delay}s` }}
+            />
+            {/* Label */}
+            <text
+              x={node.x + 32}
+              y={node.y + 34}
+              fontSize="11"
+              fontWeight="500"
+              fill="#4A4540"
+              fontFamily="var(--font-sans), system-ui, sans-serif"
             >
-              <div className="mb-3 flex items-center justify-between text-[9px] uppercase tracking-[0.18em] text-warm-400">
-                <span>{layer.label}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-terracotta/70" />
-              </div>
-              <div className="space-y-2">
-                <span className="block h-2 rounded-full bg-warm-800/10" />
-                <span className="block h-2 w-4/5 rounded-full bg-sage/15" />
-                <span className="block h-2 w-3/5 rounded-full bg-terracotta/15" />
-              </div>
-            </div>
-          ))}
+              {node.label}
+            </text>
+          </g>
+        ))}
 
-          <div className="absolute bottom-8 left-8 right-8 rounded-[1.75rem] bg-warm-800/[0.055] p-4 ring-1 ring-warm-800/[0.06]">
-            <div className="flex items-center justify-between gap-5">
-              <div>
-                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-warm-400">del problema al producto</p>
-                <p className="mt-2 max-w-[18rem] font-serif text-2xl leading-none text-warm-800">Landing, tienda y automatización en una sola escena.</p>
-              </div>
-              <div className="grid h-16 w-16 shrink-0 place-items-center rounded-full bg-terracotta text-sm font-semibold text-cream-50 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)]">
-                3D
-              </div>
-            </div>
-          </div>
+        {/* ── Battery body ─────────────────────────────────────── */}
+        {/* Battery cap */}
+        <rect x="238" y="52" width="24" height="16" rx="4" fill="#2D2926" fillOpacity="0.12" />
+        {/* Main shell */}
+        <rect
+          x="218"
+          y="64"
+          width="64"
+          height="232"
+          rx="10"
+          fill="#FDFCFA"
+          stroke="#2D2926"
+          strokeOpacity="0.1"
+          strokeWidth="1.5"
+        />
 
-          <div className="hero-cinema-sheen absolute inset-0 pointer-events-none" />
-        </motion.div>
-      </motion.div>
+        {/* Battery fill — animated */}
+        <g clipPath="url(#batteryClip)">
+          <rect
+            x="222"
+            y="68"
+            width="56"
+            height="224"
+            fill="url(#batteryFill)"
+            className="hero-battery-fill"
+          />
+        </g>
+
+        {/* Battery segments (visual lines) */}
+        {[0, 1, 2, 3].map((i) => (
+          <line
+            key={i}
+            x1="226"
+            y1={112 + i * 44}
+            x2="274"
+            y2={112 + i * 44}
+            stroke="#FDFCFA"
+            strokeWidth="2"
+            strokeOpacity="0.6"
+          />
+        ))}
+
+        {/* Battery percentage label */}
+        <text
+          x="250"
+          y="186"
+          fontSize="16"
+          fontWeight="600"
+          fill="#FDFCFA"
+          textAnchor="middle"
+          fontFamily="var(--font-sans), system-ui, sans-serif"
+          className="hero-battery-text"
+        >
+          %
+        </text>
+
+        {/* ── "tu negocio" label ──────────────────────────────── */}
+        <text
+          x="250"
+          y="316"
+          fontSize="10"
+          fontWeight="500"
+          fill="#8A8378"
+          textAnchor="middle"
+          fontFamily="var(--font-sans), system-ui, sans-serif"
+          letterSpacing="0.08em"
+          className="uppercase"
+        >
+          tu negocio
+        </text>
+
+        {/* Lightning bolt icon on battery */}
+        <path
+          d="M246 148 L252 148 L250 157 L256 157 L247 170 L249 161 L244 161 Z"
+          fill="#FDFCFA"
+          fillOpacity="0.5"
+          className="hero-bolt"
+        />
+      </svg>
     </div>
   );
 }
@@ -199,14 +328,14 @@ export function Hero() {
           </motion.div>
         </div>
 
-        {/* Cinematic 3D scene — desktop only */}
+        {/* Battery recharge visualization — desktop only */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.9 }}
           className="hidden lg:flex absolute right-0 xl:right-4 top-1/2 -translate-y-1/2 items-center justify-center"
         >
-          <CinematicHeroScene />
+          <BatteryStack />
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { ScrollReveal } from "./scroll-reveal";
 
 const faqs = [
   {
@@ -48,23 +49,24 @@ export function FAQ() {
 
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-16">
+        <ScrollReveal className="mb-16" direction="left">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-4">
             Preguntas frecuentes
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl font-medium leading-[1.1] tracking-tight text-warm-800">
             Resolvemos tus dudas
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* FAQ list */}
         <div className="space-y-0">
           {faqs.map((faq, i) => {
             const isOpen = openId === faq.id;
             return (
-              <div
+              <ScrollReveal
                 key={faq.id}
                 className="border-t border-warm-800/[0.06] last:border-b border-warm-800/[0.06]"
+                delay={i * 70}
               >
                 <button
                   onClick={() => setOpenId(isOpen ? null : faq.id)}
@@ -123,13 +125,13 @@ export function FAQ() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>
 
         {/* CTA nudge */}
-        <div className="mt-12 pt-8 text-center">
+        <ScrollReveal className="mt-12 pt-8 text-center" delay={220}>
           <p className="text-sm text-warm-400 mb-4">
             ¿Tienes otra pregunta?
           </p>
@@ -148,7 +150,7 @@ export function FAQ() {
               />
             </svg>
           </a>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

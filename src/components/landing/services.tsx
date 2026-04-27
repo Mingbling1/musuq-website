@@ -19,6 +19,7 @@ import { AutomationDemo } from "./demos/automation-demo";
 import { SoftwareDemo } from "./demos/software-demo";
 import { ConsultingDemo } from "./demos/consulting-demo";
 import { LandingDemo } from "./demos/landing-demo";
+import { ScrollReveal } from "./scroll-reveal";
 
 /** Map service number → SVG preview component */
 const serviceVisuals: Record<string, React.ComponentType> = {
@@ -143,14 +144,14 @@ export function Services() {
 
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Section header - left aligned, editorial */}
-        <div className="max-w-xl mb-20">
+        <ScrollReveal className="max-w-xl mb-20" direction="left">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-4">
             Lo que hacemos
           </p>
           <h2 className="font-serif text-4xl sm:text-5xl font-medium leading-[1.1] tracking-tight text-warm-800">
             Cinco formas de impulsar tu negocio
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Services list */}
         <div className="space-y-0">
@@ -159,9 +160,10 @@ export function Services() {
             const isEven = i % 2 === 1;
 
             return (
-              <div
+              <ScrollReveal
                 key={service.number}
                 className="group border-t border-warm-800/[0.06] py-10 sm:py-14"
+                delay={i * 70}
               >
                 {/* ── Mobile layout (stacked) ── */}
                 <div className="lg:hidden">
@@ -231,7 +233,7 @@ export function Services() {
                     {Visual && <Visual />}
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
           {/* Bottom border */}

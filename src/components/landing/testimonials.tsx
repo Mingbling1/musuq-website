@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ScrollReveal } from "./scroll-reveal";
 
 const projects = [
   {
@@ -69,7 +70,7 @@ export function Testimonials() {
 
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         {/* Header */}
-        <div className="max-w-xl mb-16">
+        <ScrollReveal className="max-w-xl mb-16" direction="left">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-4">
             Trabajo seleccionado
           </p>
@@ -77,14 +78,15 @@ export function Testimonials() {
             Proyectos que{" "}
             <span className="italic text-terracotta">hablan por nosotros</span>
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Compact project grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project) => (
-            <div
+          {projects.map((project, i) => (
+            <ScrollReveal
               key={project.name}
               className="group flex flex-col rounded-xl border border-warm-800/[0.06] bg-cream-100 p-5 transition-all duration-300 hover:border-terracotta/20 hover:shadow-[0_4px_20px_rgba(200,85,61,0.08)]"
+              delay={i * 80}
             >
               {/* Header row */}
               <div className="flex items-start justify-between mb-3">
@@ -159,7 +161,7 @@ export function Testimonials() {
                   )}
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 

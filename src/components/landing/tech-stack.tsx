@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
 import { techIcons, imageIconTools } from "@/components/icons/tech-icons";
+import { ScrollReveal } from "./scroll-reveal";
 
 const tools = [
   "Next.js", "React", "TypeScript", "Tailwind", "Node.js", "Python",
@@ -16,8 +16,8 @@ const imageIcons: Record<string, { src: string; width: number; height: number; a
   Izipay: { src: "/icon-izipay.png", width: 350, height: 134, alt: "Izipay" },
 };
 
-/** Individual tool card — static, no entrance animation to avoid sparkle/flicker */
-function ToolCard({ tool }: { tool: string; index: number }) {
+/** Individual tool card — static inside a CSS scroll reveal wrapper */
+function ToolCard({ tool }: { tool: string }) {
   const Icon = techIcons[tool];
   const isImageIcon = imageIconTools.includes(tool);
   const imageData = imageIcons[tool];
@@ -77,7 +77,7 @@ export function TechStack() {
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:gap-20 items-start">
           {/* Left — editorial text */}
-          <div>
+          <ScrollReveal direction="left">
             <p className="text-xs font-medium uppercase tracking-[0.2em] text-warm-400 mb-4">
               Herramientas
             </p>
@@ -91,12 +91,14 @@ export function TechStack() {
               porque sea popular &mdash; seleccionamos lo que mejor resuelve
               tu problema y escala contigo.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Right — icons grid */}
           <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 lg:pt-2">
             {tools.map((tool, i) => (
-              <ToolCard key={tool} tool={tool} index={i} />
+              <ScrollReveal key={tool} delay={(i % 8) * 45}>
+                <ToolCard tool={tool} />
+              </ScrollReveal>
             ))}
           </div>
         </div>
