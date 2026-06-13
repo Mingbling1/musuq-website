@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ScrollReveal } from "@/components/landing/scroll-reveal";
 
 const APP_URL = "https://app.musuq.tech";
@@ -22,15 +21,6 @@ export function Cierre() {
       />
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
-          <Image
-            src="/brand/zorro-casaca.png"
-            alt="Musuq te da la bienvenida"
-            width={572}
-            height={913}
-            className="mx-auto mb-8 h-auto w-32 drop-shadow-[0_16px_30px_rgba(0,0,0,0.45)]"
-          />
-        </ScrollReveal>
-        <ScrollReveal delay={80}>
           <h2 className="font-serif text-[clamp(2.5rem,7vw,5rem)] font-bold uppercase leading-[0.92] tracking-tight text-cream-50">
             Tecnología que{" "}
             <span className="text-terracotta-light">impulsa</span> cada venta

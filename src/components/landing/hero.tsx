@@ -143,7 +143,11 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto flex w-full max-w-md items-end justify-center md:max-w-none md:items-center">
-          {/* zorro — parallax sutil siguiendo el cursor */}
+          {/* movimiento de marca (terracota) detrás del zorro */}
+          <div aria-hidden className="blob-a pointer-events-none absolute right-[8%] top-[16%] h-64 w-64 rounded-full bg-terracotta/[0.14] blur-2xl" />
+          <div aria-hidden className="blob-b pointer-events-none absolute right-[34%] bottom-[14%] h-44 w-44 rounded-full bg-terracotta/[0.10] blur-xl" />
+
+          {/* zorro saludando en loop + parallax con el cursor */}
           <div
             className="relative z-10 w-[60%] max-w-[12rem] will-change-transform md:h-[50vh] md:max-h-[480px] md:w-auto md:max-w-none"
             style={{ transform: "translate3d(calc(var(--mx) * 14px), calc(var(--my) * 14px), 0)" }}
@@ -154,7 +158,7 @@ export function Hero() {
               width={574}
               height={916}
               priority
-              className="animate-fade-in h-auto w-full drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] md:h-full md:w-auto lg:float-orbit"
+              className="fox-wave h-auto w-full drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] md:h-full md:w-auto"
             />
           </div>
 

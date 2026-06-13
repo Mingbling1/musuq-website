@@ -363,6 +363,32 @@ body::after {
   animation: fade-in 0.7s ease-out both;
 }
 
+/* Zorro — saludo en loop (vaivén sutil desde la base) */
+@keyframes fox-wave {
+  0%, 100% { transform: rotate(-2.5deg); }
+  50%      { transform: rotate(2.5deg); }
+}
+.fox-wave {
+  transform-origin: 50% 90%;
+  animation: fox-wave 3.2s ease-in-out infinite;
+}
+
+/* Blobs de marca (terracota) en deriva lenta */
+@keyframes blob-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(18px, -22px) scale(1.08); }
+}
+@keyframes blob-b {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(-16px, 18px) scale(1.06); }
+}
+.blob-a { animation: blob-a 9s ease-in-out infinite; }
+.blob-b { animation: blob-b 12s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fox-wave, .blob-a, .blob-b { animation: none; }
+}
+
 /* ── Service visual hover-reveal (desktop only) ── */
 @media (min-width: 1024px) {
   .service-visual {
