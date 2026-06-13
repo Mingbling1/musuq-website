@@ -5,7 +5,13 @@ const APP_URL = "https://app.musuq.tech";
 
 export function Cierre() {
   return (
-    <section id="empezar" className="relative overflow-hidden bg-warm-800 py-24 lg:py-32">
+    <section id="empezar" className="relative overflow-hidden bg-warm-800 pb-24 pt-32 lg:pb-32 lg:pt-44">
+      {/* curva crema → carbón */}
+      <div aria-hidden className="absolute inset-x-0 top-0 leading-[0] text-cream-100">
+        <svg viewBox="0 0 1440 110" preserveAspectRatio="none" className="h-[60px] w-full md:h-[90px]" fill="currentColor">
+          <path d="M0,0 L1440,0 L1440,40 C1080,120 360,120 0,40 Z" />
+        </svg>
+      </div>
       <div
         aria-hidden
         className="pointer-events-none absolute -bottom-40 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full opacity-80 blur-3xl"

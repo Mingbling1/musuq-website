@@ -55,7 +55,8 @@ export function Plataforma() {
               alt="La app de Musuq en un smartphone"
               width={1200}
               height={675}
-              className="relative z-10 h-auto w-full rounded-[2.5rem] shadow-[0_40px_80px_-30px_rgba(26,26,26,0.35)] lg:float-orbit"
+              data-parallax="0.12"
+              className="relative z-10 h-auto w-full rounded-[2.5rem] shadow-[0_40px_80px_-30px_rgba(26,26,26,0.35)]"
             />
           </div>
         </ScrollReveal>
