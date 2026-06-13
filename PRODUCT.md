@@ -37,7 +37,10 @@ Nubank · Mercado Pago · Stripe · Linear · sitios motion-driven (scroll story
 
 ## Must-haves de la landing
 
-- **Video loop de la app** protagonista en el hero (real, no placeholder olvidado).
-- **Barlow Semi Condensed** display enorme y kinético.
-- **Motion real**: scroll suave (Lenis) + scroll-driven reveals/scrub, con `prefers-reduced-motion`.
+- **Frase principal (fija):** "Tecnología que impulsa cada venta."
+- **Hero:** mascota zorro de gala + headline kinético; **sin video** (se descartó).
+- **Tipografía display: Barlow Semi Condensed Bold (700)** — peso medido/ligero, **no Ultra/800** (decisión final del toolkit).
+- **Glassmorphism = acento sutil**, nunca protagonista ni que baje legibilidad (navbar frosted, chips flotantes).
+- **Mockup de producto = la app de Andrea** (Ventas · S/ 1,240.00 · grilla Nueva venta/Productos/Clientes/Reportes · tab bar Inicio/Pedidos/Caja/Más).
+- **Motion real**: scroll suave (Lenis) + reveals/scrub, con `prefers-reduced-motion`.
 - Multi-comercio explícito. CTA primario: **Crear cuenta gratis** → app.musuq.tech.

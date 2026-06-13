@@ -20,7 +20,7 @@ Neutros tintados hacia el hue cálido (chroma 0.004–0.01). **Sin verde.**
 
 ## Typography
 
-- **Display / títulos / wordmark:** Barlow Semi Condensed 700/800 — enorme, kinético, `tracking` apretado, `leading` ~0.92. Es la voz visual.
+- **Display / títulos / wordmark:** Barlow Semi Condensed **Bold (700)** como peso por defecto — kinético pero **medido, no Ultra/800** (decisión final: el bold se bajó ~20%). `tracking` apretado, `leading` ~0.9. Es la voz visual.
 - **Cuerpo:** Barlow 400/500. Line-length 65–75ch.
 - Escala con contraste ≥1.25; nada plano. Los titulares deben ser grandes y seguros.
 
@@ -43,4 +43,6 @@ Zorro (3 poses en `Brand/Mascota`). Aparece en hero y momentos de emoción/cierr
 
 ## Bans (refuerzo del shared law)
 
-side-stripe borders · gradient text · glassmorphism decorativo · hero-metric template · grillas de cards idénticas · em dashes en copy · estética rústico-pobreza.
+side-stripe borders · gradient text · hero-metric template · grillas de cards idénticas · em dashes en copy · estética rústico-pobreza.
+
+**Glassmorphism:** permitido como **acento sutil y con propósito** (navbar frosted, chips flotantes sobre fondos con profundidad). Prohibido **pesado / como default** o si baja la legibilidad del texto.

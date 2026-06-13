@@ -64,6 +64,16 @@ export function Plataforma() {
               data-parallax="0.12"
               className="relative z-10 h-auto w-full rounded-[2.5rem] shadow-[0_40px_80px_-30px_rgba(26,26,26,0.35)]"
             />
+            <div className="glass absolute bottom-6 left-0 z-20 rounded-2xl px-4 py-3 shadow-[0_16px_40px_-14px_rgba(26,26,26,0.3)] sm:-left-4">
+              <div className="flex items-center gap-2">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="text-terracotta">
+                  <path d="M5 16l5-5 4 4 6-7" />
+                  <path d="M16 8h5v5" />
+                </svg>
+                <span className="text-[11px] font-medium uppercase tracking-wide text-warm-500">Esta semana</span>
+              </div>
+              <p className="mt-1 font-serif text-xl font-bold tracking-tight text-warm-800">+18% en ventas</p>
+            </div>
           </div>
         </ScrollReveal>
       </div>

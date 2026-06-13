@@ -115,7 +115,7 @@ export function Hero() {
             ].map((f) => (
               <li
                 key={f.l2}
-                className="inline-flex items-center gap-3 rounded-2xl border-[1.5px] border-terracotta/35 px-4 py-2.5"
+                className="glass inline-flex items-center gap-3 rounded-2xl px-4 py-2.5 shadow-[0_8px_24px_-14px_rgba(26,26,26,0.2)]"
               >
                 <svg
                   width="24"
