@@ -56,7 +56,7 @@ export function Hero() {
           </span>
 
           <h1
-            className="animate-fade-in mt-6 font-serif text-[clamp(2.75rem,7.5vw,5.5rem)] font-extrabold uppercase leading-[0.9] tracking-tight text-warm-800"
+            className="animate-fade-in mt-6 font-serif text-[clamp(2.75rem,7.5vw,5.5rem)] font-bold uppercase leading-[0.9] tracking-tight text-warm-800"
             style={{ animationDelay: "80ms" }}
           >
             Tecnología que{" "}
@@ -88,41 +88,53 @@ export function Hero() {
             </a>
           </div>
 
-          <ul className="animate-fade-in mt-9 flex flex-wrap gap-x-7 gap-y-4" style={{ animationDelay: "320ms" }}>
+          <ul className="animate-fade-in mt-8 flex flex-wrap gap-3" style={{ animationDelay: "320ms" }}>
             {[
               {
-                t: "Para mypes",
+                l1: "Para",
+                l2: "mypes",
+                icon: <path d="M3 7l1-3h16l1 3M4 7v13h16V7M4 7h16M9 20v-6h6v6" />,
+              },
+              {
+                l1: "Fácil de",
+                l2: "usar",
                 icon: (
-                  <path d="M3 7l1-3h16l1 3M4 7v13h16V7M4 7h16M9 20v-6h6v6" />
+                  <>
+                    <path d="M10 10V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V12a5 5 0 0 1-5 5h-1a5 5 0 0 1-3.5-1.5l-2-2a1.5 1.5 0 0 1 2.2-2l1.3 1.3V10" />
+                    <path d="M6 5l-.7-.7M9 4l-.3-1M4 8l-1 .3" />
+                  </>
                 ),
               },
               {
-                t: "Fácil de usar",
-                icon: <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9z" />,
-              },
-              {
-                t: "Siempre contigo",
+                l1: "Siempre",
+                l2: "contigo",
                 icon: (
-                  <path d="M12 20s-7-4.4-7-9.4A3.4 3.4 0 0 1 12 7a3.4 3.4 0 0 1 7 3.6C19 15.6 12 20 12 20z" />
+                  <path d="M12 21s-6.5-4.3-6.5-9.2A3.2 3.2 0 0 1 12 8a3.2 3.2 0 0 1 6.5 3.8C18.5 16.7 12 21 12 21z" />
                 ),
               },
             ].map((f) => (
-              <li key={f.t} className="flex items-center gap-2.5">
-                <span className="grid h-10 w-10 place-items-center rounded-2xl bg-terracotta/10 text-terracotta">
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    {f.icon}
-                  </svg>
+              <li
+                key={f.l2}
+                className="inline-flex items-center gap-3 rounded-2xl border-[1.5px] border-terracotta/35 px-4 py-2.5"
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.7"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="shrink-0 text-terracotta"
+                >
+                  {f.icon}
+                </svg>
+                <span className="text-[13px] font-bold uppercase leading-[1.05] tracking-wide text-warm-800">
+                  {f.l1}
+                  <br />
+                  {f.l2}
                 </span>
-                <span className="text-sm font-semibold text-warm-700">{f.t}</span>
               </li>
             ))}
           </ul>

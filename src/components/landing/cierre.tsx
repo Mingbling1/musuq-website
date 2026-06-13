@@ -23,15 +23,15 @@ export function Cierre() {
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
           <Image
-            src="/brand/zorro-saludo.png"
+            src="/brand/zorro-casaca.png"
             alt="Musuq te da la bienvenida"
-            width={300}
-            height={400}
-            className="mx-auto mb-8 h-auto w-28 drop-shadow-[0_16px_30px_rgba(0,0,0,0.4)]"
+            width={572}
+            height={913}
+            className="mx-auto mb-8 h-auto w-32 drop-shadow-[0_16px_30px_rgba(0,0,0,0.45)]"
           />
         </ScrollReveal>
         <ScrollReveal delay={80}>
-          <h2 className="font-serif text-[clamp(2.5rem,7vw,5rem)] font-extrabold uppercase leading-[0.92] tracking-tight text-cream-50">
+          <h2 className="font-serif text-[clamp(2.5rem,7vw,5rem)] font-bold uppercase leading-[0.92] tracking-tight text-cream-50">
             Tecnología que{" "}
             <span className="text-terracotta-light">impulsa</span> cada venta
           </h2>

@@ -9,8 +9,8 @@ export function Footer() {
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
             <span className="inline-flex items-center gap-2.5">
-              <Logo showText={false} size={30} className="text-terracotta-light" />
-              <span className="font-serif text-3xl font-extrabold lowercase tracking-tight text-cream-50">
+              <Logo showText={false} size={30} className="text-cream-50" />
+              <span className="font-serif text-3xl font-semibold lowercase tracking-tight text-cream-50">
                 musuq
               </span>
             </span>
