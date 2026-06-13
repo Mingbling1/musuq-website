@@ -1,86 +1,39 @@
-import Link from "next/link";
-import { Logo } from "@/components/icons/logo";
+const APP_URL = "https://app.musuq.tech";
 
 export function Footer() {
   return (
-    <footer className="border-t border-warm-800/[0.06] py-12 sm:py-16">
-      <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-12 sm:gap-8">
-          {/* Brand */}
-          <div className="sm:col-span-5">
-            <Link href="/" className="inline-block mb-4 text-warm-800">
-              <Logo size={32} textClassName="text-warm-800" />
-            </Link>
-            <p className="text-sm text-warm-400 leading-relaxed max-w-xs">
-              Estudio digital que construye productos con propósito.
-              Cada línea de código tiene una razón de existir.
+    <footer className="bg-warm-800 text-cream-100">
+      <div className="mx-auto max-w-7xl px-6 py-16">
+        <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="font-serif text-3xl font-extrabold lowercase tracking-tight text-cream-50">
+              musuq
+            </p>
+            <p className="mt-2 max-w-xs text-cream-100/70">
+              Tecnología que impulsa cada venta. Hecho en Perú.
             </p>
           </div>
-
-          {/* Links */}
-          <div className="sm:col-span-3">
-            <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-400 mb-4">
-              Servicios
-            </p>
-            <ul className="space-y-2.5">
-              {[
-                "Landing Pages",
-                "E-commerce",
-                "Automatizaciones",
-                "Software a Medida",
-                "Consultas Tech",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href="#servicios"
-                    className="text-sm text-warm-500 hover:text-warm-800 transition-colors"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="sm:col-span-4">
-            <p className="text-xs font-medium uppercase tracking-[0.15em] text-warm-400 mb-4">
-              Contacto
-            </p>
-            <ul className="space-y-2.5">
-              <li>
-                <Link
-                  href="mailto:hello@musuq.tech"
-                  className="text-sm text-warm-500 hover:text-warm-800 transition-colors"
-                >
-                  hello@musuq.tech
-                </Link>
-              </li>
-            </ul>
-
-            <div className="mt-8">
-              <p className="text-xs text-warm-400 italic">
-                &ldquo;Lo simple es lo que funciona.&rdquo;
-              </p>
-            </div>
+          <div className="flex flex-col gap-2 text-sm md:items-end">
+            <a
+              href={APP_URL}
+              className="font-semibold text-cream-50 transition-colors hover:text-terracotta-light"
+            >
+              Crear cuenta gratis →
+            </a>
+            <a href="mailto:hello@musuq.tech" className="text-cream-100/70 transition-colors hover:text-cream-50">
+              hello@musuq.tech
+            </a>
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-warm-800/[0.04] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="text-xs text-warm-400">
-            &copy; {new Date().getFullYear()} musuq
+        <div className="mt-12 flex flex-col gap-4 border-t border-cream-100/10 pt-6 text-[13px] text-cream-100/55 sm:flex-row sm:items-center sm:justify-between">
+          <p className="font-medium uppercase tracking-[0.25em] text-cream-100/70">
+            Hecho para quienes mueven al Perú
           </p>
-          <div className="flex items-center gap-6">
-            <Link href="/privacy" className="text-xs text-warm-400 hover:text-warm-800 transition-colors">
-              Privacidad
-            </Link>
-            <Link href="/terms" className="text-xs text-warm-400 hover:text-warm-800 transition-colors">
-              Términos
-            </Link>
-            <p className="text-xs text-warm-400">
-              Hecho con cuidado desde Perú
-            </p>
+          <div className="flex gap-6">
+            <a href="/privacy" className="transition-colors hover:text-cream-100">Privacidad</a>
+            <a href="/terms" className="transition-colors hover:text-cream-100">Términos</a>
+            <span>Perú · 2026</span>
           </div>
         </div>
       </div>
