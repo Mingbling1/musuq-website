@@ -113,7 +113,7 @@ export function Hero() {
 
           {/* chip glass flotante e inclinado */}
           <div
-            className="animate-fade-in glass absolute right-0 top-10 z-20 rotate-3 rounded-2xl px-4 py-3 shadow-[0_16px_40px_-12px_rgba(26,26,26,0.25)] lg:right-2"
+            className="animate-fade-in glass absolute right-2 top-10 z-20 hidden rotate-3 rounded-2xl px-4 py-3 shadow-[0_16px_40px_-12px_rgba(26,26,26,0.25)] sm:block"
             style={{ animationDelay: "420ms" }}
           >
             <div className="flex items-center gap-2">

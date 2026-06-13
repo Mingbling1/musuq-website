@@ -9,8 +9,14 @@ const features = [
 
 export function Plataforma() {
   return (
-    <section id="plataforma" className="bg-cream-200/50 py-24 lg:py-32">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20">
+    <section id="plataforma" className="relative overflow-hidden bg-cream-200/50 py-24 lg:py-32">
+      {/* curva de entrada */}
+      <div aria-hidden className="absolute inset-x-0 top-0 leading-[0] text-cream-100">
+        <svg viewBox="0 0 1440 90" preserveAspectRatio="none" className="h-[50px] w-full md:h-[80px]" fill="currentColor">
+          <path d="M0,0 L1440,0 L1440,30 C1080,95 360,95 0,30 Z" />
+        </svg>
+      </div>
+      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-14 px-6 lg:grid-cols-2 lg:gap-20">
         <ScrollReveal className="order-2 lg:order-1">
           <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-terracotta">
             La plataforma
