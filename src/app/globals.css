@@ -71,6 +71,9 @@
 }
 
 :root {
+  /* cursor parallax (lo actualiza CursorFx; 0 = sin movimiento) */
+  --mx: 0;
+  --my: 0;
   --background: #FAF8F5;
   --foreground: #1A1A1A;
   --card: #F5F0EB;

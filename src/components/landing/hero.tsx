@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CursorFx } from "@/components/landing/cursor-fx";
 
 const APP_URL = "https://app.musuq.tech";
 
@@ -29,6 +30,7 @@ function AndeanBand({ className = "" }: { className?: string }) {
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden bg-cream-100 md:flex md:h-[100svh] md:flex-col">
+      <CursorFx />
       {/* glow + blob orgánico (parallax) */}
       <div
         aria-hidden
@@ -141,28 +143,39 @@ export function Hero() {
         </div>
 
         <div className="relative mx-auto flex w-full max-w-md items-end justify-center md:max-w-none md:items-center">
-          <Image
-            src="/brand/zorro-gala.png"
-            alt="Musuq, la mascota que impulsa tu negocio"
-            width={574}
-            height={916}
-            priority
-            className="animate-fade-in relative z-10 h-auto w-[60%] max-w-[12rem] drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] md:h-[50vh] md:max-h-[480px] md:w-auto md:max-w-none lg:float-orbit"
-          />
-
-          {/* chip glass flotante e inclinado */}
+          {/* zorro — parallax sutil siguiendo el cursor */}
           <div
-            className="animate-fade-in glass absolute right-2 top-10 z-20 hidden rotate-3 rounded-2xl px-4 py-3 shadow-[0_16px_40px_-12px_rgba(26,26,26,0.25)] sm:block"
-            style={{ animationDelay: "420ms" }}
+            className="relative z-10 w-[60%] max-w-[12rem] will-change-transform md:h-[50vh] md:max-h-[480px] md:w-auto md:max-w-none"
+            style={{ transform: "translate3d(calc(var(--mx) * 14px), calc(var(--my) * 14px), 0)" }}
           >
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-terracotta/60 lg:soft-pulse" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-terracotta" />
-              </span>
-              <span className="text-[11px] font-medium uppercase tracking-wide text-warm-500">Vendido hoy</span>
+            <Image
+              src="/brand/zorro-gala.png"
+              alt="Musuq, la mascota que impulsa tu negocio"
+              width={574}
+              height={916}
+              priority
+              className="animate-fade-in h-auto w-full drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] md:h-full md:w-auto lg:float-orbit"
+            />
+          </div>
+
+          {/* chip glass flotante — más profundidad de parallax */}
+          <div
+            className="absolute right-2 top-10 z-20 hidden will-change-transform sm:block"
+            style={{ transform: "translate3d(calc(var(--mx) * 26px), calc(var(--my) * 26px), 0)" }}
+          >
+            <div
+              className="glass animate-fade-in rounded-2xl px-4 py-3 shadow-[0_16px_40px_-12px_rgba(26,26,26,0.25)]"
+              style={{ animationDelay: "420ms" }}
+            >
+              <div className="flex items-center gap-2">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-terracotta/60 lg:soft-pulse" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-terracotta" />
+                </span>
+                <span className="text-[11px] font-medium uppercase tracking-wide text-warm-500">Vendido hoy</span>
+              </div>
+              <p className="mt-1 font-serif text-2xl font-extrabold tracking-tight text-warm-800">S/ 1,248</p>
             </div>
-            <p className="mt-1 font-serif text-2xl font-extrabold tracking-tight text-warm-800">S/ 1,248</p>
           </div>
         </div>
       </div>
