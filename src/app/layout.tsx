@@ -124,25 +124,6 @@ export default function RootLayout({
           <Footer />
         </SmoothScroll>
         <Analytics />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-(function(d,t) {
-  var BASE_URL="https://chatwoot.musuq.tech";
-  var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=BASE_URL+"/packs/js/sdk.js";
-  g.async = true;
-  s.parentNode.insertBefore(g,s);
-  g.onload=function(){
-    window.chatwootSDK.run({
-      websiteToken: 'DaSNmb4WrVBdCdRv5AGvp4wS',
-      baseUrl: BASE_URL
-    })
-  }
-})(document,"script");
-`,
-          }}
-        />
       </body>
     </html>
   );
