@@ -1,3 +1,5 @@
+import { Logo } from "@/components/icons/logo";
+
 const APP_URL = "https://app.musuq.tech";
 
 export function Footer() {
@@ -6,9 +8,12 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-16">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="font-serif text-3xl font-extrabold lowercase tracking-tight text-cream-50">
-              musuq
-            </p>
+            <span className="inline-flex items-center gap-2.5">
+              <Logo showText={false} size={30} className="text-terracotta-light" />
+              <span className="font-serif text-3xl font-extrabold lowercase tracking-tight text-cream-50">
+                musuq
+              </span>
+            </span>
             <p className="mt-2 max-w-xs text-cream-100/70">
               Tecnología que impulsa cada venta. Hecho en Perú.
             </p>

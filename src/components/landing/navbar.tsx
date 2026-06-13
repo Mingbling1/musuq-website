@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { Logo } from "@/components/icons/logo";
 
 const APP_URL = "https://app.musuq.tech";
 const links = [
@@ -28,11 +29,11 @@ export function Navbar() {
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <a
-          href="#top"
-          className="font-serif text-2xl font-extrabold lowercase tracking-tight text-warm-800"
-        >
-          musuq
+        <a href="#top" className="inline-flex items-center gap-2.5" aria-label="Musuq inicio">
+          <Logo showText={false} size={28} className="text-terracotta" />
+          <span className="font-serif text-2xl font-extrabold lowercase tracking-tight text-warm-800">
+            musuq
+          </span>
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

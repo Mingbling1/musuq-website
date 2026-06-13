@@ -88,14 +88,41 @@ export function Hero() {
             </a>
           </div>
 
-          <ul className="animate-fade-in mt-9 flex flex-wrap gap-2.5" style={{ animationDelay: "320ms" }}>
-            {["Para mypes", "Fácil de usar", "Siempre contigo"].map((t) => (
-              <li
-                key={t}
-                className="inline-flex items-center gap-2 rounded-full border border-warm-800/12 px-3.5 py-1.5 text-[12px] font-medium uppercase tracking-wide text-warm-600"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-terracotta" />
-                {t}
+          <ul className="animate-fade-in mt-9 flex flex-wrap gap-x-7 gap-y-4" style={{ animationDelay: "320ms" }}>
+            {[
+              {
+                t: "Para mypes",
+                icon: (
+                  <path d="M3 7l1-3h16l1 3M4 7v13h16V7M4 7h16M9 20v-6h6v6" />
+                ),
+              },
+              {
+                t: "Fácil de usar",
+                icon: <path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9z" />,
+              },
+              {
+                t: "Siempre contigo",
+                icon: (
+                  <path d="M12 20s-7-4.4-7-9.4A3.4 3.4 0 0 1 12 7a3.4 3.4 0 0 1 7 3.6C19 15.6 12 20 12 20z" />
+                ),
+              },
+            ].map((f) => (
+              <li key={f.t} className="flex items-center gap-2.5">
+                <span className="grid h-10 w-10 place-items-center rounded-2xl bg-terracotta/10 text-terracotta">
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    {f.icon}
+                  </svg>
+                </span>
+                <span className="text-sm font-semibold text-warm-700">{f.t}</span>
               </li>
             ))}
           </ul>
@@ -128,9 +155,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* marquee oblicuo, a sangre */}
-      <div className="relative -mb-4 overflow-hidden">
-        <div className="-rotate-2 scale-110 overflow-hidden bg-warm-800 py-3.5">
+      {/* marquee — recto en móvil, levemente oblicuo en desktop */}
+      <div className="relative overflow-hidden">
+        <div className="overflow-hidden bg-warm-800 py-3.5 lg:-rotate-1 lg:scale-105">
           <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
             {Array.from({ length: 2 }).map((_, k) => (
               <div key={k} className="flex shrink-0 gap-10">
