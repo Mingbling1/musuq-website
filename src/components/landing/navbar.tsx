@@ -24,13 +24,13 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "glass shadow-[0_8px_30px_-12px_rgba(26,26,26,0.18)]"
+          ? "border-b border-warm-800/[0.06] bg-cream-100/90 backdrop-blur-md shadow-[0_8px_30px_-14px_rgba(26,26,26,0.18)]"
           : "border-b border-transparent bg-transparent"
       }`}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="inline-flex items-center gap-2.5" aria-label="Musuq inicio">
-          <Logo showText={false} size={28} className="text-terracotta" />
+          <Logo showText={false} size={28} className="text-warm-800" />
           <span className="font-serif text-2xl font-extrabold lowercase tracking-tight text-warm-800">
             musuq
           </span>

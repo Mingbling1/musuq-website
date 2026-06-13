@@ -28,7 +28,7 @@ function AndeanBand({ className = "" }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-cream-100">
+    <section id="top" className="relative overflow-hidden bg-cream-100 lg:flex lg:h-screen lg:flex-col">
       {/* glow + blob orgánico (parallax) */}
       <div
         aria-hidden
@@ -49,7 +49,7 @@ export function Hero() {
         Perú · 2026
       </span>
 
-      <div className="relative mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-32 md:pt-40 lg:grid-cols-[1.1fr_0.9fr] lg:pb-24">
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-32 md:pt-40 lg:grid-cols-[1.1fr_0.9fr] lg:flex-1 lg:content-center lg:pb-0 lg:pt-24">
         <div className="max-w-xl">
           <span className="animate-fade-in inline-flex -rotate-1 items-center gap-2 rounded-full bg-terracotta px-4 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-cream-50">
             Tu negocio · más simple · más ventas
