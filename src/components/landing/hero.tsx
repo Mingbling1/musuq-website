@@ -51,7 +51,7 @@ export function Hero() {
 
       <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-16 pt-32 md:grid-cols-[1.1fr_0.9fr] md:content-center md:gap-6 md:pb-0 md:pt-20 md:min-h-0 md:flex-1">
         <div className="max-w-xl">
-          <span className="animate-fade-in inline-flex -rotate-1 items-center gap-2 rounded-full bg-terracotta px-4 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-cream-50">
+          <span className="animate-fade-in inline-flex items-center gap-2 rounded-full bg-terracotta px-4 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-cream-50">
             Tu negocio · más simple · más ventas
           </span>
 
@@ -100,8 +100,8 @@ export function Hero() {
                 l2: "usar",
                 icon: (
                   <>
-                    <path d="M10 10V5.5a1.5 1.5 0 0 1 3 0V10m0-1.5a1.5 1.5 0 0 1 3 0V12a5 5 0 0 1-5 5h-1a5 5 0 0 1-3.5-1.5l-2-2a1.5 1.5 0 0 1 2.2-2l1.3 1.3V10" />
-                    <path d="M6 5l-.7-.7M9 4l-.3-1M4 8l-1 .3" />
+                    <path d="M12 3l1.9 4.6L18.5 9.5l-4.6 1.9L12 16l-1.9-4.6L5.5 9.5l4.6-1.9z" />
+                    <path d="M18.5 14l.55 1.45L20.5 16l-1.45.55L18.5 18l-.55-1.45L16.5 16l1.45-.55z" />
                   </>
                 ),
               },
