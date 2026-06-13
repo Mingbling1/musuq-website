@@ -28,7 +28,7 @@ function AndeanBand({ className = "" }: { className?: string }) {
 
 export function Hero() {
   return (
-    <section id="top" className="relative overflow-hidden bg-cream-100 lg:flex lg:h-screen lg:flex-col">
+    <section id="top" className="relative overflow-hidden bg-cream-100 md:flex md:h-[100svh] md:flex-col">
       {/* glow + blob orgánico (parallax) */}
       <div
         aria-hidden
@@ -49,7 +49,7 @@ export function Hero() {
         Perú · 2026
       </span>
 
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-16 pt-32 md:pt-40 lg:grid-cols-[1.1fr_0.9fr] lg:flex-1 lg:content-center lg:pb-0 lg:pt-24">
+      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-6 pb-16 pt-32 md:grid-cols-[1.1fr_0.9fr] md:content-center md:gap-6 md:pb-0 md:pt-20 md:min-h-0 md:flex-1">
         <div className="max-w-xl">
           <span className="animate-fade-in inline-flex -rotate-1 items-center gap-2 rounded-full bg-terracotta px-4 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-cream-50">
             Tu negocio · más simple · más ventas
@@ -128,14 +128,14 @@ export function Hero() {
           </ul>
         </div>
 
-        <div className="relative mx-auto flex w-full max-w-md items-end justify-center lg:max-w-none">
+        <div className="relative mx-auto flex w-full max-w-md items-end justify-center md:max-w-none md:items-center">
           <Image
             src="/brand/zorro-gala.png"
             alt="Musuq, la mascota que impulsa tu negocio"
             width={574}
             height={916}
             priority
-            className="animate-fade-in relative z-10 h-auto w-[68%] max-w-xs drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] lg:float-orbit lg:w-[78%]"
+            className="animate-fade-in relative z-10 h-auto w-[60%] max-w-[12rem] drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] md:h-[50vh] md:max-h-[480px] md:w-auto md:max-w-none lg:float-orbit"
           />
 
           {/* chip glass flotante e inclinado */}
