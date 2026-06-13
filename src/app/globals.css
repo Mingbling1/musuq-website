@@ -11,6 +11,8 @@
   --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-serif);
+  --font-display: var(--font-serif);
+  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -61,8 +63,10 @@
   --color-warm-800: #1A1A1A;
   --color-terracotta: #C8553D;
   --color-terracotta-light: #D4765F;
-  --color-sage: #6B7C5E;
-  --color-sage-light: #8A9B7D;
+  --color-brown: #6B4A33;
+  /* sin verde: 'sage' se reasigna a marrón de marca para no romper clases existentes */
+  --color-sage: #6B4A33;
+  --color-sage-light: #7A5740;
   --color-copper: #B87333;
 }
 
@@ -79,14 +83,14 @@
   --secondary-foreground: #2D2926;
   --muted: #EDE8E1;
   --muted-foreground: #8A8378;
-  --accent: #6B7C5E;
+  --accent: #6B4A33;
   --accent-foreground: #FDFCFA;
   --destructive: #C8553D;
   --border: rgba(26, 26, 26, 0.06);
   --input: rgba(26, 26, 26, 0.08);
   --ring: #C8553D;
   --chart-1: #C8553D;
-  --chart-2: #6B7C5E;
+  --chart-2: #6B4A33;
   --chart-3: #B87333;
   --chart-4: #8A8378;
   --chart-5: #2D2926;
@@ -109,7 +113,7 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans;
   }
 }
 

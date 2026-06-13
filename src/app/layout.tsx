@@ -1,53 +1,56 @@
 import type { Metadata } from "next";
-import { DM_Sans, Playfair_Display } from "next/font/google";
+import { Barlow, Barlow_Semi_Condensed } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Navbar } from "@/components/landing/navbar";
 import { Footer } from "@/components/landing/footer";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
-const dmSans = DM_Sans({
+// Cuerpo / UI — Barlow
+const barlow = Barlow({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
-const playfair = Playfair_Display({
+// Display / títulos / wordmark — Barlow Semi Condensed
+const barlowSemi = Barlow_Semi_Condensed({
   variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://musuq.tech"),
   title: {
-    default: "musuq | estudio digital",
-    template: "%s | musuq",
+    default: "Musuq — Tecnología que impulsa cada venta",
+    template: "%s | Musuq",
   },
   description:
-    "Estudio digital peruano. Construimos landings, tiendas online, automatizaciones y software a medida para mypes y negocios que quieren crecer sin plantillas ni misterios.",
+    "Musuq es la plataforma de gestión y punto de venta para el comercio peruano. Vende, cobra y controla tu negocio desde un solo lugar. Hecho para mypes — fácil, rápido y hecho en Perú.",
   keywords: [
-    "estudio digital perú",
-    "landing page perú",
-    "desarrollo web perú",
-    "e-commerce perú",
-    "tienda online perú",
-    "automatizaciones perú",
-    "software a medida perú",
-    "paginas web lima",
-    "agencia digital perú",
-    "next.js perú",
-    "chatwoot perú",
-    "n8n automatizaciones",
+    "punto de venta perú",
+    "app de ventas perú",
+    "software para mypes perú",
+    "gestión de negocio perú",
+    "pos perú",
+    "caja registradora digital perú",
+    "control de ventas perú",
+    "app para bodegas perú",
+    "app para restaurantes perú",
+    "facturación electrónica perú",
   ],
-  authors: [{ name: "musuq" }],
-  creator: "musuq",
-  publisher: "musuq",
+  authors: [{ name: "Musuq" }],
+  creator: "Musuq",
+  publisher: "Musuq",
   openGraph: {
-    title: "musuq | estudio digital",
+    title: "Musuq — Tecnología que impulsa cada venta",
     description:
-      "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida para mypes y negocios que quieren crecer.",
+      "La plataforma de gestión y punto de venta para el comercio peruano. Vende, cobra y controla tu negocio desde un solo lugar.",
     url: "https://musuq.tech",
-    siteName: "musuq",
+    siteName: "Musuq",
     locale: "es_PE",
     type: "website",
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
@@ -57,9 +60,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "musuq | estudio digital",
+    title: "Musuq — Tecnología que impulsa cada venta",
     description:
-      "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida.",
+      "La plataforma de gestión y punto de venta para el comercio peruano.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   robots: {
@@ -75,64 +78,29 @@ export const metadata: Metadata = {
   },
 };
 
-const faqSchema = {
+const productSchema = {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "¿Por qué mi pyme necesita una landing page si ya tengo Instagram?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Las redes sociales son ventanas. Tu landing page es tu tienda. En Instagram tu cliente compite con cien publicaciones por su atención. En tu landing cada píxel está diseñado para una sola cosa: convertir. Además, mientras más dependes de redes de terceros, menos control tienes sobre tu negocio. Tu landing page es un activo tuyo que no desaparece cuando cambia un algoritmo.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuánto tiempo toma tener mi proyecto listo?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "2 a 3 días para una landing. 7 a 10 días para una tienda online. 3 a 5 días para automatizaciones. Son promedios — cada proyecto es diferente y lo conversamos desde el inicio. No usamos plantillas: todo es hiperpersonalizado desde cero.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuánto cuesta trabajar con ustedes?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "No tenemos precios estándar porque no hacemos proyectos estándar. Cada presupuesto se calcula según lo que realmente necesitas, sin empaquetar funcionalidades que no vas a usar. La primera reunión es gratuita y ahí definimos juntos qué tiene sentido para tu situación actual.",
-      },
-    },
-  ],
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "musuq",
+  "@type": "SoftwareApplication",
+  name: "Musuq",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, iOS, Android",
   description:
-    "Estudio digital peruano. Landings, tiendas online, automatizaciones y software a medida.",
+    "Plataforma de gestión y punto de venta para el comercio peruano: ventas, cobros, inventario y control del negocio en un solo lugar.",
   url: "https://musuq.tech",
   logo: "https://musuq.tech/icon.svg",
-  email: "hello@musuq.tech",
-  areaServed: {
-    "@type": "Country",
-    name: "Peru",
+  inLanguage: "es-PE",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "PEN",
+    description: "Crear cuenta gratis",
   },
-  address: {
-    "@type": "PostalAddress",
-    addressRegion: "Lima",
-    addressLocality: "Lima",
-    addressCountry: "PE",
+  publisher: {
+    "@type": "Organization",
+    name: "Musuq",
+    email: "hello@musuq.tech",
+    areaServed: { "@type": "Country", name: "Peru" },
   },
-  serviceType: [
-    "Landing Pages",
-    "E-commerce",
-    "Automatizaciones",
-    "Software a medida",
-    "Consultas técnicas",
-  ],
-  sameAs: [],
 };
 
 export default function RootLayout({
@@ -143,21 +111,18 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${dmSans.variable} ${playfair.variable} h-full antialiased`}
-      data-scroll-behavior="smooth"
+      className={`${barlow.variable} ${barlowSemi.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
-        <Navbar />
-        {children}
-        <Footer />
+        <SmoothScroll>
+          <Navbar />
+          {children}
+          <Footer />
+        </SmoothScroll>
         <Analytics />
         <script
           dangerouslySetInnerHTML={{
