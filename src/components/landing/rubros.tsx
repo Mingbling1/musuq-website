@@ -29,12 +29,20 @@ export function Rubros() {
         <ul>
           {rubros.map((r, i) => (
             <ScrollReveal key={r.name} delay={i * 70}>
-              <li className="flex items-baseline justify-between gap-6 border-t border-warm-800/10 py-7 last:border-b">
-                <div>
-                  <span className="font-serif text-[clamp(1.5rem,3vw,2.25rem)] font-bold uppercase tracking-tight text-warm-800">
-                    {r.name}
+              <li className="group flex items-center justify-between gap-6 rounded-2xl border-t border-warm-800/10 px-4 py-7 transition-all duration-300 last:border-b hover:bg-cream-200/50">
+                <div className="flex items-center gap-4 transition-transform duration-300 group-hover:translate-x-1.5">
+                  <span
+                    aria-hidden
+                    className="font-serif text-lg font-bold text-terracotta opacity-0 -ml-6 transition-all duration-300 group-hover:ml-0 group-hover:opacity-100"
+                  >
+                    →
                   </span>
-                  <p className="mt-1 text-warm-500">{r.detail}</p>
+                  <div>
+                    <span className="font-serif text-[clamp(1.5rem,3vw,2.25rem)] font-bold uppercase tracking-tight text-warm-800">
+                      {r.name}
+                    </span>
+                    <p className="mt-1 text-warm-500">{r.detail}</p>
+                  </div>
                 </div>
                 <span
                   className={`shrink-0 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide ${

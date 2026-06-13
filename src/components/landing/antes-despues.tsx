@@ -1,4 +1,11 @@
 import { ScrollReveal } from "@/components/landing/scroll-reveal";
+import { Counter } from "@/components/landing/counter";
+
+const stats = [
+  { prefix: "+", to: 35, suffix: "%", label: "atención más rápida" },
+  { prefix: "+", to: 30, suffix: "%", label: "rotación de mesas" },
+  { prefix: "−", to: 50, suffix: "%", label: "tiempo operativo perdido" },
+];
 
 const sin = [
   "Errores en pedidos del 10% al 20%",
@@ -29,9 +36,27 @@ export function AntesDespues() {
           </p>
         </ScrollReveal>
 
-        <div className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          {stats.map((s, i) => (
+            <ScrollReveal key={s.label} delay={i * 90}>
+              <div className="text-center">
+                <Counter
+                  to={s.to}
+                  prefix={s.prefix}
+                  suffix={s.suffix}
+                  className="font-serif text-[clamp(3rem,7vw,5rem)] font-extrabold tracking-tight text-terracotta"
+                />
+                <p className="mt-1 text-sm font-medium text-warm-600">
+                  hasta {s.label}
+                </p>
+              </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-2">
           <ScrollReveal>
-            <div className="h-full rounded-[1.75rem] bg-cream-300/60 p-9">
+            <div className="h-full rounded-[2.5rem] bg-cream-300/60 p-9">
               <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-warm-500">
                 Modelos tradicionales
               </p>
@@ -50,7 +75,7 @@ export function AntesDespues() {
           </ScrollReveal>
 
           <ScrollReveal direction="right">
-            <div className="h-full rounded-[1.75rem] bg-warm-800 p-9">
+            <div className="h-full rounded-[2.5rem] bg-warm-800 p-9">
               <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-terracotta-light">
                 Negocio digitalizado
               </p>

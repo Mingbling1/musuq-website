@@ -97,7 +97,7 @@ export function Hero() {
         <div className="relative mx-auto flex w-full max-w-md items-end justify-center lg:max-w-none">
           <div
             aria-hidden
-            className="absolute bottom-6 h-56 w-56 rounded-full opacity-70 blur-2xl"
+            className="absolute bottom-6 h-56 w-56 rounded-full opacity-70 blur-2xl lg:breathe"
             style={{
               background:
                 "radial-gradient(closest-side, rgba(200,85,61,0.18), transparent)",
@@ -109,15 +109,53 @@ export function Hero() {
             width={574}
             height={916}
             priority
-            className="animate-fade-in relative z-10 h-auto w-[68%] max-w-xs drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] lg:w-[78%]"
+            className="animate-fade-in relative z-10 h-auto w-[68%] max-w-xs drop-shadow-[0_24px_40px_rgba(26,26,26,0.18)] lg:float-orbit lg:w-[78%]"
           />
+
+          {/* chip glass flotante — toque moderno/tech */}
+          <div
+            className="animate-fade-in glass absolute right-0 top-10 z-20 rounded-2xl px-4 py-3 shadow-[0_16px_40px_-12px_rgba(26,26,26,0.25)] lg:right-2"
+            style={{ animationDelay: "420ms" }}
+          >
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full rounded-full bg-terracotta/60 lg:soft-pulse" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-terracotta" />
+              </span>
+              <span className="text-[11px] font-medium uppercase tracking-wide text-warm-500">
+                Vendido hoy
+              </span>
+            </div>
+            <p className="mt-1 font-serif text-2xl font-extrabold tracking-tight text-warm-800">
+              S/ 1,248
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="bg-warm-800 py-3.5">
-        <p className="text-center text-[12px] font-semibold uppercase tracking-[0.35em] text-cream-100/90">
-          Hecho para quienes mueven al Perú
-        </p>
+      <div className="overflow-hidden bg-warm-800 py-3.5">
+        <div className="marquee-track flex w-max gap-10 whitespace-nowrap">
+          {Array.from({ length: 2 }).map((_, k) => (
+            <div key={k} className="flex shrink-0 gap-10">
+              {[
+                "Hecho para quienes mueven al Perú",
+                "Vende",
+                "Cobra",
+                "Controla",
+                "Para todo el comercio",
+                "Lo nuevo, hecho simple",
+              ].map((t, i) => (
+                <span
+                  key={`${k}-${i}`}
+                  className="flex items-center gap-10 text-[12px] font-semibold uppercase tracking-[0.35em] text-cream-100/90"
+                >
+                  {t}
+                  <span className="text-terracotta">✦</span>
+                </span>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
