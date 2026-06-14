@@ -383,6 +383,34 @@ body::after {
   .anim-sweep, .anim-breathe, .anim-float { animation: none; }
 }
 
+/* ── Hero crema · aurora de marca a la deriva ─────────────────────── */
+/* Blobs grandes y desenfocados que se trasladan en ciclos largos.
+   La crema manda; terracota/marrón/cobre/carbón son acentos en movimiento. */
+@keyframes aurora-1 {
+  0%, 100% { transform: translate(-9%, -7%) scale(1); }
+  33%      { transform: translate(11%, 3%) scale(1.18); }
+  66%      { transform: translate(-3%, 9%) scale(0.94); }
+}
+@keyframes aurora-2 {
+  0%, 100% { transform: translate(7%, 9%) scale(1.06); }
+  50%      { transform: translate(-12%, -7%) scale(1.22); }
+}
+@keyframes aurora-3 {
+  0%, 100% { transform: translate(5%, -5%) scale(1); }
+  50%      { transform: translate(-7%, 7%) scale(1.12); }
+}
+@keyframes aurora-4 {
+  0%, 100% { transform: translate(-6%, 6%) scale(1.04); }
+  50%      { transform: translate(8%, -8%) scale(0.96); }
+}
+.aurora-1 { animation: aurora-1 26s ease-in-out infinite; }
+.aurora-2 { animation: aurora-2 32s ease-in-out infinite; }
+.aurora-3 { animation: aurora-3 22s ease-in-out infinite; }
+.aurora-4 { animation: aurora-4 38s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .aurora-1, .aurora-2, .aurora-3, .aurora-4 { animation: none; }
+}
+
 /* Zorro — saludo en loop (vaivén sutil desde la base) */
 @keyframes fox-wave {
   0%, 100% { transform: rotate(-2.5deg); }
