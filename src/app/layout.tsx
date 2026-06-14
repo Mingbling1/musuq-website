@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Semi_Condensed } from "next/font/google";
+import { Barlow, Barlow_Semi_Condensed, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Navbar } from "@/components/landing/navbar";
@@ -19,6 +19,15 @@ const barlowSemi = Barlow_Semi_Condensed({
   variable: "--font-serif",
   subsets: ["latin"],
   weight: ["600", "700", "800"],
+  display: "swap",
+});
+
+// Display editorial — Fraunces (serif de alto contraste, voz premium del rebrand)
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -111,7 +120,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${barlow.variable} ${barlowSemi.variable} h-full antialiased`}
+      className={`${barlow.variable} ${barlowSemi.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <script

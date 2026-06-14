@@ -11,7 +11,7 @@
   --font-serif: var(--font-serif);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-serif);
-  --font-display: var(--font-serif);
+  --font-display: var(--font-fraunces);
   --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -410,6 +410,14 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .aurora-1, .aurora-2, .aurora-3, .aurora-4 { animation: none; }
 }
+
+/* Ken-burns lento para la banda editorial del hero — movimiento calmo */
+@keyframes ken-burns {
+  0%   { transform: scale(1) translateY(0); }
+  100% { transform: scale(1.08) translateY(-1.5%); }
+}
+.ken-burns { animation: ken-burns 24s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .ken-burns { animation: none; } }
 
 /* Zorro — saludo en loop (vaivén sutil desde la base) */
 @keyframes fox-wave {
