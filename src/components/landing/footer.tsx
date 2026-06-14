@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <span className="inline-flex items-center gap-2.5">
               <Logo showText={false} size={30} className="text-cream-50" />
-              <span className="font-serif text-3xl font-semibold lowercase tracking-tight text-cream-50">
+              <span className="font-display text-3xl font-medium lowercase tracking-[-0.02em] text-cream-50">
                 musuq
               </span>
             </span>

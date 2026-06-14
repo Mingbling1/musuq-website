@@ -21,7 +21,7 @@ export function Plataforma() {
           <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-terracotta">
             La plataforma
           </p>
-          <h2 className="mt-5 font-serif text-[clamp(2rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.95] tracking-tight text-warm-800">
+          <h2 className="mt-5 font-display text-[clamp(2.25rem,4.6vw,3.75rem)] font-normal leading-[1.02] tracking-[-0.02em] text-warm-800">
             Una sola plataforma, todo bajo control
           </h2>
           <p className="mt-5 max-w-md text-lg leading-relaxed text-warm-600">
@@ -32,11 +32,11 @@ export function Plataforma() {
           <div className="mt-10 space-y-7">
             {features.map((f) => (
               <div key={f.n} className="flex gap-5">
-                <span className="font-serif text-2xl font-bold text-terracotta">
+                <span className="font-display text-2xl font-normal text-terracotta">
                   {f.n}
                 </span>
                 <div>
-                  <h3 className="font-serif text-xl font-bold uppercase tracking-tight text-warm-800">
+                  <h3 className="font-display text-xl font-medium tracking-[-0.01em] text-warm-800">
                     {f.t}
                   </h3>
                   <p className="mt-1 max-w-sm text-warm-600">{f.d}</p>
@@ -72,7 +72,7 @@ export function Plataforma() {
                 </svg>
                 <span className="text-[11px] font-medium uppercase tracking-wide text-warm-500">Esta semana</span>
               </div>
-              <p className="mt-1 font-serif text-xl font-bold tracking-tight text-warm-800">+18% en ventas</p>
+              <p className="mt-1 font-display text-xl font-medium tracking-tight text-warm-800">+18% en ventas</p>
             </div>
           </div>
         </ScrollReveal>

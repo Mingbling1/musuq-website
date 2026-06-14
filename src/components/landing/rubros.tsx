@@ -16,7 +16,7 @@ export function Rubros() {
             <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-terracotta">
               Rubros que atendemos
             </p>
-            <h2 className="mt-5 font-serif text-[clamp(2rem,4.5vw,3.25rem)] font-bold uppercase leading-[0.95] tracking-tight text-warm-800">
+            <h2 className="mt-5 font-display text-[clamp(2.25rem,4.6vw,3.5rem)] font-normal leading-[1.02] tracking-[-0.02em] text-warm-800">
               Hecho para tu tipo de negocio
             </h2>
             <p className="mt-5 max-w-sm text-warm-600">
@@ -38,7 +38,7 @@ export function Rubros() {
                     →
                   </span>
                   <div>
-                    <span className="font-serif text-[clamp(1.5rem,3vw,2.25rem)] font-bold uppercase tracking-tight text-warm-800">
+                    <span className="font-display text-[clamp(1.5rem,3vw,2.35rem)] font-normal tracking-[-0.01em] text-warm-800">
                       {r.name}
                     </span>
                     <p className="mt-1 text-warm-500">{r.detail}</p>

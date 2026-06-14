@@ -35,7 +35,7 @@ export function Diferenciador() {
             <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-terracotta">
               Lo hacemos diferente
             </p>
-            <h2 className="mt-5 max-w-3xl font-serif text-[clamp(2rem,4.5vw,3.5rem)] font-bold uppercase leading-[0.95] tracking-tight text-warm-800">
+            <h2 className="mt-5 max-w-3xl font-display text-[clamp(2.25rem,4.6vw,3.75rem)] font-normal leading-[1.02] tracking-[-0.02em] text-warm-800">
               Un punto de venta pensado para tu negocio
             </h2>
           </ScrollReveal>
@@ -49,14 +49,14 @@ export function Diferenciador() {
                   }`}
                 >
                   <span
-                    className={`font-serif text-[clamp(4rem,11vw,8rem)] font-extrabold leading-[0.8] text-terracotta/15 transition-colors duration-300 group-hover:text-terracotta/30 ${
+                    className={`font-display text-[clamp(4rem,11vw,8.5rem)] font-normal leading-[0.8] text-terracotta/20 transition-colors duration-300 group-hover:text-terracotta/35 ${
                       i % 2 === 1 ? "sm:order-2 sm:text-right" : ""
                     }`}
                   >
                     {r.n}
                   </span>
                   <div className={`max-w-md ${i % 2 === 1 ? "sm:order-1 sm:ml-auto sm:text-right" : ""}`}>
-                    <h3 className="font-serif text-[clamp(1.6rem,3.2vw,2.5rem)] font-bold uppercase tracking-tight text-warm-800">
+                    <h3 className="font-display text-[clamp(1.6rem,3.2vw,2.5rem)] font-medium tracking-[-0.01em] text-warm-800">
                       {r.t}
                     </h3>
                     <p className="mt-2 text-lg leading-relaxed text-warm-600">{r.d}</p>

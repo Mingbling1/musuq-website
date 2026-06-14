@@ -28,7 +28,7 @@ export function AntesDespues() {
           <p className="text-center text-[13px] font-semibold uppercase tracking-[0.2em] text-terracotta">
             Cómo impactamos tu negocio
           </p>
-          <h2 className="mx-auto mt-5 max-w-2xl text-center font-serif text-[clamp(2rem,5vw,3.75rem)] font-bold uppercase leading-[0.95] tracking-tight text-warm-800">
+          <h2 className="mx-auto mt-5 max-w-2xl text-center font-display text-[clamp(2.25rem,5vw,4rem)] font-normal leading-[1.02] tracking-[-0.02em] text-warm-800">
             El antes y después de Musuq
           </h2>
           <p className="mx-auto mt-4 max-w-md text-center text-sm text-warm-500">
@@ -44,7 +44,7 @@ export function AntesDespues() {
                   to={s.to}
                   prefix={s.prefix}
                   suffix={s.suffix}
-                  className="font-serif text-[clamp(3rem,7vw,5rem)] font-extrabold tracking-tight text-terracotta"
+                  className="font-display text-[clamp(3rem,7vw,5.25rem)] font-normal tracking-[-0.02em] text-terracotta"
                 />
                 <p className="mt-1 text-sm font-medium text-warm-600">
                   hasta {s.label}
@@ -60,7 +60,7 @@ export function AntesDespues() {
               <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-warm-500">
                 Modelos tradicionales
               </p>
-              <h3 className="mt-2 font-serif text-3xl font-bold uppercase tracking-tight text-warm-700">
+              <h3 className="mt-2 font-display text-3xl font-medium tracking-[-0.01em] text-warm-700">
                 Sin Musuq
               </h3>
               <ul className="mt-7 space-y-4">
@@ -79,7 +79,7 @@ export function AntesDespues() {
               <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-terracotta-light">
                 Negocio digitalizado
               </p>
-              <h3 className="mt-2 font-serif text-3xl font-bold uppercase tracking-tight text-cream-50">
+              <h3 className="mt-2 font-display text-3xl font-medium tracking-[-0.01em] text-cream-50">
                 Con Musuq
               </h3>
               <ul className="mt-7 space-y-4">

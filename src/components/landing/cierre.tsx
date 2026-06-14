@@ -21,9 +21,10 @@ export function Cierre() {
       />
       <div className="relative mx-auto max-w-3xl px-6 text-center">
         <ScrollReveal>
-          <h2 className="font-serif text-[clamp(2.5rem,7vw,5rem)] font-bold uppercase leading-[0.92] tracking-tight text-cream-50">
+          <h2 className="font-display text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.98] tracking-[-0.02em] text-cream-50">
             Tecnología que{" "}
-            <span className="text-terracotta-light">impulsa</span> cada venta
+            <span className="italic font-medium text-terracotta-light">impulsa</span>{" "}
+            cada venta
           </h2>
         </ScrollReveal>
         <ScrollReveal delay={140}>
