@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { Parallax } from "@/components/landing/parallax";
 
 const APP_URL = "https://app.musuq.tech";
 
@@ -49,12 +50,17 @@ export function Hero() {
       />
 
       {/* ── Palabra fantasma display (intriga: musuq = nuevo) ────── */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -bottom-[6vw] left-[1vw] z-0 hidden select-none font-display text-[26vw] font-medium italic leading-none tracking-[-0.04em] text-cream-50/[0.04] md:block"
+      <Parallax
+        speed={0.4}
+        className="pointer-events-none absolute -bottom-[6vw] left-[1vw] z-0 hidden select-none md:block"
       >
-        nuevo
-      </span>
+        <span
+          aria-hidden
+          className="font-display text-[26vw] font-medium italic leading-none tracking-[-0.04em] text-cream-50/[0.04]"
+        >
+          nuevo
+        </span>
+      </Parallax>
 
       {/* ── Contenido editorial ──────────────────────────────────── */}
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-6 pb-20 md:flex-row md:items-center md:justify-start md:pb-0">

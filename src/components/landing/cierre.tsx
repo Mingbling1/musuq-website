@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowRight, Check } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
+import { Parallax } from "@/components/landing/parallax";
 
 export function Cierre() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,19 +19,27 @@ export function Cierre() {
       id="cierre"
       className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-[#120D0B] px-6 py-28 text-cream-50 md:-mt-14 md:rounded-t-[3.5rem] md:py-40"
     >
-      {/* glow terracota central (drenched) */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/3 h-80 w-[48rem] max-w-[92vw] -translate-x-1/2 rounded-full opacity-50 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(200,85,61,0.55), transparent 70%)" }}
-      />
-      {/* palabra fantasma */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -top-[4vw] left-1/2 -translate-x-1/2 select-none font-display text-[22vw] font-medium italic leading-none tracking-[-0.04em] text-cream-50/[0.035]"
-      >
-        nuevo
-      </span>
+      {/* glow terracota central (drenched) + parallax */}
+      <div className="pointer-events-none absolute left-1/2 top-1/4 z-0 -translate-x-1/2">
+        <Parallax speed={0.18}>
+          <div
+            aria-hidden
+            className="h-80 w-[48rem] max-w-[92vw] rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(200,85,61,0.55), transparent 70%)" }}
+          />
+        </Parallax>
+      </div>
+      {/* palabra fantasma + parallax */}
+      <div className="pointer-events-none absolute -top-[4vw] left-1/2 z-0 -translate-x-1/2">
+        <Parallax speed={0.38}>
+          <span
+            aria-hidden
+            className="select-none font-display text-[22vw] font-medium italic leading-none tracking-[-0.04em] text-cream-50/[0.035]"
+          >
+            nuevo
+          </span>
+        </Parallax>
+      </div>
 
       <Reveal className="relative mx-auto max-w-2xl text-center">
         <span className="block text-[12px] font-semibold uppercase tracking-[0.32em] text-terracotta-light">

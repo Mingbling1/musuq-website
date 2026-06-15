@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
 import { ChapterMarker } from "@/components/landing/chapter-marker";
+import { Parallax } from "@/components/landing/parallax";
 
 // Antes (cuaderno / desorden) → Después (con Musuq, control)
 const PAIRS: { antes: string; despues: string }[] = [
@@ -21,12 +22,16 @@ export function PorQue() {
       id="por-que"
       className="relative overflow-hidden bg-[#120D0B] px-6 py-24 text-cream-50 md:py-32"
     >
-      {/* glow terracota sutil */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 h-72 w-[42rem] max-w-[90vw] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(200,85,61,0.45), transparent 70%)" }}
-      />
+      {/* glow terracota sutil + parallax */}
+      <div className="pointer-events-none absolute left-1/2 top-0 z-0 -translate-x-1/2">
+        <Parallax speed={0.16}>
+          <div
+            aria-hidden
+            className="h-72 w-[42rem] max-w-[90vw] rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(200,85,61,0.45), transparent 70%)" }}
+          />
+        </Parallax>
+      </div>
 
       <ChapterMarker num="01" label="Por qué" />
 
