@@ -1,8 +1,8 @@
 import { Hero } from "@/components/landing/hero";
+import { Modulos } from "@/components/landing/modulos";
 
-// ── Rebrand 2026: teaser coming-soon ──────────────────────────────
-// Mientras rehacemos toda la landing, dejamos vivo SOLO el hero.
-// Las secciones quedan comentadas (no borradas) para restaurarlas luego.
+// ── Rebrand 2026: reconstrucción sección por sección ──────────────
+// Vivo: hero + módulos. El resto queda comentado (no borrado).
 // import { Manifiesto } from "@/components/landing/manifiesto";
 // import { Rubros } from "@/components/landing/rubros";
 // import { Plataforma } from "@/components/landing/plataforma";
@@ -16,6 +16,7 @@ export default function Home() {
     <main className="flex-1">
       {/* <ScrollFX /> */}
       <Hero />
+      <Modulos />
       {/* <Manifiesto /> */}
       {/* <Rubros /> */}
       {/* <Plataforma /> */}

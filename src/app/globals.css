@@ -419,6 +419,22 @@ body::after {
 .ken-burns { animation: ken-burns 24s ease-in-out infinite alternate; }
 @media (prefers-reduced-motion: reduce) { .ken-burns { animation: none; } }
 
+/* Sección Módulos — onda líquida terracota (placeholder de video) */
+@keyframes liquid-breathe {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.65; }
+  50%      { transform: translate3d(-2%, -4%, 0) scale(1.06); opacity: 0.8; }
+}
+.liquid-wave { animation: liquid-breathe 14s ease-in-out infinite; }
+@keyframes wave-drift {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-3%); }
+}
+.wave-drift { animation: wave-drift 12s ease-in-out infinite; }
+.wave-drift-slow { animation: wave-drift 18s ease-in-out infinite reverse; }
+@media (prefers-reduced-motion: reduce) {
+  .liquid-wave, .wave-drift, .wave-drift-slow { animation: none; }
+}
+
 /* Hero dark — deriva cinematográfica muy sutil del celular (listo para animar a video) */
 @keyframes hero-drift {
   0%   { transform: scale(1.04) translate3d(0, 0, 0); }
