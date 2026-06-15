@@ -19,21 +19,20 @@ const NAV = {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#120D0B] text-cream-50">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-12 pt-20 md:pt-24">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8 pt-14 md:pt-16">
+        <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Marca */}
           <div>
             <a href="#top" className="inline-flex items-center gap-2.5" aria-label="Musuq inicio">
-              <Logo showText={false} size={30} className="text-cream-50" />
+              <Logo showText={false} size={28} className="text-cream-50" />
               <span className="font-display text-2xl font-medium lowercase tracking-[-0.02em]">
                 musuq
               </span>
             </a>
-            <p className="mt-5 max-w-xs text-[15px] leading-relaxed text-cream-50/55">
-              Tecnología que impulsa cada venta. La plataforma de gestión y punto
-              de venta para el comercio peruano.
+            <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-cream-50/55">
+              Tecnología que impulsa cada venta. Para el comercio peruano.
             </p>
-            <span className="mt-5 inline-flex items-center gap-2 rounded-full bg-cream-50/[0.06] px-3 py-1.5 text-[12px] font-medium text-cream-50/70">
+            <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-cream-50/[0.06] px-3 py-1.5 text-[12px] font-medium text-cream-50/70">
               Hecho en Perú
             </span>
           </div>
@@ -44,12 +43,12 @@ export function Footer() {
               <h3 className="text-[12px] font-semibold uppercase tracking-[0.2em] text-cream-50/40">
                 {group}
               </h3>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-4 space-y-2.5">
                 {NAV[group].map((l) => (
                   <li key={l.label}>
                     <a
                       href={l.href}
-                      className="text-[15px] text-cream-50/75 transition-colors hover:text-cream-50"
+                      className="text-[14px] text-cream-50/75 transition-colors hover:text-cream-50"
                     >
                       {l.label}
                     </a>
@@ -61,16 +60,18 @@ export function Footer() {
         </div>
 
         {/* Barra inferior */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-cream-50/10 pt-6 text-[13px] text-cream-50/45 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-2 border-t border-cream-50/10 pt-5 text-[13px] text-cream-50/45 sm:flex-row sm:items-center">
           <span>© 2026 Musuq · Todos los derechos reservados.</span>
-          <span>hello@musuq.tech</span>
+          <a href="mailto:hello@musuq.tech" className="transition-colors hover:text-cream-50/70">
+            hello@musuq.tech
+          </a>
         </div>
       </div>
 
-      {/* Wordmark gigante de marca de agua */}
+      {/* Wordmark de marca de agua (absoluto, recortado, no agrega altura) */}
       <span
         aria-hidden
-        className="pointer-events-none block select-none text-center font-display text-[28vw] font-medium lowercase leading-[0.8] tracking-[-0.04em] text-cream-50/[0.04]"
+        className="pointer-events-none absolute -bottom-[3.5vw] left-1/2 z-0 w-full -translate-x-1/2 select-none text-center font-display text-[20vw] font-medium lowercase leading-none tracking-[-0.04em] text-cream-50/[0.04]"
       >
         musuq
       </span>

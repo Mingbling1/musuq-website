@@ -132,16 +132,35 @@ export function Pricing() {
                   {p.tagline}
                 </p>
 
-                <div className="mt-6 flex items-baseline gap-1.5">
+                <div className="mt-6 flex items-baseline gap-2">
                   <span key={`${price}-${yearly}`} className="pop-in font-display text-5xl font-medium tabular-nums">
                     S/ {price}
                   </span>
                   {price > 0 && (
                     <span className={`text-sm ${p.featured ? "text-cream-50/55" : "text-warm-500"}`}>/mes</span>
                   )}
+                  {yearly && p.monthly > 0 && (
+                    <span className={`text-lg font-medium tabular-nums line-through ${p.featured ? "text-cream-50/40" : "text-warm-400"}`}>
+                      S/ {p.monthly}
+                    </span>
+                  )}
                 </div>
-                <span className={`mt-1 block h-4 text-[12px] ${p.featured ? "text-cream-50/45" : "text-warm-400"}`}>
-                  {price > 0 && yearly ? "facturado anual" : price > 0 ? "facturado mensual" : "para siempre"}
+                <span
+                  className={`mt-1.5 block h-4 text-[12px] font-medium ${
+                    yearly && p.monthly > 0
+                      ? p.featured
+                        ? "text-terracotta-light"
+                        : "text-terracotta"
+                      : p.featured
+                        ? "text-cream-50/45"
+                        : "text-warm-400"
+                  }`}
+                >
+                  {yearly && p.monthly > 0
+                    ? `Ahorras S/ ${(p.monthly - p.yearly) * 12} al año`
+                    : price > 0
+                      ? "Facturado mensual"
+                      : "Gratis para siempre"}
                 </span>
 
                 <a
