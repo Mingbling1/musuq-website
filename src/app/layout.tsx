@@ -3,8 +3,7 @@ import { Barlow, Barlow_Semi_Condensed, Fraunces } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Navbar } from "@/components/landing/navbar";
-// Footer oculto durante el teaser de rebrand (restaurar al rehacer la landing):
-// import { Footer } from "@/components/landing/footer";
+import { Footer } from "@/components/landing/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
 // Cuerpo / UI — Barlow
@@ -131,7 +130,7 @@ export default function RootLayout({
         <SmoothScroll>
           <Navbar />
           {children}
-          {/* <Footer /> */}
+          <Footer />
         </SmoothScroll>
         <Analytics />
       </body>

@@ -454,11 +454,12 @@ body::after {
 }
 .animate-fill { animation: fill-x 1.1s cubic-bezier(0.16, 1, 0.3, 1) both; }
 @keyframes scan-y {
-  0%   { transform: translateY(0%); opacity: 0.2; }
-  50%  { opacity: 0.9; }
-  100% { transform: translateY(620%); opacity: 0.2; }
+  0%   { transform: translateY(0); opacity: 0.1; }
+  12%  { opacity: 0.95; }
+  88%  { opacity: 0.95; }
+  100% { transform: translateY(258px); opacity: 0.1; }
 }
-.animate-scan { animation: scan-y 2.6s ease-in-out infinite; }
+.animate-scan { animation: scan-y 2.8s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 @media (prefers-reduced-motion: reduce) {
   .scene-in, .ticket-in, .pop-in, .animate-fill, .animate-scan { animation: none; }
   .animate-fill { width: var(--fill, 100%); }

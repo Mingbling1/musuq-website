@@ -82,7 +82,7 @@ function QrScene() {
             ))}
           </div>
         </div>
-        <div className="animate-scan absolute inset-x-3 top-12 h-0.5 rounded bg-terracotta-light shadow-[0_0_12px_2px_rgba(212,118,95,0.6)]" />
+        <div className="animate-scan absolute inset-x-2.5 top-3 h-[3px] rounded-full bg-gradient-to-r from-transparent via-terracotta-light to-transparent shadow-[0_0_16px_3px_rgba(212,118,95,0.7)]" />
       </div>
     </div>
   );
@@ -154,12 +154,13 @@ function CobrosScene() {
 const SCENES = [IaScene, QrScene, ComandaScene, CobrosScene];
 
 export function Rubros() {
-  const [active, setActive] = useState(0);
+  const [rubro, setRubro] = useState(0); // selector de rubro
+  const [feature, setFeature] = useState(0); // bondad activa en la lista
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const selectorRef = useRef<HTMLDivElement>(null);
-  const Scene = SCENES[active];
-  const activeRubro = RUBROS[active];
+  const Scene = SCENES[feature];
+  const activeRubro = RUBROS[rubro];
   const ActiveIcon = activeRubro.icon;
 
   // cerrar el dropdown al hacer click afuera o con Escape
@@ -245,7 +246,7 @@ export function Rubros() {
               {filtered.map(({ r, i }) => {
                 const Icon = r.icon;
                 const isLive = r.status === "live";
-                const isActive = i === active;
+                const isActive = i === rubro;
                 return (
                   <button
                     key={r.label}
@@ -255,7 +256,7 @@ export function Rubros() {
                     disabled={!isLive}
                     onClick={() => {
                       if (!isLive) return;
-                      setActive(i);
+                      setRubro(i);
                       setOpen(false);
                       setQuery("");
                     }}
@@ -290,14 +291,14 @@ export function Rubros() {
         {/* lista editorial (sin cards) */}
         <ul className="flex flex-col justify-center">
           {FEATURES.map((f, i) => {
-            const on = i === active;
+            const on = i === feature;
             return (
               <li key={f.title} className="border-t border-warm-800/10 last:border-b">
                 <button
                   type="button"
-                  onMouseEnter={() => setActive(i)}
-                  onFocus={() => setActive(i)}
-                  onClick={() => setActive(i)}
+                  onMouseEnter={() => setFeature(i)}
+                  onFocus={() => setFeature(i)}
+                  onClick={() => setFeature(i)}
                   aria-current={on}
                   className="group flex w-full items-start gap-4 py-4 text-left"
                 >
@@ -339,7 +340,7 @@ export function Rubros() {
           />
           <div className="relative flex items-center justify-between">
             <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream-50/55">
-              {FEATURES[active].title}
+              {FEATURES[feature].title}
             </span>
             <span className="flex items-center gap-1.5 text-[11px] font-medium text-terracotta-light">
               <span className="relative flex h-2 w-2">
@@ -349,7 +350,7 @@ export function Rubros() {
               En vivo
             </span>
           </div>
-          <div key={active} className="scene-in relative mt-5">
+          <div key={feature} className="scene-in relative mt-5">
             <Scene />
           </div>
         </div>
