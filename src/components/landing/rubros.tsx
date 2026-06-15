@@ -7,20 +7,12 @@ import {
   WashingMachine,
   ShoppingBasket,
   Pill,
-  ChefHat,
-  QrCode,
-  BookOpen,
-  ShoppingBag,
-  LayoutGrid,
-  Wallet,
-  Camera,
-  BadgeCheck,
   type LucideIcon,
 } from "lucide-react";
 
 // ── Rubros (extensible) ───────────────────────────────────────────
 // Hoy solo "Restaurantes y cafeterías" está vivo. Para sumar un rubro:
-// agregar { label, icon, status: "live" } y su set de tiles de bondades.
+// agregar { label, icon, status:"live" } + su set de bondades/escenas.
 type Rubro = { label: string; icon: LucideIcon; status: "live" | "soon" };
 
 const RUBROS: Rubro[] = [
@@ -31,106 +23,228 @@ const RUBROS: Rubro[] = [
   { label: "Farmacias", icon: Pill, status: "soon" },
 ];
 
-type Feature = { icon: LucideIcon; title: string; desc: string; span: string };
-
+type Feature = { title: string; desc: string };
 const FEATURES: Feature[] = [
-  {
-    icon: ChefHat,
-    title: "Comanda a cocina en tiempo real",
-    desc: "El pedido llega a la pantalla de cocina al instante. Cero papelitos perdidos.",
-    span: "md:col-span-2 md:row-span-2",
-  },
-  {
-    icon: QrCode,
-    title: "Pedidos por QR",
-    desc: "Tus clientes escanean el QR de la mesa y piden desde su celular.",
-    span: "",
-  },
-  {
-    icon: BookOpen,
-    title: "Carta digital",
-    desc: "Cambia platos y precios al toque, sin reimprimir nada.",
-    span: "",
-  },
-  {
-    icon: ShoppingBag,
-    title: "Para llevar, en vivo",
-    desc: "Llevar, recojo o delivery — organizados aparte de las mesas.",
-    span: "",
-  },
-  {
-    icon: LayoutGrid,
-    title: "Gestión de mesas",
-    desc: "Libre, ocupada o por limpiar, de un vistazo.",
-    span: "",
-  },
-  {
-    icon: Wallet,
-    title: "Cobra como quieras",
-    desc: "Yape, Plin, tarjeta y efectivo — todo unificado en una sola caja.",
-    span: "md:col-span-2",
-  },
-  {
-    icon: Camera,
-    title: "Sube tu carta con una foto",
-    desc: "La IA extrae platos y precios. Sin tipear nada.",
-    span: "",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Sin RUC, también",
-    desc: "¿Aún informal? Funciona igual, sin trabas.",
-    span: "",
-  },
+  { title: "Comanda a cocina, en vivo", desc: "El pedido salta a la pantalla de cocina al instante. Cero papelitos perdidos." },
+  { title: "Pedidos por QR", desc: "Tus clientes escanean el QR de la mesa y piden desde su celular." },
+  { title: "Carta digital", desc: "Cambia platos y precios al toque, sin reimprimir nada." },
+  { title: "Para llevar, en tiempo real", desc: "Llevar, recojo o delivery: sigue cada pedido hasta que sale por la puerta." },
+  { title: "Gestión de mesas", desc: "Libre, ocupada o por limpiar, de un vistazo." },
+  { title: "Cobra como quieras", desc: "Yape, Plin, tarjeta y efectivo, todo en una sola caja." },
+  { title: "Sube tu carta con una foto", desc: "La IA lee la imagen y arma tu carta sola. Sin tipear." },
+  { title: "Sin RUC, también", desc: "¿Aún informal? Empieza hoy y formaliza cuando quieras." },
 ];
 
-function ComandaMockup() {
+/* ── Escenas del panel vivo (carbón) ─────────────────────────────── */
+
+function ComandaScene() {
   const tickets = [
     { mesa: "Mesa 4", hora: "19:42", items: "2× Lomo saltado · 1× Chicha", nuevo: true },
     { mesa: "Para llevar #128", hora: "19:41", items: "1× Café · 1× Alfajor", nuevo: false },
     { mesa: "Mesa 2", hora: "19:39", items: "1× Ceviche · 2× Limonada", nuevo: false },
   ];
   return (
-    <div className="mt-5 rounded-2xl bg-warm-800 p-4 shadow-[0_20px_50px_-20px_rgba(26,26,26,0.5)]">
-      <div className="flex items-center justify-between">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream-50/55">
-          Cocina · pantalla en vivo
-        </span>
-        <span className="flex items-center gap-1.5 text-[11px] font-medium text-terracotta-light">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracotta-light opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-terracotta-light" />
-          </span>
-          En tiempo real
-        </span>
-      </div>
-      <div className="mt-3 space-y-2">
-        {tickets.map((t) => (
-          <div
-            key={t.mesa}
-            className="rounded-xl border-l-2 border-terracotta bg-cream-50/[0.05] px-3 py-2.5"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-cream-50">{t.mesa}</span>
-              <span className="flex items-center gap-2">
-                {t.nuevo && (
-                  <span className="rounded-full bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
-                    Nuevo
+    <div className="space-y-2.5">
+      {tickets.map((t, i) => (
+        <div
+          key={t.mesa}
+          className="ticket-in rounded-xl bg-cream-50/[0.06] px-3.5 py-3"
+          style={{ animationDelay: `${i * 110}ms` }}
+        >
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold text-cream-50">{t.mesa}</span>
+            <span className="flex items-center gap-2">
+              {t.nuevo && (
+                <span className="flex items-center gap-1.5 rounded-full bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
+                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cream-50" />
                   </span>
-                )}
-                <span className="text-[11px] tabular-nums text-cream-50/45">{t.hora}</span>
-              </span>
-            </div>
-            <p className="mt-0.5 text-[13px] text-cream-50/65">{t.items}</p>
+                  Nuevo
+                </span>
+              )}
+              <span className="text-[11px] tabular-nums text-cream-50/40">{t.hora}</span>
+            </span>
           </div>
-        ))}
+          <p className="mt-1 text-[13px] text-cream-50/65">{t.items}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function QrScene() {
+  return (
+    <div className="flex items-center justify-center pt-2">
+      <div className="relative aspect-[9/18] w-[150px] overflow-hidden rounded-[1.6rem] bg-warm-700 p-3 ring-1 ring-cream-50/10">
+        <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-cream-50/20" />
+        <p className="text-[11px] font-semibold text-cream-50/80">Carta · Mesa 4</p>
+        <div className="mt-2 space-y-1.5">
+          {["Lomo saltado", "Ají de gallina", "Ceviche", "Chicha morada"].map((d) => (
+            <div key={d} className="flex items-center justify-between rounded-md bg-cream-50/[0.06] px-2 py-1.5">
+              <span className="text-[10px] text-cream-50/70">{d}</span>
+              <span className="text-[10px] text-terracotta-light">＋</span>
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-x-3 bottom-3 flex items-center justify-center rounded-lg bg-cream-50 py-2">
+          <div className="grid grid-cols-4 gap-0.5">
+            {Array.from({ length: 16 }).map((_, i) => (
+              <span key={i} className={`h-1.5 w-1.5 rounded-[1px] ${i % 3 === 0 ? "bg-warm-800" : "bg-warm-800/30"}`} />
+            ))}
+          </div>
+        </div>
+        <div className="animate-scan absolute inset-x-3 top-12 h-0.5 rounded bg-terracotta-light shadow-[0_0_12px_2px_rgba(212,118,95,0.6)]" />
       </div>
     </div>
   );
 }
 
+function CartaScene() {
+  const rows = [
+    { name: "Lomo saltado", price: "S/ 26.00", edit: true },
+    { name: "Ají de gallina", price: "S/ 22.00", edit: false },
+    { name: "Tres leches", price: "S/ 12.00", edit: false },
+  ];
+  return (
+    <div className="space-y-2.5">
+      {rows.map((r, i) => (
+        <div
+          key={r.name}
+          className="ticket-in flex items-center justify-between rounded-xl bg-cream-50/[0.06] px-3.5 py-3"
+          style={{ animationDelay: `${i * 110}ms` }}
+        >
+          <span className="text-sm text-cream-50/85">{r.name}</span>
+          <span className={`pop-in rounded-md px-2 py-1 text-[13px] font-semibold tabular-nums ${r.edit ? "bg-terracotta/20 text-terracotta-light" : "text-cream-50/60"}`} style={{ animationDelay: `${i * 110 + 200}ms` }}>
+            {r.price}
+          </span>
+        </div>
+      ))}
+      <p className="pt-1 text-[12px] text-cream-50/45">Actualizado al instante · se ve igual en la carta QR</p>
+    </div>
+  );
+}
+
+function LlevarScene() {
+  const steps = ["Recibido", "En cocina", "Listo"];
+  return (
+    <div className="pt-2">
+      <div className="flex items-center justify-between text-sm font-semibold text-cream-50">
+        <span>Para llevar #128</span>
+        <span className="text-terracotta-light">19:41</span>
+      </div>
+      <div className="mt-5 h-1 overflow-hidden rounded-full bg-cream-50/10">
+        <div className="animate-fill h-full rounded-full bg-terracotta" style={{ "--fill": "66%" } as React.CSSProperties} />
+      </div>
+      <div className="mt-3 flex justify-between">
+        {steps.map((s, i) => (
+          <span key={s} className={`text-[12px] font-medium ${i <= 1 ? "text-cream-50" : "text-cream-50/40"}`}>
+            {s}
+          </span>
+        ))}
+      </div>
+      <div className="mt-6 space-y-1.5 text-[13px] text-cream-50/65">
+        <p>1× Café · 1× Alfajor</p>
+        <p className="text-cream-50/40">Recojo en tienda · pagado con Yape</p>
+      </div>
+    </div>
+  );
+}
+
+function MesasScene() {
+  const mesas = [
+    { n: 1, st: "libre" }, { n: 2, st: "ocupada" }, { n: 3, st: "libre" },
+    { n: 4, st: "ocupada" }, { n: 5, st: "limpiar" }, { n: 6, st: "libre" },
+  ];
+  const tone: Record<string, string> = {
+    libre: "bg-cream-50/[0.06] text-cream-50/55",
+    ocupada: "bg-terracotta/25 text-terracotta-light ring-1 ring-terracotta/40",
+    limpiar: "bg-cream-50/[0.1] text-cream-50/70",
+  };
+  return (
+    <div className="grid grid-cols-3 gap-2.5 pt-2">
+      {mesas.map((m, i) => (
+        <div
+          key={m.n}
+          className={`pop-in flex aspect-square flex-col items-center justify-center rounded-xl ${tone[m.st]}`}
+          style={{ animationDelay: `${i * 70}ms` }}
+        >
+          <span className="text-sm font-semibold">Mesa {m.n}</span>
+          <span className="mt-0.5 text-[10px] uppercase tracking-wide opacity-80">{m.st}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function CobrosScene() {
+  const metodos = [
+    { n: "Yape", on: true }, { n: "Plin", on: false },
+    { n: "Tarjeta", on: false }, { n: "Efectivo", on: false },
+  ];
+  return (
+    <div className="pt-2">
+      <p className="text-[12px] uppercase tracking-[0.18em] text-cream-50/45">Total a cobrar</p>
+      <p className="font-display text-4xl font-medium tabular-nums text-cream-50">S/ 42.00</p>
+      <div className="mt-5 grid grid-cols-2 gap-2">
+        {metodos.map((m, i) => (
+          <div
+            key={m.n}
+            className={`pop-in rounded-xl px-3 py-3 text-sm font-semibold ${m.on ? "bg-terracotta text-cream-50" : "bg-cream-50/[0.06] text-cream-50/60"}`}
+            style={{ animationDelay: `${i * 80}ms` }}
+          >
+            {m.n}
+          </div>
+        ))}
+      </div>
+      <p className="pop-in mt-4 inline-flex items-center gap-2 text-[13px] font-medium text-terracotta-light" style={{ animationDelay: "360ms" }}>
+        ✓ Cobrado con Yape
+      </p>
+    </div>
+  );
+}
+
+function IaScene() {
+  const widths = ["88%", "72%", "94%", "60%"];
+  return (
+    <div className="flex gap-4 pt-2">
+      <div className="pop-in h-36 w-28 shrink-0 rounded-xl bg-gradient-to-br from-terracotta/40 via-warm-700 to-warm-800 ring-1 ring-cream-50/10" />
+      <div className="flex-1 space-y-2.5 pt-1">
+        <p className="text-[12px] uppercase tracking-[0.16em] text-cream-50/45">Carta detectada</p>
+        {widths.map((w, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <div className="animate-fill h-3 rounded-full bg-cream-50/15" style={{ "--fill": w, animationDelay: `${i * 160}ms` } as React.CSSProperties} />
+          </div>
+        ))}
+        <p className="pt-1 text-[12px] text-cream-50/45">12 platos · precios listos</p>
+      </div>
+    </div>
+  );
+}
+
+function RucScene() {
+  return (
+    <div className="flex h-full flex-col justify-center pt-2">
+      <div className="pop-in flex items-center justify-between rounded-xl bg-cream-50/[0.06] px-4 py-3.5">
+        <span className="text-sm text-cream-50/80">RUC</span>
+        <span className="rounded-full bg-cream-50/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-cream-50/55">
+          Opcional
+        </span>
+      </div>
+      <p className="pop-in mt-5 font-display text-2xl font-medium leading-snug text-cream-50" style={{ animationDelay: "120ms" }}>
+        Empieza hoy.<br />Formaliza cuando quieras.
+      </p>
+    </div>
+  );
+}
+
+const SCENES = [
+  ComandaScene, QrScene, CartaScene, LlevarScene, MesasScene, CobrosScene, IaScene, RucScene,
+];
+
 export function Rubros() {
   const [active, setActive] = useState(0);
+  const Scene = SCENES[active];
 
   return (
     <section
@@ -147,35 +261,33 @@ export function Rubros() {
           <em className="font-medium italic text-terracotta">restaurante</em>
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-warm-600">
-          Desde la mesa hasta la cocina y la caja — todo conectado, en una sola
-          app. Empezamos por restaurantes y cafeterías; pronto, muchos más.
+          De la mesa a la cocina y a la caja, todo conectado. Pasa el mouse y
+          míralo funcionar. Empezamos por restaurantes y cafeterías; pronto,
+          muchos más.
         </p>
       </div>
 
       {/* ── Selector de rubros (pills) ──────────────────────────── */}
-      <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-2.5">
+      <div className="mx-auto mt-9 flex max-w-4xl flex-wrap items-center justify-center gap-2.5">
         {RUBROS.map((r, i) => {
           const Icon = r.icon;
           const isLive = r.status === "live";
-          const isActive = i === active && isLive;
           return (
             <button
               key={r.label}
               type="button"
               disabled={!isLive}
-              onClick={() => isLive && setActive(i)}
-              className={`inline-flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-colors ${
-                isActive
-                  ? "border-terracotta bg-terracotta text-cream-50"
-                  : isLive
-                    ? "border-warm-800/15 text-warm-700 hover:border-warm-800/30"
-                    : "cursor-default border-warm-800/10 text-warm-400"
+              className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
+                isLive
+                  ? "bg-terracotta text-cream-50"
+                  : "cursor-default text-warm-400"
               }`}
+              style={isLive ? undefined : { boxShadow: "inset 0 0 0 1px rgba(26,26,26,0.1)" }}
             >
               <Icon className="h-4 w-4" strokeWidth={1.8} />
               {r.label}
               {!isLive && (
-                <span className="rounded-full bg-warm-800/[0.08] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-warm-500">
+                <span className="rounded-full bg-warm-800/[0.07] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-warm-500">
                   Pronto
                 </span>
               )}
@@ -184,37 +296,80 @@ export function Rubros() {
         })}
       </div>
 
-      {/* ── Bento de bondades ───────────────────────────────────── */}
-      <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-3 md:mt-14 md:auto-rows-[minmax(0,1fr)] md:grid-cols-4">
-        {FEATURES.map((f, i) => {
-          const Icon = f.icon;
-          const isBig = i === 0;
-          return (
-            <div
-              key={f.title}
-              className={`flex flex-col rounded-3xl border border-warm-800/[0.08] bg-cream-50 p-6 transition-shadow duration-300 hover:shadow-[0_20px_50px_-24px_rgba(26,26,26,0.28)] ${f.span} ${
-                isBig ? "col-span-2" : ""
-              }`}
-            >
-              <div className="flex items-center gap-2.5">
-                <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-terracotta/10 text-terracotta">
-                  <Icon className="h-[18px] w-[18px]" strokeWidth={1.8} />
-                </span>
-                <h3 className="font-display text-lg font-medium leading-tight tracking-tight md:text-xl">
-                  {f.title}
-                </h3>
-              </div>
-              <p className="mt-2.5 text-[14px] leading-relaxed text-warm-600">
-                {f.desc}
-              </p>
-              {isBig && <ComandaMockup />}
-            </div>
-          );
-        })}
+      {/* ── Lista editorial + panel vivo ────────────────────────── */}
+      <div className="mx-auto mt-14 flex max-w-5xl flex-col-reverse gap-8 md:grid md:grid-cols-[0.92fr_1.08fr] md:items-stretch md:gap-12">
+        {/* lista editorial (sin cards) */}
+        <ul className="flex flex-col">
+          {FEATURES.map((f, i) => {
+            const on = i === active;
+            return (
+              <li key={f.title} className="border-t border-warm-800/10 last:border-b">
+                <button
+                  type="button"
+                  onMouseEnter={() => setActive(i)}
+                  onFocus={() => setActive(i)}
+                  onClick={() => setActive(i)}
+                  aria-current={on}
+                  className="group flex w-full items-start gap-4 py-3.5 text-left"
+                >
+                  <span className={`mt-1 w-6 shrink-0 font-display text-sm tabular-nums transition-colors ${on ? "text-terracotta" : "text-warm-400"}`}>
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="min-w-0">
+                    <span
+                      className={`block font-display text-xl font-medium leading-tight tracking-tight transition-all duration-300 md:text-2xl ${
+                        on ? "translate-x-0 text-warm-800" : "text-warm-500 group-hover:text-warm-700"
+                      }`}
+                    >
+                      {f.title}
+                    </span>
+                    <span
+                      className={`grid transition-all duration-300 ease-out ${
+                        on ? "mt-1.5 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                      }`}
+                    >
+                      <span className="overflow-hidden">
+                        <span className="block max-w-sm text-[14px] leading-relaxed text-warm-600">
+                          {f.desc}
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* panel vivo (carbón, muta al hover) */}
+        <div className="relative min-h-[360px] overflow-hidden rounded-[1.75rem] bg-warm-800 p-6 md:min-h-[480px] md:p-8">
+          {/* glow terracota de fondo */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-50 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(200,85,61,0.5), transparent 70%)" }}
+          />
+          <div className="relative flex items-center justify-between">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream-50/55">
+              {FEATURES[active].title}
+            </span>
+            <span className="flex items-center gap-1.5 text-[11px] font-medium text-terracotta-light">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracotta-light opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-terracotta-light" />
+              </span>
+              En vivo
+            </span>
+          </div>
+          {/* escena que se re-monta y anima al cambiar de bondad */}
+          <div key={active} className="scene-in relative mt-5">
+            <Scene />
+          </div>
+        </div>
       </div>
 
       {/* ── Tira de plataforma ──────────────────────────────────── */}
-      <p className="mx-auto mt-10 max-w-3xl text-center text-[13px] font-medium uppercase tracking-[0.16em] text-warm-500">
+      <p className="mx-auto mt-12 max-w-3xl text-center text-[13px] font-medium uppercase tracking-[0.16em] text-warm-500">
         Mobile-first · Úsalo en el navegador hoy · App para iOS y Android en camino
       </p>
     </section>
