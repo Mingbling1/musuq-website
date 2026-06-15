@@ -30,8 +30,16 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <a href="#top" className="inline-flex items-center gap-2.5" aria-label="Musuq inicio">
-          <Logo showText={false} size={28} className="text-warm-800" />
-          <span className="font-display text-2xl font-medium lowercase tracking-[-0.02em] text-warm-800">
+          <Logo
+            showText={false}
+            size={28}
+            className={scrolled ? "text-warm-800" : "text-cream-50"}
+          />
+          <span
+            className={`font-display text-2xl font-medium lowercase tracking-[-0.02em] transition-colors ${
+              scrolled ? "text-warm-800" : "text-cream-50"
+            }`}
+          >
             musuq
           </span>
         </a>
@@ -41,7 +49,11 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm font-medium text-warm-600 transition-colors hover:text-warm-800"
+              className={`text-sm font-medium transition-colors ${
+                scrolled
+                  ? "text-warm-600 hover:text-warm-800"
+                  : "text-cream-50/70 hover:text-cream-50"
+              }`}
             >
               {l.label}
             </a>
@@ -51,7 +63,11 @@ export function Navbar() {
         <div className="flex items-center gap-3">
           <a
             href={APP_URL}
-            className="hidden text-sm font-medium text-warm-700 transition-colors hover:text-warm-800 sm:block"
+            className={`hidden text-sm font-medium transition-colors sm:block ${
+              scrolled
+                ? "text-warm-700 hover:text-warm-800"
+                : "text-cream-50/80 hover:text-cream-50"
+            }`}
           >
             Iniciar sesión
           </a>

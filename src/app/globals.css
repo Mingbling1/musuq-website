@@ -419,6 +419,14 @@ body::after {
 .ken-burns { animation: ken-burns 24s ease-in-out infinite alternate; }
 @media (prefers-reduced-motion: reduce) { .ken-burns { animation: none; } }
 
+/* Hero dark — deriva cinematográfica muy sutil del celular (listo para animar a video) */
+@keyframes hero-drift {
+  0%   { transform: scale(1.04) translate3d(0, 0, 0); }
+  100% { transform: scale(1.08) translate3d(-1.2%, -1.4%, 0); }
+}
+.hero-drift { animation: hero-drift 18s ease-in-out infinite alternate; }
+@media (prefers-reduced-motion: reduce) { .hero-drift { animation: none; transform: scale(1.04); } }
+
 /* Zorro — saludo en loop (vaivén sutil desde la base) */
 @keyframes fox-wave {
   0%, 100% { transform: rotate(-2.5deg); }
