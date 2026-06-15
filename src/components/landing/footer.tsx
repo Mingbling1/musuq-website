@@ -68,13 +68,15 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Wordmark de marca de agua (absoluto, recortado, no agrega altura) */}
-      <span
+      {/* Wordmark de marca de agua: franja propia, recortada, separada del texto legal */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute -bottom-[3.5vw] left-1/2 z-0 w-full -translate-x-1/2 select-none text-center font-display text-[20vw] font-medium lowercase leading-none tracking-[-0.04em] text-cream-50/[0.04]"
+        className="pointer-events-none relative mt-8 flex h-[13vw] min-h-[64px] max-h-[170px] items-end justify-center overflow-hidden md:mt-10"
       >
-        musuq
-      </span>
+        <span className="translate-y-[20%] select-none font-display text-[15vw] font-medium lowercase leading-none tracking-[-0.04em] text-cream-50/[0.045]">
+          musuq
+        </span>
+      </div>
     </footer>
   );
 }
