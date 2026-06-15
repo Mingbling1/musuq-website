@@ -1,26 +1,31 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   UtensilsCrossed,
   Store,
   WashingMachine,
   ShoppingBasket,
   Pill,
+  ChevronDown,
+  Search,
+  Check,
   type LucideIcon,
 } from "lucide-react";
 
 // ── Rubros (extensible) ───────────────────────────────────────────
 // Hoy solo "Restaurantes y cafeterías" está vivo. Para sumar un rubro:
 // agregar { label, icon, status:"live" } + su set de bondades/escenas.
-type Rubro = { label: string; icon: LucideIcon; status: "live" | "soon" };
+type Rubro = { label: string; short: string; icon: LucideIcon; status: "live" | "soon" };
 
+// Escala a decenas de rubros sin tocar el layout: el dropdown lista/busca,
+// no se pintan todos en pantalla.
 const RUBROS: Rubro[] = [
-  { label: "Restaurantes y cafeterías", icon: UtensilsCrossed, status: "live" },
-  { label: "Bodegas", icon: Store, status: "soon" },
-  { label: "Lavanderías", icon: WashingMachine, status: "soon" },
-  { label: "Minimarkets", icon: ShoppingBasket, status: "soon" },
-  { label: "Farmacias", icon: Pill, status: "soon" },
+  { label: "Restaurantes y cafeterías", short: "restaurante", icon: UtensilsCrossed, status: "live" },
+  { label: "Bodegas", short: "bodega", icon: Store, status: "soon" },
+  { label: "Lavanderías", short: "lavandería", icon: WashingMachine, status: "soon" },
+  { label: "Minimarkets", short: "minimarket", icon: ShoppingBasket, status: "soon" },
+  { label: "Farmacias", short: "farmacia", icon: Pill, status: "soon" },
 ];
 
 type Feature = { title: string; desc: string };
@@ -244,7 +249,34 @@ const SCENES = [
 
 export function Rubros() {
   const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const selectorRef = useRef<HTMLDivElement>(null);
   const Scene = SCENES[active];
+  const activeRubro = RUBROS[active];
+  const ActiveIcon = activeRubro.icon;
+
+  // cerrar el dropdown al hacer click afuera o con Escape
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent) => {
+      if (selectorRef.current && !selectorRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
+  const showSearch = RUBROS.length > 8;
+  const filtered = RUBROS.map((r, i) => ({ r, i })).filter(({ r }) =>
+    r.label.toLowerCase().includes(query.trim().toLowerCase())
+  );
 
   return (
     <section
@@ -258,42 +290,93 @@ export function Rubros() {
         </span>
         <h2 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
           Pensado para tu{" "}
-          <em className="font-medium italic text-terracotta">restaurante</em>
+          <em className="font-medium italic text-terracotta">{activeRubro.short}</em>
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-warm-600">
           De la mesa a la cocina y a la caja, todo conectado. Pasa el mouse y
-          míralo funcionar. Empezamos por restaurantes y cafeterías; pronto,
-          muchos más.
+          míralo funcionar.
         </p>
       </div>
 
-      {/* ── Selector de rubros (pills) ──────────────────────────── */}
-      <div className="mx-auto mt-9 flex max-w-4xl flex-wrap items-center justify-center gap-2.5">
-        {RUBROS.map((r, i) => {
-          const Icon = r.icon;
-          const isLive = r.status === "live";
-          return (
-            <button
-              key={r.label}
-              type="button"
-              disabled={!isLive}
-              className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
-                isLive
-                  ? "bg-terracotta text-cream-50"
-                  : "cursor-default text-warm-400"
-              }`}
-              style={isLive ? undefined : { boxShadow: "inset 0 0 0 1px rgba(26,26,26,0.1)" }}
-            >
-              <Icon className="h-4 w-4" strokeWidth={1.8} />
-              {r.label}
-              {!isLive && (
-                <span className="rounded-full bg-warm-800/[0.07] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-warm-500">
-                  Pronto
-                </span>
+      {/* ── Selector de rubro (dropdown — escala a decenas) ─────── */}
+      <div ref={selectorRef} className="relative z-30 mx-auto mt-8 flex w-fit flex-col items-center">
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          className="inline-flex items-center gap-2.5 rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-cream-50 transition-transform duration-200 hover:scale-[1.02] active:scale-95"
+        >
+          <ActiveIcon className="h-4 w-4" strokeWidth={1.8} />
+          {activeRubro.label}
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            strokeWidth={2}
+          />
+        </button>
+        <p className="mt-2.5 text-[12px] text-warm-500">
+          Empezamos por restaurantes · más rubros en camino
+        </p>
+
+        {open && (
+          <div
+            role="listbox"
+            className="pop-in absolute top-12 w-[min(90vw,360px)] overflow-hidden rounded-2xl bg-cream-50 p-1.5 shadow-[0_28px_70px_-24px_rgba(26,26,26,0.4)] ring-1 ring-warm-800/10"
+          >
+            {showSearch && (
+              <div className="flex items-center gap-2 border-b border-warm-800/[0.08] px-3 py-2">
+                <Search className="h-4 w-4 text-warm-400" strokeWidth={1.8} />
+                <input
+                  autoFocus
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Busca tu rubro…"
+                  className="w-full bg-transparent text-sm text-warm-800 outline-none placeholder:text-warm-400"
+                />
+              </div>
+            )}
+            <div className="max-h-[300px] overflow-y-auto py-1">
+              {filtered.map(({ r, i }) => {
+                const Icon = r.icon;
+                const isLive = r.status === "live";
+                const isActive = i === active;
+                return (
+                  <button
+                    key={r.label}
+                    type="button"
+                    role="option"
+                    aria-selected={isActive}
+                    disabled={!isLive}
+                    onClick={() => {
+                      if (!isLive) return;
+                      setActive(i);
+                      setOpen(false);
+                      setQuery("");
+                    }}
+                    className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-sm transition-colors ${
+                      isLive ? "text-warm-800 hover:bg-terracotta/10" : "cursor-default text-warm-400"
+                    } ${isActive ? "bg-terracotta/10 font-semibold" : ""}`}
+                  >
+                    <Icon
+                      className={`h-4 w-4 shrink-0 ${isLive ? "text-terracotta" : "text-warm-400"}`}
+                      strokeWidth={1.8}
+                    />
+                    <span className="flex-1">{r.label}</span>
+                    {isActive && <Check className="h-4 w-4 text-terracotta" strokeWidth={2.2} />}
+                    {!isLive && (
+                      <span className="rounded-full bg-warm-800/[0.06] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-warm-500">
+                        Pronto
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+              {filtered.length === 0 && (
+                <p className="px-3 py-5 text-center text-sm text-warm-400">Sin resultados</p>
               )}
-            </button>
-          );
-        })}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* ── Lista editorial + panel vivo ────────────────────────── */}
