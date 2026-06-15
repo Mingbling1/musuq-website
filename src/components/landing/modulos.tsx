@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Reveal } from "@/components/landing/reveal";
 import {
   Store,
   Wallet,
@@ -66,7 +67,7 @@ export function Modulos() {
       className="relative overflow-hidden bg-[#120D0B] px-6 pb-40 pt-24 text-cream-50 md:pt-32"
     >
       {/* ── Encabezado ──────────────────────────────────────────── */}
-      <div className="mx-auto max-w-2xl text-center">
+      <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.02] tracking-[-0.02em]">
           <span className="text-cream-50/35 line-through decoration-[1.5px]">
             Una
@@ -78,7 +79,7 @@ export function Modulos() {
           Todo lo que tu negocio necesita para vender, cobrar y crecer — en un
           solo lugar.
         </p>
-      </div>
+      </Reveal>
 
       {/* ── Acordeón horizontal (desktop) ───────────────────────── */}
       <div className="relative z-10 mx-auto mt-16 hidden h-[440px] w-full max-w-6xl gap-2.5 md:flex">

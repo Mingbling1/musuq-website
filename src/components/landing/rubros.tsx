@@ -12,6 +12,7 @@ import {
   Check,
   type LucideIcon,
 } from "lucide-react";
+import { Reveal } from "@/components/landing/reveal";
 
 // ── Rubros (extensible) ───────────────────────────────────────────
 // Hoy solo "Restaurantes y cafeterías" está vivo. Para sumar un rubro:
@@ -189,7 +190,7 @@ export function Rubros() {
       className="relative overflow-hidden bg-cream-100 px-6 py-24 text-warm-800 md:py-32"
     >
       {/* ── Encabezado ──────────────────────────────────────────── */}
-      <div className="mx-auto max-w-2xl text-center">
+      <Reveal className="mx-auto max-w-2xl text-center">
         <span className="block text-[12px] font-semibold uppercase tracking-[0.3em] text-terracotta">
           Hecho para tu rubro
         </span>
@@ -201,7 +202,7 @@ export function Rubros() {
           De la mesa a la cocina y a la caja, todo conectado. Pasa el mouse y
           míralo funcionar.
         </p>
-      </div>
+      </Reveal>
 
       {/* ── Selector de rubro (dropdown — escala a decenas) ─────── */}
       <div ref={selectorRef} className="relative z-30 mx-auto mt-8 flex w-fit flex-col items-center">

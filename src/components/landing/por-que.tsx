@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Check, X } from "lucide-react";
+import { Reveal } from "@/components/landing/reveal";
 
 // Antes (cuaderno / desorden) → Después (con Musuq, control)
 const PAIRS: { antes: string; despues: string }[] = [
@@ -26,7 +27,7 @@ export function PorQue() {
         style={{ background: "radial-gradient(circle, rgba(200,85,61,0.45), transparent 70%)" }}
       />
 
-      <div className="relative mx-auto max-w-2xl text-center">
+      <Reveal className="relative mx-auto max-w-2xl text-center">
         <span className="block text-[12px] font-semibold uppercase tracking-[0.3em] text-terracotta-light">
           Por qué Musuq
         </span>
@@ -38,7 +39,7 @@ export function PorQue() {
           El salto que tu negocio estaba esperando. Toca el interruptor y mira la
           diferencia.
         </p>
-      </div>
+      </Reveal>
 
       {/* ── Toggle Sin Musuq / Con Musuq (pill deslizante) ──────── */}
       <div className="relative mx-auto mt-9 w-fit">

@@ -2,6 +2,7 @@ import { Hero } from "@/components/landing/hero";
 import { Modulos } from "@/components/landing/modulos";
 import { Rubros } from "@/components/landing/rubros";
 import { PorQue } from "@/components/landing/por-que";
+import { Pricing } from "@/components/landing/pricing";
 
 // ── Rebrand 2026: reconstrucción sección por sección ──────────────
 // Vivo: hero + módulos + rubros. El resto queda comentado (no borrado).
@@ -20,6 +21,7 @@ export default function Home() {
       <Modulos />
       <Rubros />
       <PorQue />
+      <Pricing />
       {/* <Manifiesto /> */}
       {/* <Plataforma /> */}
       {/* <Diferenciador /> */}
