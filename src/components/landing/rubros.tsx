@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
+import { ChapterMarker } from "@/components/landing/chapter-marker";
 
 // ── Rubros (extensible) ───────────────────────────────────────────
 // Hoy solo "Restaurantes y cafeterías" está vivo. Para sumar un rubro:
@@ -188,14 +189,13 @@ export function Rubros() {
   return (
     <section
       id="rubros"
-      className="relative overflow-hidden bg-cream-100 px-6 py-24 text-warm-800 md:py-32"
+      className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-cream-100 px-6 py-24 text-warm-800 md:-mt-14 md:rounded-t-[3.5rem] md:py-32"
     >
+      <ChapterMarker num="02" label="Rubros" />
+
       {/* ── Encabezado ──────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-2xl text-center">
-        <span className="block text-[12px] font-semibold uppercase tracking-[0.3em] text-terracotta">
-          Hecho para tu rubro
-        </span>
-        <h2 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
+        <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
           Pensado para tu{" "}
           <em className="font-medium italic text-terracotta">{activeRubro.short}</em>
         </h2>

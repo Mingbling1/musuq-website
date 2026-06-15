@@ -19,9 +19,9 @@ export default function Home() {
     <main className="flex-1">
       {/* <ScrollFX /> */}
       <Hero />
-      <Modulos />
-      <Rubros />
       <PorQue />
+      <Rubros />
+      <Modulos />
       <Pricing />
       <Cierre />
       {/* <Manifiesto /> */}

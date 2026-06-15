@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Reveal } from "@/components/landing/reveal";
+import { ChapterMarker } from "@/components/landing/chapter-marker";
 import {
   Store,
   Wallet,
@@ -64,8 +65,10 @@ export function Modulos() {
   return (
     <section
       id="modulos"
-      className="relative overflow-hidden bg-[#120D0B] px-6 pb-40 pt-24 text-cream-50 md:pt-32"
+      className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-[#120D0B] px-6 pb-40 pt-24 text-cream-50 md:-mt-14 md:rounded-t-[3.5rem] md:pt-32"
     >
+      <ChapterMarker num="03" label="Y más" />
+
       {/* ── Encabezado ──────────────────────────────────────────── */}
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.02] tracking-[-0.02em]">

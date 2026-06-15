@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
+import { ChapterMarker } from "@/components/landing/chapter-marker";
 
 // Antes (cuaderno / desorden) → Después (con Musuq, control)
 const PAIRS: { antes: string; despues: string }[] = [
@@ -27,11 +28,10 @@ export function PorQue() {
         style={{ background: "radial-gradient(circle, rgba(200,85,61,0.45), transparent 70%)" }}
       />
 
+      <ChapterMarker num="01" label="Por qué" />
+
       <Reveal className="relative mx-auto max-w-2xl text-center">
-        <span className="block text-[12px] font-semibold uppercase tracking-[0.3em] text-terracotta-light">
-          Por qué Musuq
-        </span>
-        <h2 className="mt-5 font-display text-[clamp(2.25rem,5.5vw,4rem)] font-normal leading-[1.02] tracking-[-0.02em]">
+        <h2 className="font-display text-[clamp(2.25rem,5.5vw,4rem)] font-normal leading-[1.02] tracking-[-0.02em]">
           Del cuaderno al{" "}
           <em className="font-medium italic text-terracotta-light">control</em>
         </h2>

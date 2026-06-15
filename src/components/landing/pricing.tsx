@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
+import { ChapterMarker } from "@/components/landing/chapter-marker";
 
 const APP_URL = "https://app.musuq.tech";
 
@@ -63,13 +64,12 @@ export function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative overflow-hidden bg-cream-100 px-6 py-24 text-warm-800 md:py-32"
+      className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-cream-100 px-6 py-24 text-warm-800 md:-mt-14 md:rounded-t-[3.5rem] md:py-32"
     >
+      <ChapterMarker num="04" label="Planes" />
+
       <Reveal className="mx-auto max-w-2xl text-center">
-        <span className="block text-[12px] font-semibold uppercase tracking-[0.3em] text-terracotta">
-          Planes
-        </span>
-        <h2 className="mt-5 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
+        <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
           Empieza gratis.{" "}
           <em className="font-medium italic text-terracotta">Crece sin límites.</em>
         </h2>

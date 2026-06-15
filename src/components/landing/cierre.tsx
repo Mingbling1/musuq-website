@@ -16,7 +16,7 @@ export function Cierre() {
   return (
     <section
       id="cierre"
-      className="relative overflow-hidden bg-[#120D0B] px-6 py-28 text-cream-50 md:py-40"
+      className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-[#120D0B] px-6 py-28 text-cream-50 md:-mt-14 md:rounded-t-[3.5rem] md:py-40"
     >
       {/* glow terracota central (drenched) */}
       <div
