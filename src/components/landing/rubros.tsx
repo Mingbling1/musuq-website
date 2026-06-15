@@ -15,7 +15,7 @@ import {
 
 // ── Rubros (extensible) ───────────────────────────────────────────
 // Hoy solo "Restaurantes y cafeterías" está vivo. Para sumar un rubro:
-// agregar { label, icon, status:"live" } + su set de bondades/escenas.
+// agregar { label, short, icon, status:"live" } + su set de bondades/escenas.
 type Rubro = { label: string; short: string; icon: LucideIcon; status: "live" | "soon" };
 
 // Escala a decenas de rubros sin tocar el layout: el dropdown lista/busca,
@@ -28,19 +28,64 @@ const RUBROS: Rubro[] = [
   { label: "Farmacias", short: "farmacia", icon: Pill, status: "soon" },
 ];
 
+// Las 4 bondades más sorprendentes (de 8 → 4). El orden manda la lista y el panel.
 type Feature = { title: string; desc: string };
 const FEATURES: Feature[] = [
-  { title: "Comanda a cocina, en vivo", desc: "El pedido salta a la pantalla de cocina al instante. Cero papelitos perdidos." },
+  { title: "Sube tu carta con una foto", desc: "Tómale una foto a tu menú y la IA lo arma solo: platos y precios listos, sin tipear." },
   { title: "Pedidos por QR", desc: "Tus clientes escanean el QR de la mesa y piden desde su celular." },
-  { title: "Carta digital", desc: "Cambia platos y precios al toque, sin reimprimir nada." },
-  { title: "Para llevar, en tiempo real", desc: "Llevar, recojo o delivery: sigue cada pedido hasta que sale por la puerta." },
-  { title: "Gestión de mesas", desc: "Libre, ocupada o por limpiar, de un vistazo." },
+  { title: "Comanda a cocina, en vivo", desc: "El pedido salta a la pantalla de cocina al instante. Cero papelitos perdidos." },
   { title: "Cobra como quieras", desc: "Yape, Plin, tarjeta y efectivo, todo en una sola caja." },
-  { title: "Sube tu carta con una foto", desc: "La IA lee la imagen y arma tu carta sola. Sin tipear." },
-  { title: "Sin RUC, también", desc: "¿Aún informal? Empieza hoy y formaliza cuando quieras." },
 ];
 
 /* ── Escenas del panel vivo (carbón) ─────────────────────────────── */
+
+function IaScene() {
+  const widths = ["88%", "72%", "94%", "60%"];
+  return (
+    <div className="flex gap-4 pt-2">
+      <div className="pop-in h-36 w-28 shrink-0 rounded-xl bg-gradient-to-br from-terracotta/40 via-warm-700 to-warm-800 ring-1 ring-cream-50/10" />
+      <div className="flex-1 space-y-2.5 pt-1">
+        <p className="text-[12px] uppercase tracking-[0.16em] text-cream-50/45">Carta detectada</p>
+        {widths.map((w, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <div
+              className="animate-fill h-3 rounded-full bg-cream-50/15"
+              style={{ "--fill": w, animationDelay: `${i * 160}ms` } as React.CSSProperties}
+            />
+          </div>
+        ))}
+        <p className="pt-1 text-[12px] text-cream-50/45">12 platos · precios listos</p>
+      </div>
+    </div>
+  );
+}
+
+function QrScene() {
+  return (
+    <div className="flex items-center justify-center pt-2">
+      <div className="relative aspect-[9/18] w-[150px] overflow-hidden rounded-[1.6rem] bg-warm-700 p-3 ring-1 ring-cream-50/10">
+        <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-cream-50/20" />
+        <p className="text-[11px] font-semibold text-cream-50/80">Carta · Mesa 4</p>
+        <div className="mt-2 space-y-1.5">
+          {["Lomo saltado", "Ají de gallina", "Ceviche", "Chicha morada"].map((d) => (
+            <div key={d} className="flex items-center justify-between rounded-md bg-cream-50/[0.06] px-2 py-1.5">
+              <span className="text-[10px] text-cream-50/70">{d}</span>
+              <span className="text-[10px] text-terracotta-light">＋</span>
+            </div>
+          ))}
+        </div>
+        <div className="absolute inset-x-3 bottom-3 flex items-center justify-center rounded-lg bg-cream-50 py-2">
+          <div className="grid grid-cols-4 gap-0.5">
+            {Array.from({ length: 16 }).map((_, i) => (
+              <span key={i} className={`h-1.5 w-1.5 rounded-[1px] ${i % 3 === 0 ? "bg-warm-800" : "bg-warm-800/30"}`} />
+            ))}
+          </div>
+        </div>
+        <div className="animate-scan absolute inset-x-3 top-12 h-0.5 rounded bg-terracotta-light shadow-[0_0_12px_2px_rgba(212,118,95,0.6)]" />
+      </div>
+    </div>
+  );
+}
 
 function ComandaScene() {
   const tickets = [
@@ -78,110 +123,6 @@ function ComandaScene() {
   );
 }
 
-function QrScene() {
-  return (
-    <div className="flex items-center justify-center pt-2">
-      <div className="relative aspect-[9/18] w-[150px] overflow-hidden rounded-[1.6rem] bg-warm-700 p-3 ring-1 ring-cream-50/10">
-        <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-cream-50/20" />
-        <p className="text-[11px] font-semibold text-cream-50/80">Carta · Mesa 4</p>
-        <div className="mt-2 space-y-1.5">
-          {["Lomo saltado", "Ají de gallina", "Ceviche", "Chicha morada"].map((d) => (
-            <div key={d} className="flex items-center justify-between rounded-md bg-cream-50/[0.06] px-2 py-1.5">
-              <span className="text-[10px] text-cream-50/70">{d}</span>
-              <span className="text-[10px] text-terracotta-light">＋</span>
-            </div>
-          ))}
-        </div>
-        <div className="absolute inset-x-3 bottom-3 flex items-center justify-center rounded-lg bg-cream-50 py-2">
-          <div className="grid grid-cols-4 gap-0.5">
-            {Array.from({ length: 16 }).map((_, i) => (
-              <span key={i} className={`h-1.5 w-1.5 rounded-[1px] ${i % 3 === 0 ? "bg-warm-800" : "bg-warm-800/30"}`} />
-            ))}
-          </div>
-        </div>
-        <div className="animate-scan absolute inset-x-3 top-12 h-0.5 rounded bg-terracotta-light shadow-[0_0_12px_2px_rgba(212,118,95,0.6)]" />
-      </div>
-    </div>
-  );
-}
-
-function CartaScene() {
-  const rows = [
-    { name: "Lomo saltado", price: "S/ 26.00", edit: true },
-    { name: "Ají de gallina", price: "S/ 22.00", edit: false },
-    { name: "Tres leches", price: "S/ 12.00", edit: false },
-  ];
-  return (
-    <div className="space-y-2.5">
-      {rows.map((r, i) => (
-        <div
-          key={r.name}
-          className="ticket-in flex items-center justify-between rounded-xl bg-cream-50/[0.06] px-3.5 py-3"
-          style={{ animationDelay: `${i * 110}ms` }}
-        >
-          <span className="text-sm text-cream-50/85">{r.name}</span>
-          <span className={`pop-in rounded-md px-2 py-1 text-[13px] font-semibold tabular-nums ${r.edit ? "bg-terracotta/20 text-terracotta-light" : "text-cream-50/60"}`} style={{ animationDelay: `${i * 110 + 200}ms` }}>
-            {r.price}
-          </span>
-        </div>
-      ))}
-      <p className="pt-1 text-[12px] text-cream-50/45">Actualizado al instante · se ve igual en la carta QR</p>
-    </div>
-  );
-}
-
-function LlevarScene() {
-  const steps = ["Recibido", "En cocina", "Listo"];
-  return (
-    <div className="pt-2">
-      <div className="flex items-center justify-between text-sm font-semibold text-cream-50">
-        <span>Para llevar #128</span>
-        <span className="text-terracotta-light">19:41</span>
-      </div>
-      <div className="mt-5 h-1 overflow-hidden rounded-full bg-cream-50/10">
-        <div className="animate-fill h-full rounded-full bg-terracotta" style={{ "--fill": "66%" } as React.CSSProperties} />
-      </div>
-      <div className="mt-3 flex justify-between">
-        {steps.map((s, i) => (
-          <span key={s} className={`text-[12px] font-medium ${i <= 1 ? "text-cream-50" : "text-cream-50/40"}`}>
-            {s}
-          </span>
-        ))}
-      </div>
-      <div className="mt-6 space-y-1.5 text-[13px] text-cream-50/65">
-        <p>1× Café · 1× Alfajor</p>
-        <p className="text-cream-50/40">Recojo en tienda · pagado con Yape</p>
-      </div>
-    </div>
-  );
-}
-
-function MesasScene() {
-  const mesas = [
-    { n: 1, st: "libre" }, { n: 2, st: "ocupada" }, { n: 3, st: "libre" },
-    { n: 4, st: "ocupada" }, { n: 5, st: "limpiar" }, { n: 6, st: "libre" },
-  ];
-  const tone: Record<string, string> = {
-    libre: "bg-cream-50/[0.06] text-cream-50/55",
-    ocupada: "bg-terracotta/25 text-terracotta-light ring-1 ring-terracotta/40",
-    limpiar: "bg-cream-50/[0.1] text-cream-50/70",
-  };
-  return (
-    <div className="grid grid-cols-3 gap-2.5 pt-2">
-      {mesas.map((m, i) => (
-        <div
-          key={m.n}
-          className={`pop-in flex aspect-square flex-col items-center justify-center rounded-xl ${tone[m.st]}`}
-          style={{ animationDelay: `${i * 70}ms` }}
-        >
-          <span className="text-sm font-semibold">Mesa {m.n}</span>
-          <span className="mt-0.5 text-[10px] uppercase tracking-wide opacity-80">{m.st}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 function CobrosScene() {
   const metodos = [
     { n: "Yape", on: true }, { n: "Plin", on: false },
@@ -209,43 +150,7 @@ function CobrosScene() {
   );
 }
 
-function IaScene() {
-  const widths = ["88%", "72%", "94%", "60%"];
-  return (
-    <div className="flex gap-4 pt-2">
-      <div className="pop-in h-36 w-28 shrink-0 rounded-xl bg-gradient-to-br from-terracotta/40 via-warm-700 to-warm-800 ring-1 ring-cream-50/10" />
-      <div className="flex-1 space-y-2.5 pt-1">
-        <p className="text-[12px] uppercase tracking-[0.16em] text-cream-50/45">Carta detectada</p>
-        {widths.map((w, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div className="animate-fill h-3 rounded-full bg-cream-50/15" style={{ "--fill": w, animationDelay: `${i * 160}ms` } as React.CSSProperties} />
-          </div>
-        ))}
-        <p className="pt-1 text-[12px] text-cream-50/45">12 platos · precios listos</p>
-      </div>
-    </div>
-  );
-}
-
-function RucScene() {
-  return (
-    <div className="flex h-full flex-col justify-center pt-2">
-      <div className="pop-in flex items-center justify-between rounded-xl bg-cream-50/[0.06] px-4 py-3.5">
-        <span className="text-sm text-cream-50/80">RUC</span>
-        <span className="rounded-full bg-cream-50/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-cream-50/55">
-          Opcional
-        </span>
-      </div>
-      <p className="pop-in mt-5 font-display text-2xl font-medium leading-snug text-cream-50" style={{ animationDelay: "120ms" }}>
-        Empieza hoy.<br />Formaliza cuando quieras.
-      </p>
-    </div>
-  );
-}
-
-const SCENES = [
-  ComandaScene, QrScene, CartaScene, LlevarScene, MesasScene, CobrosScene, IaScene, RucScene,
-];
+const SCENES = [IaScene, QrScene, ComandaScene, CobrosScene];
 
 export function Rubros() {
   const [active, setActive] = useState(0);
@@ -382,7 +287,7 @@ export function Rubros() {
       {/* ── Lista editorial + panel vivo ────────────────────────── */}
       <div className="mx-auto mt-14 flex max-w-5xl flex-col-reverse gap-8 md:grid md:grid-cols-[0.92fr_1.08fr] md:items-stretch md:gap-12">
         {/* lista editorial (sin cards) */}
-        <ul className="flex flex-col">
+        <ul className="flex flex-col justify-center">
           {FEATURES.map((f, i) => {
             const on = i === active;
             return (
@@ -393,7 +298,7 @@ export function Rubros() {
                   onFocus={() => setActive(i)}
                   onClick={() => setActive(i)}
                   aria-current={on}
-                  className="group flex w-full items-start gap-4 py-3.5 text-left"
+                  className="group flex w-full items-start gap-4 py-4 text-left"
                 >
                   <span className={`mt-1 w-6 shrink-0 font-display text-sm tabular-nums transition-colors ${on ? "text-terracotta" : "text-warm-400"}`}>
                     {String(i + 1).padStart(2, "0")}
@@ -425,8 +330,7 @@ export function Rubros() {
         </ul>
 
         {/* panel vivo (carbón, muta al hover) */}
-        <div className="relative min-h-[360px] overflow-hidden rounded-[1.75rem] bg-warm-800 p-6 md:min-h-[480px] md:p-8">
-          {/* glow terracota de fondo */}
+        <div className="relative min-h-[360px] overflow-hidden rounded-[1.75rem] bg-warm-800 p-6 md:min-h-[440px] md:p-8">
           <div
             aria-hidden
             className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-50 blur-3xl"
@@ -444,7 +348,6 @@ export function Rubros() {
               En vivo
             </span>
           </div>
-          {/* escena que se re-monta y anima al cambiar de bondad */}
           <div key={active} className="scene-in relative mt-5">
             <Scene />
           </div>
