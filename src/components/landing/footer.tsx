@@ -19,7 +19,7 @@ const NAV = {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#120D0B] text-cream-50">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-8 pt-14 md:pt-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-24 pt-14 md:pb-16 md:pt-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Marca */}
           <div>
@@ -68,15 +68,13 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Wordmark de marca de agua: franja propia, recortada, separada del texto legal */}
-      <div
+      {/* Wordmark de marca de agua (absoluto, detrás del contenido) */}
+      <span
         aria-hidden
-        className="pointer-events-none relative mt-8 flex h-[13vw] min-h-[64px] max-h-[170px] items-end justify-center overflow-hidden md:mt-10"
+        className="pointer-events-none absolute -bottom-[3.5vw] left-1/2 z-0 w-full -translate-x-1/2 select-none text-center font-display text-[19vw] font-medium lowercase leading-none tracking-[-0.04em] text-cream-50/[0.04] md:-bottom-[2.5vw]"
       >
-        <span className="translate-y-[20%] select-none font-display text-[15vw] font-medium lowercase leading-none tracking-[-0.04em] text-cream-50/[0.045]">
-          musuq
-        </span>
-      </div>
+        musuq
+      </span>
     </footer>
   );
 }
