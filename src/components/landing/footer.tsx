@@ -30,11 +30,9 @@ export function Footer() {
               </span>
             </a>
             <p className="mt-4 max-w-xs text-[14px] leading-relaxed text-cream-50/55">
-              Tecnología que impulsa cada venta. Para el comercio peruano.
+              Tecnología que impulsa cada venta. Vende, cobra y controla desde un
+              solo lugar.
             </p>
-            <span className="mt-4 inline-flex items-center gap-2 rounded-full bg-cream-50/[0.06] px-3 py-1.5 text-[12px] font-medium text-cream-50/70">
-              Hecho en Perú
-            </span>
           </div>
 
           {/* Columnas de navegación */}

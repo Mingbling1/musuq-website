@@ -99,7 +99,7 @@ export function PorQue() {
 
       {/* ── Remate diferenciador ────────────────────────────────── */}
       <p className="mx-auto mt-12 max-w-xl text-center font-display text-xl font-normal leading-snug text-cream-50/80 md:text-2xl">
-        Una sola plataforma peruana para vender, cobrar y entender tu negocio.
+        Una sola plataforma para vender, cobrar y entender tu negocio.
         <span className="text-cream-50"> Premium, simple, tuya.</span>
       </p>
     </section>

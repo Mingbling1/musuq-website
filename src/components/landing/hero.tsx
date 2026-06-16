@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Parallax } from "@/components/landing/parallax";
 
 const APP_URL = "https://app.musuq.tech";
 
@@ -49,24 +48,11 @@ export function Hero() {
         }}
       />
 
-      {/* ── Palabra fantasma display (intriga: musuq = nuevo) ────── */}
-      <Parallax
-        speed={0.4}
-        className="pointer-events-none absolute -bottom-[6vw] left-[1vw] z-0 hidden select-none md:block"
-      >
-        <span
-          aria-hidden
-          className="font-display text-[26vw] font-medium italic leading-none tracking-[-0.04em] text-cream-50/[0.04]"
-        >
-          nuevo
-        </span>
-      </Parallax>
-
       {/* ── Contenido editorial ──────────────────────────────────── */}
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-6 pb-20 md:flex-row md:items-center md:justify-start md:pb-0">
         <div className="w-full md:w-[48%]">
           <span className="animate-fade-in block text-[12px] font-semibold uppercase tracking-[0.32em] text-terracotta-light">
-            Próximamente · Hecho en Perú
+            Próximamente
           </span>
 
           <h1
@@ -83,7 +69,7 @@ export function Hero() {
             className="animate-fade-in mt-7 max-w-md text-lg leading-relaxed text-cream-50/70"
             style={{ animationDelay: "180ms" }}
           >
-            Estamos construyendo algo distinto para el comercio peruano.
+            Estamos construyendo algo distinto para tu negocio.
             Muy pronto lo vas a poder tocar.
           </p>
 

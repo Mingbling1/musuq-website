@@ -29,29 +29,17 @@ export function Cierre() {
           />
         </Parallax>
       </div>
-      {/* palabra fantasma + parallax */}
-      <div className="pointer-events-none absolute -top-[4vw] left-1/2 z-0 -translate-x-1/2">
-        <Parallax speed={0.38}>
-          <span
-            aria-hidden
-            className="select-none font-display text-[22vw] font-medium italic leading-none tracking-[-0.04em] text-cream-50/[0.035]"
-          >
-            nuevo
-          </span>
-        </Parallax>
-      </div>
-
       <Reveal className="relative mx-auto max-w-2xl text-center">
         <span className="block text-[12px] font-semibold uppercase tracking-[0.32em] text-terracotta-light">
-          Próximamente · Hecho en Perú
+          Próximamente
         </span>
         <h2 className="mt-6 font-display text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.95] tracking-[-0.03em]">
           Sé de los{" "}
           <em className="not-italic font-semibold text-terracotta-light">primeros</em>
         </h2>
         <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-cream-50/65">
-          Algo nuevo está por llegar para el comercio peruano. Déjanos tu correo
-          y te avisamos apenas abramos las puertas.
+          Algo nuevo está por llegar. Déjanos tu correo y te avisamos apenas
+          abramos las puertas.
         </p>
 
         {submitted ? (
