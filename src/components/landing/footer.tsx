@@ -19,7 +19,7 @@ const NAV = {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#120D0B] text-cream-50">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-10 pt-14 md:pb-12 md:pt-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-6 pt-14 md:pb-8 md:pt-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Marca */}
           <div>
@@ -68,13 +68,16 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Wordmark gigante de marca, anclado a la base, detrás del contenido */}
-      <span
+      {/* Wordmark gigante EN FLUJO, debajo del texto legal, recortado a la base.
+          (en flujo = el legal siempre queda encima, responsive en cualquier pantalla) */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 -bottom-[1.5vw] z-0 select-none text-center font-display text-[42vw] font-medium lowercase leading-[0.74] tracking-[-0.05em] text-cream-50/[0.055] md:text-[21vw]"
+        className="pointer-events-none relative h-[19vw] min-h-[84px] max-h-[230px] overflow-hidden"
       >
-        musuq
-      </span>
+        <span className="absolute inset-x-0 bottom-0 translate-y-[14%] select-none text-center font-display text-[42vw] font-medium lowercase leading-[0.72] tracking-[-0.05em] text-cream-50/[0.06] md:text-[21vw]">
+          musuq
+        </span>
+      </div>
     </footer>
   );
 }
