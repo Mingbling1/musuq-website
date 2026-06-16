@@ -64,7 +64,7 @@ export function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-cream-100 px-6 py-24 text-warm-800 md:-mt-14 md:rounded-t-[3.5rem] md:py-32"
+      className="relative overflow-hidden bg-cream-100 px-6 py-24 text-warm-800 md:py-32"
     >
       <ChapterMarker num="04" label="Planes" />
 

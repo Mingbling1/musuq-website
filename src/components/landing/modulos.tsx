@@ -65,7 +65,7 @@ export function Modulos() {
   return (
     <section
       id="modulos"
-      className="relative z-10 -mt-10 overflow-hidden rounded-t-[2.5rem] bg-[#120D0B] px-6 pb-40 pt-24 text-cream-50 md:-mt-14 md:rounded-t-[3.5rem] md:pt-32"
+      className="relative overflow-hidden bg-[#120D0B] px-6 pb-40 pt-24 text-cream-50 md:pt-32"
     >
       <ChapterMarker num="03" label="Y más" />
 
