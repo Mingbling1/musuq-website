@@ -42,50 +42,41 @@ export function Navbar() {
         }`}
       >
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 md:px-6">
-          {/* Marca + etiqueta editorial */}
-          <div className="flex items-center gap-4">
-            <a
-              href="#top"
-              onClick={() => setOpen(false)}
-              className={`inline-flex items-center gap-2.5 ${light ? "text-cream-50" : "text-warm-800"}`}
-              aria-label="Musuq inicio"
-            >
-              <Logo showText={false} size={26} className={light ? "text-cream-50" : "text-warm-800"} />
-              <span className="font-display text-2xl font-medium lowercase tracking-[-0.02em]">musuq</span>
-            </a>
-            <span
-              className={`hidden text-[10px] font-semibold uppercase tracking-[0.2em] lg:inline ${
-                light ? "text-cream-50/55" : "text-warm-400"
-              }`}
-            >
-              ( Página principal )
-            </span>
-          </div>
+          {/* Marca */}
+          <a
+            href="#top"
+            onClick={() => setOpen(false)}
+            className={`inline-flex items-center gap-2.5 ${light ? "text-cream-50" : "text-warm-800"}`}
+            aria-label="Musuq inicio"
+          >
+            <Logo showText={false} size={26} className={light ? "text-cream-50" : "text-warm-800"} />
+            <span className="font-display text-2xl font-medium lowercase tracking-[-0.02em]">musuq</span>
+          </a>
 
           {/* Links editoriales entre corchetes */}
-          <div className="hidden items-center gap-1 md:flex">
+          <div className="hidden items-center gap-2 md:flex">
             {links.map((l) => (
               <a
                 key={l.href}
                 href={l.href}
-                className={`group inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors ${
+                className={`inline-flex items-center gap-1 px-2 py-1 text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${
                   light ? "text-cream-50/75 hover:text-cream-50" : "text-warm-600 hover:text-warm-800"
                 }`}
               >
-                <span className={light ? "text-cream-50/35" : "text-warm-400"}>[</span>
+                <span className={light ? "text-cream-50/40" : "text-warm-400"}>[</span>
                 {l.label}
-                <span className={light ? "text-cream-50/35" : "text-warm-400"}>]</span>
+                <span className={light ? "text-cream-50/40" : "text-warm-400"}>]</span>
               </a>
             ))}
             <a
               href={APP_URL}
-              className={`ml-2 inline-flex items-center gap-1 border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors ${
-                light
-                  ? "border-cream-50/30 text-cream-50 hover:bg-cream-50 hover:text-warm-800"
-                  : "border-terracotta text-terracotta hover:bg-terracotta hover:text-cream-50"
+              className={`inline-flex items-center gap-1 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+                light ? "text-terracotta-light hover:text-cream-50" : "text-terracotta hover:text-warm-800"
               }`}
             >
-              [ Crear cuenta ]
+              <span className="opacity-50">[</span>
+              Crear cuenta
+              <span className="opacity-50">]</span>
             </a>
           </div>
 
