@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Anton, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Navbar } from "@/components/landing/navbar";
@@ -29,6 +30,10 @@ const clash = localFont({
     { path: "./fonts/clash-display-700.woff2", weight: "700", style: "normal" },
   ],
 });
+
+// Acento editorial-brutalista — Anton (display condensada) + Caveat (manuscrita)
+const anton = Anton({ variable: "--font-anton", subsets: ["latin"], weight: "400", display: "swap" });
+const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], weight: ["600", "700"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://musuq.tech"),
@@ -119,7 +124,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${switzer.variable} ${clash.variable} h-full antialiased`}
+      className={`${switzer.variable} ${clash.variable} ${anton.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <script
