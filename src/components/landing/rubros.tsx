@@ -36,20 +36,20 @@ const FEATURES: Feature[] = [
   { title: "Cobra como quieras", desc: "Yape, Plin, tarjeta y efectivo, todo en una sola caja." },
 ];
 
-/* ── Escenas del panel vivo (carbón) ─────────────────────────────── */
+/* ── Escenas del panel vivo (crema sobre terracota drenched) ──────── */
 function IaScene() {
   const widths = ["88%", "72%", "94%", "60%"];
   return (
     <div className="flex gap-4 pt-2">
-      <div className="pop-in h-36 w-28 shrink-0 bg-gradient-to-br from-terracotta/40 via-warm-700 to-warm-800 ring-1 ring-cream-50/10" />
+      <div className="pop-in h-36 w-28 shrink-0 bg-cream-50/12 ring-1 ring-cream-50/25" />
       <div className="flex-1 space-y-2.5 pt-1">
-        <p className="text-[12px] uppercase tracking-[0.16em] text-cream-50/45">Carta detectada</p>
+        <p className="text-[12px] uppercase tracking-[0.16em] text-cream-50/70">Carta detectada</p>
         {widths.map((w, i) => (
           <div key={i} className="flex items-center gap-2">
-            <div className="animate-fill h-3 bg-cream-50/15" style={{ "--fill": w, animationDelay: `${i * 160}ms` } as React.CSSProperties} />
+            <div className="animate-fill h-3 bg-cream-50/30" style={{ "--fill": w, animationDelay: `${i * 160}ms` } as React.CSSProperties} />
           </div>
         ))}
-        <p className="pt-1 text-[12px] text-cream-50/45">12 platos · precios listos</p>
+        <p className="pt-1 text-[12px] text-cream-50/70">12 platos · precios listos</p>
       </div>
     </div>
   );
@@ -58,25 +58,25 @@ function IaScene() {
 function QrScene() {
   return (
     <div className="flex items-center justify-center pt-2">
-      <div className="relative aspect-[9/18] w-[150px] overflow-hidden bg-warm-700 p-3 ring-1 ring-cream-50/10">
-        <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-cream-50/20" />
-        <p className="text-[11px] font-semibold text-cream-50/80">Carta · Mesa 4</p>
+      <div className="relative aspect-[9/18] w-[150px] overflow-hidden bg-cream-50 p-3 ring-1 ring-warm-800/10">
+        <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-warm-800/20" />
+        <p className="text-[11px] font-semibold text-warm-800">Carta · Mesa 4</p>
         <div className="mt-2 space-y-1.5">
           {["Lomo saltado", "Ají de gallina", "Ceviche", "Chicha morada"].map((d) => (
-            <div key={d} className="flex items-center justify-between bg-cream-50/[0.06] px-2 py-1.5">
-              <span className="text-[10px] text-cream-50/70">{d}</span>
-              <span className="text-[10px] text-terracotta-light">＋</span>
+            <div key={d} className="flex items-center justify-between bg-warm-800/[0.05] px-2 py-1.5">
+              <span className="text-[10px] text-warm-700">{d}</span>
+              <span className="text-[10px] text-terracotta">＋</span>
             </div>
           ))}
         </div>
-        <div className="absolute inset-x-3 bottom-3 flex items-center justify-center bg-cream-50 py-2">
+        <div className="absolute inset-x-3 bottom-3 flex items-center justify-center py-2">
           <div className="grid grid-cols-4 gap-0.5">
             {Array.from({ length: 16 }).map((_, i) => (
               <span key={i} className={`h-1.5 w-1.5 ${i % 3 === 0 ? "bg-warm-800" : "bg-warm-800/30"}`} />
             ))}
           </div>
         </div>
-        <div className="animate-scan absolute inset-x-2.5 top-3 h-[3px] bg-gradient-to-r from-transparent via-terracotta-light to-transparent shadow-[0_0_16px_3px_rgba(212,118,95,0.7)]" />
+        <div className="animate-scan absolute inset-x-2.5 top-3 h-[3px] bg-gradient-to-r from-transparent via-terracotta to-transparent shadow-[0_0_16px_3px_rgba(200,85,61,0.6)]" />
       </div>
     </div>
   );
@@ -91,9 +91,9 @@ function ComandaScene() {
   return (
     <div className="space-y-2.5">
       {tickets.map((t, i) => (
-        <div key={t.mesa} className="ticket-in border-l-2 border-terracotta bg-cream-50/[0.06] px-3.5 py-3" style={{ animationDelay: `${i * 110}ms` }}>
+        <div key={t.mesa} className="ticket-in bg-cream-50 px-3.5 py-3" style={{ animationDelay: `${i * 110}ms` }}>
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-cream-50">{t.mesa}</span>
+            <span className="text-sm font-semibold text-warm-800">{t.mesa}</span>
             <span className="flex items-center gap-2">
               {t.nuevo && (
                 <span className="flex items-center gap-1.5 bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
@@ -104,10 +104,10 @@ function ComandaScene() {
                   Nuevo
                 </span>
               )}
-              <span className="text-[11px] tabular-nums text-cream-50/40">{t.hora}</span>
+              <span className="text-[11px] tabular-nums text-warm-400">{t.hora}</span>
             </span>
           </div>
-          <p className="mt-1 text-[13px] text-cream-50/65">{t.items}</p>
+          <p className="mt-1 text-[13px] text-warm-600">{t.items}</p>
         </div>
       ))}
     </div>
@@ -121,16 +121,16 @@ function CobrosScene() {
   ];
   return (
     <div className="pt-2">
-      <p className="text-[12px] uppercase tracking-[0.18em] text-cream-50/45">Total a cobrar</p>
+      <p className="text-[12px] uppercase tracking-[0.18em] text-cream-50/70">Total a cobrar</p>
       <p style={ANTON} className="text-5xl tabular-nums text-cream-50">S/ 42.00</p>
       <div className="mt-5 grid grid-cols-2 gap-2">
         {metodos.map((m, i) => (
-          <div key={m.n} className={`pop-in px-3 py-3 text-sm font-semibold ${m.on ? "bg-terracotta text-cream-50" : "bg-cream-50/[0.06] text-cream-50/60"}`} style={{ animationDelay: `${i * 80}ms` }}>
+          <div key={m.n} className={`pop-in px-3 py-3 text-sm font-semibold ${m.on ? "bg-cream-50 text-terracotta" : "bg-cream-50/15 text-cream-50/75"}`} style={{ animationDelay: `${i * 80}ms` }}>
             {m.n}
           </div>
         ))}
       </div>
-      <p className="pop-in mt-4 inline-flex items-center gap-2 text-[13px] font-medium text-terracotta-light" style={{ animationDelay: "360ms" }}>
+      <p className="pop-in mt-4 inline-flex items-center gap-2 text-[13px] font-medium text-cream-50" style={{ animationDelay: "360ms" }}>
         ✓ Cobrado con Yape
       </p>
     </div>
@@ -274,19 +274,19 @@ export function Rubros() {
           })}
         </ul>
 
-        {/* panel vivo carbón (celda enmarcada) */}
-        <div className="relative min-h-[360px] overflow-hidden border-t-2 border-warm-800 bg-warm-800 p-6 md:min-h-[460px] md:border-l-2 md:border-t-0 md:p-8">
+        {/* panel vivo terracota drenched (celda enmarcada) */}
+        <div className="relative min-h-[360px] overflow-hidden border-t-2 border-warm-800 bg-terracotta p-6 md:min-h-[460px] md:border-l-2 md:border-t-0 md:p-8">
           <div
             aria-hidden
-            className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-50 blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(200,85,61,0.5), transparent 70%)" }}
+            className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full opacity-40 blur-3xl"
+            style={{ background: "radial-gradient(circle, rgba(255,255,255,0.4), transparent 70%)" }}
           />
           <div className="relative flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream-50/55">{FEATURES[feature].title}</span>
-            <span className="flex items-center gap-1.5 text-[11px] font-medium text-terracotta-light">
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-cream-50/75">{FEATURES[feature].title}</span>
+            <span className="flex items-center gap-1.5 text-[11px] font-medium text-cream-50/85">
               <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracotta-light opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-terracotta-light" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-cream-50" />
               </span>
               En vivo
             </span>
