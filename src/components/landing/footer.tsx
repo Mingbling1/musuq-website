@@ -19,7 +19,7 @@ const NAV = {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#120D0B] text-cream-50">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-4 pt-14 md:pb-6 md:pt-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-12 pt-14 md:pt-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Marca */}
           <div>
@@ -68,30 +68,6 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Wordmark edge-to-edge en SVG: se autoajusta al ancho → palabra completa
-          ("musuq", nunca recortada) y responsive en cualquier pantalla.
-          Va en flujo, debajo del legal, así el legal siempre queda encima. */}
-      <div aria-hidden className="pointer-events-none mt-3 px-3 md:mt-4">
-        <svg
-          viewBox="0 0 1000 185"
-          preserveAspectRatio="xMidYMax meet"
-          className="block w-full"
-        >
-          <text
-            x="0"
-            y="120"
-            textLength="1000"
-            lengthAdjust="spacingAndGlyphs"
-            fontFamily="var(--font-fraunces)"
-            fontWeight={500}
-            fontSize={240}
-            fill="#FDFCFA"
-            fillOpacity={0.06}
-          >
-            musuq
-          </text>
-        </svg>
-      </div>
     </footer>
   );
 }
