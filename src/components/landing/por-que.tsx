@@ -38,7 +38,7 @@ export function PorQue() {
       <Reveal className="relative mx-auto max-w-2xl text-center">
         <h2 className="font-display text-[clamp(2.25rem,5.5vw,4rem)] font-normal leading-[1.02] tracking-[-0.02em]">
           Del cuaderno al{" "}
-          <em className="font-medium italic text-terracotta-light">control</em>
+          <em className="not-italic font-semibold text-terracotta-light">control</em>
         </h2>
         <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-cream-50/60">
           El salto que tu negocio estaba esperando. Toca el interruptor y mira la

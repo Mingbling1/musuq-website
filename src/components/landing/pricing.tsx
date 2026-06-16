@@ -71,7 +71,7 @@ export function Pricing() {
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
           Empieza gratis.{" "}
-          <em className="font-medium italic text-terracotta">Crece sin límites.</em>
+          <em className="not-italic font-semibold text-terracotta">Crece sin límites.</em>
         </h2>
         <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-warm-600">
           Sin tarjeta para empezar, sin letra chica. Cambias de plan cuando tu

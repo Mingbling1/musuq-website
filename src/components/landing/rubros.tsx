@@ -197,7 +197,7 @@ export function Rubros() {
       <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-normal leading-[1.03] tracking-[-0.02em]">
           Pensado para tu{" "}
-          <em className="font-medium italic text-terracotta">{activeRubro.short}</em>
+          <em className="not-italic font-semibold text-terracotta">{activeRubro.short}</em>
         </h2>
         <p className="mx-auto mt-5 max-w-lg text-base leading-relaxed text-warm-600">
           De la mesa a la cocina y a la caja, todo conectado. Pasa el mouse y

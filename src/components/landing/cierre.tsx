@@ -47,7 +47,7 @@ export function Cierre() {
         </span>
         <h2 className="mt-6 font-display text-[clamp(2.75rem,7vw,5.5rem)] font-normal leading-[0.95] tracking-[-0.03em]">
           Sé de los{" "}
-          <em className="font-medium italic text-terracotta-light">primeros</em>
+          <em className="not-italic font-semibold text-terracotta-light">primeros</em>
         </h2>
         <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-cream-50/65">
           Algo nuevo está por llegar para el comercio peruano. Déjanos tu correo

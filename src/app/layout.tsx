@@ -1,34 +1,33 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Semi_Condensed, Fraunces } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import { Navbar } from "@/components/landing/navbar";
 import { Footer } from "@/components/landing/footer";
 import { SmoothScroll } from "@/components/smooth-scroll";
 
-// Cuerpo / UI — Barlow
-const barlow = Barlow({
+// Cuerpo / UI — Switzer (neo-grotesca, self-hosted)
+const switzer = localFont({
   variable: "--font-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
   display: "swap",
+  src: [
+    { path: "./fonts/switzer-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/switzer-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/switzer-600.woff2", weight: "600", style: "normal" },
+  ],
 });
 
-// Display / títulos / wordmark — Barlow Semi Condensed
-const barlowSemi = Barlow_Semi_Condensed({
-  variable: "--font-serif",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
-
-// Display editorial — Fraunces (serif de alto contraste, voz premium del rebrand)
-const fraunces = Fraunces({
+// Display / títulos / wordmark — Clash Display (self-hosted)
+// (mantiene el nombre de variable --font-fraunces para no tocar el resto)
+const clash = localFont({
   variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
   display: "swap",
+  src: [
+    { path: "./fonts/clash-display-400.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/clash-display-500.woff2", weight: "500", style: "normal" },
+    { path: "./fonts/clash-display-600.woff2", weight: "600", style: "normal" },
+    { path: "./fonts/clash-display-700.woff2", weight: "700", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -120,7 +119,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${barlow.variable} ${barlowSemi.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${switzer.variable} ${clash.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
         <script

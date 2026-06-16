@@ -74,7 +74,7 @@ export function Hero() {
             style={{ animationDelay: "100ms" }}
           >
             Algo{" "}
-            <em className="font-medium italic text-terracotta-light">nuevo</em>
+            <em className="not-italic font-semibold text-terracotta-light">nuevo</em>
             <br />
             está por llegar
           </h1>
