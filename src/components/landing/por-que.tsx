@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
 import { ChapterMarker } from "@/components/landing/chapter-marker";
-import { Parallax } from "@/components/landing/parallax";
+
+const ANTON = { fontFamily: "var(--font-anton)" } as const;
+const CAVEAT = { fontFamily: "var(--font-caveat)" } as const;
 
 // Antes (cuaderno / desorden) → Después (con Musuq, control)
 const PAIRS: { antes: string; despues: string }[] = [
@@ -18,89 +20,68 @@ export function PorQue() {
   const [after, setAfter] = useState(true);
 
   return (
-    <section
-      id="por-que"
-      className="relative overflow-hidden bg-[#120D0B] px-6 py-24 text-cream-50 md:py-32"
-    >
-      {/* glow terracota sutil + parallax */}
-      <div className="pointer-events-none absolute left-1/2 top-0 z-0 -translate-x-1/2">
-        <Parallax speed={0.16}>
-          <div
-            aria-hidden
-            className="h-72 w-[42rem] max-w-[90vw] rounded-full opacity-40 blur-3xl"
-            style={{ background: "radial-gradient(circle, rgba(200,85,61,0.45), transparent 70%)" }}
-          />
-        </Parallax>
-      </div>
-
+    <section id="por-que" className="bg-cream-100 px-6 py-24 text-warm-800 md:py-32">
       <ChapterMarker num="01" label="Por qué" />
 
-      <Reveal className="relative mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-[clamp(2.25rem,5.5vw,4rem)] font-normal leading-[1.02] tracking-[-0.02em]">
+      <Reveal className="mx-auto max-w-2xl text-center">
+        <h2 style={ANTON} className="text-[clamp(2.75rem,8vw,6rem)] uppercase leading-[0.85] tracking-[0.01em]">
           Del cuaderno al{" "}
-          <em className="not-italic font-semibold text-terracotta-light">control</em>
+          <span style={CAVEAT} className="lowercase tracking-normal text-terracotta">control</span>
         </h2>
-        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-cream-50/60">
+        <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-warm-600">
           El salto que tu negocio estaba esperando. Toca el interruptor y mira la
           diferencia.
         </p>
       </Reveal>
 
-      {/* ── Toggle Sin Musuq / Con Musuq (pill deslizante) ──────── */}
-      <div className="relative mx-auto mt-9 w-fit">
-        <div className="relative flex rounded-full bg-cream-50/[0.07] p-1">
-          <span
-            aria-hidden
-            className="absolute inset-y-1 left-1 w-[calc(50%-0.25rem)] rounded-full bg-terracotta transition-transform duration-300 ease-out"
-            style={{ transform: after ? "translateX(100%)" : "translateX(0)" }}
-          />
-          <button
-            type="button"
-            onClick={() => setAfter(false)}
-            className={`relative z-10 w-32 py-2.5 text-sm font-semibold transition-colors ${after ? "text-cream-50/55" : "text-cream-50"}`}
-          >
-            Sin Musuq
-          </button>
-          <button
-            type="button"
-            onClick={() => setAfter(true)}
-            className={`relative z-10 w-32 py-2.5 text-sm font-semibold transition-colors ${after ? "text-cream-50" : "text-cream-50/55"}`}
-          >
-            Con Musuq
-          </button>
-        </div>
+      {/* ── Toggle Sin / Con Musuq (celdas con borde) ───────────── */}
+      <div className="mx-auto mt-9 flex w-fit border-2 border-warm-800">
+        <button
+          type="button"
+          onClick={() => setAfter(false)}
+          className={`px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+            after ? "text-warm-500 hover:text-warm-800" : "bg-warm-800 text-cream-50"
+          }`}
+        >
+          Sin Musuq
+        </button>
+        <button
+          type="button"
+          onClick={() => setAfter(true)}
+          className={`border-l-2 border-warm-800 px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
+            after ? "bg-terracotta text-cream-50" : "text-warm-500 hover:text-warm-800"
+          }`}
+        >
+          Con Musuq
+        </button>
       </div>
 
-      {/* ── Lista que se transforma (antes ↔ después) ───────────── */}
-      <ul key={after ? "after" : "before"} className="relative mx-auto mt-12 max-w-2xl">
+      {/* ── Contrastes en caja con divisores ────────────────────── */}
+      <div key={after ? "after" : "before"} className="mx-auto mt-10 max-w-2xl border-2 border-warm-800">
         {PAIRS.map((p, i) => (
-          <li
+          <div
             key={i}
-            className="scene-in flex items-start gap-4 border-t border-cream-50/10 py-4 first:border-t-0"
-            style={{ animationDelay: `${i * 80}ms` }}
+            className={`scene-in flex items-center gap-4 px-5 py-5 ${i > 0 ? "border-t-2 border-warm-800" : ""}`}
+            style={{ animationDelay: `${i * 70}ms` }}
           >
             <span
-              className={`mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full ${
-                after ? "bg-terracotta text-cream-50" : "bg-cream-50/[0.08] text-cream-50/40"
+              className={`inline-flex h-8 w-8 shrink-0 items-center justify-center ${
+                after ? "bg-terracotta text-cream-50" : "bg-warm-800/8 text-warm-400"
               }`}
             >
-              {after ? <Check className="h-4 w-4" strokeWidth={2.4} /> : <X className="h-4 w-4" strokeWidth={2.2} />}
+              {after ? <Check className="h-4 w-4" strokeWidth={2.6} /> : <X className="h-4 w-4" strokeWidth={2.2} />}
             </span>
-            <span
-              className={`pt-0.5 text-lg leading-snug transition-colors md:text-xl ${
-                after ? "text-cream-50" : "text-cream-50/55"
-              }`}
-            >
+            <span className={`text-[17px] leading-snug md:text-lg ${after ? "text-warm-800" : "text-warm-500"}`}>
               {after ? p.despues : p.antes}
             </span>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
 
-      {/* ── Remate diferenciador ────────────────────────────────── */}
-      <p className="mx-auto mt-12 max-w-xl text-center font-display text-xl font-normal leading-snug text-cream-50/80 md:text-2xl">
-        Una sola plataforma para vender, cobrar y entender tu negocio.
-        <span className="text-cream-50"> Premium, simple, tuya.</span>
+      {/* ── Remate ──────────────────────────────────────────────── */}
+      <p className="mx-auto mt-10 max-w-xl text-center text-base leading-relaxed text-warm-600">
+        Una sola plataforma para vender, cobrar y entender tu negocio.{" "}
+        <span className="font-semibold text-warm-800">Premium, simple, tuya.</span>
       </p>
     </section>
   );
