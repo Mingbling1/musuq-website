@@ -1,5 +1,4 @@
 import { Hero } from "@/components/landing/hero";
-import { IntroBand } from "@/components/landing/intro-band";
 import { Manifiesto } from "@/components/landing/manifiesto";
 import { Modulos } from "@/components/landing/modulos";
 import { Rubros } from "@/components/landing/rubros";
@@ -21,7 +20,6 @@ export default function Home() {
     <main className="flex-1">
       {/* <ScrollFX /> */}
       <Hero />
-      <IntroBand />
       <Manifiesto />
       <PorQue />
       <Rubros />

@@ -84,7 +84,9 @@ export function Navbar() {
             </a>
             <a
               href={APP_URL}
-              className="hidden rounded-full bg-terracotta px-5 py-2.5 text-sm font-semibold text-cream-50 transition-transform duration-200 hover:scale-[1.03] active:scale-95 sm:inline-flex"
+              className={`hidden rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 hover:scale-[1.03] active:scale-95 sm:inline-flex ${
+                scrolled ? "bg-terracotta text-cream-50" : "bg-cream-50 text-terracotta"
+              }`}
             >
               Crear cuenta gratis
             </a>
