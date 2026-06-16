@@ -19,7 +19,7 @@ const NAV = {
 export function Footer() {
   return (
     <footer className="relative overflow-hidden bg-[#120D0B] text-cream-50">
-      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-6 pt-14 md:pb-8 md:pt-16">
+      <div className="relative z-10 mx-auto max-w-7xl px-6 pb-4 pt-14 md:pb-6 md:pt-16">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr]">
           {/* Marca */}
           <div>
@@ -68,15 +68,29 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Wordmark gigante EN FLUJO, debajo del texto legal, recortado a la base.
-          (en flujo = el legal siempre queda encima, responsive en cualquier pantalla) */}
-      <div
-        aria-hidden
-        className="pointer-events-none relative h-[19vw] min-h-[84px] max-h-[230px] overflow-hidden"
-      >
-        <span className="absolute inset-x-0 bottom-0 translate-y-[14%] select-none text-center font-display text-[42vw] font-medium lowercase leading-[0.72] tracking-[-0.05em] text-cream-50/[0.06] md:text-[21vw]">
-          musuq
-        </span>
+      {/* Wordmark edge-to-edge en SVG: se autoajusta al ancho → palabra completa
+          ("musuq", nunca recortada) y responsive en cualquier pantalla.
+          Va en flujo, debajo del legal, así el legal siempre queda encima. */}
+      <div aria-hidden className="pointer-events-none mt-3 px-3 md:mt-4">
+        <svg
+          viewBox="0 0 1000 185"
+          preserveAspectRatio="xMidYMax meet"
+          className="block w-full"
+        >
+          <text
+            x="0"
+            y="120"
+            textLength="1000"
+            lengthAdjust="spacingAndGlyphs"
+            fontFamily="var(--font-fraunces)"
+            fontWeight={500}
+            fontSize={240}
+            fill="#FDFCFA"
+            fillOpacity={0.06}
+          >
+            musuq
+          </text>
+        </svg>
       </div>
     </footer>
   );
