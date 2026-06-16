@@ -1,68 +1,93 @@
 import Image from "next/image";
 
 const APP_URL = "https://app.musuq.tech";
-const ANTON = { fontFamily: "var(--font-anton)" } as const;
 
-/**
- * Header drenched (estilo foto 2 — Creative Portfolio): fondo terracota,
- * título gigante condensado (Anton), imagen tenue de textura, meta + CTA.
- * Reemplaza el hero dark del celular sobre roca.
- */
 export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] flex-col justify-between overflow-hidden bg-terracotta px-6 pb-14 pt-28 text-cream-50 md:pb-20 md:pt-32"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[#120D0B] text-cream-50"
     >
-      {/* textura tenue (imagen del producto) */}
+      {/* ── Imagen full-bleed: celular sobre roca (glow terracota) ── */}
+      {/* Desktop: celular ligeramente a la derecha del centro */}
       <Image
         src="/brand/hero-rock-desktop.jpg"
-        alt=""
+        alt="Algo nuevo está por llegar"
         fill
         priority
         sizes="100vw"
-        className="object-cover opacity-[0.12] mix-blend-luminosity"
+        className="hero-drift hidden object-cover object-center md:block"
       />
-      {/* glow suave */}
+      {/* Mobile: celular centrado sobre losa de roca */}
+      <Image
+        src="/brand/hero-rock-mobile.jpg"
+        alt="Algo nuevo está por llegar"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-[center_38%] md:hidden"
+      />
+
+      {/* ── Veladuras para legibilidad del texto ─────────────────── */}
+      {/* Desktop: oscurece la mitad izquierda donde vive el titular */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-[8%] top-0 h-[120%] w-[55%] rounded-full opacity-30 blur-3xl"
-        style={{ background: "radial-gradient(circle, rgba(255,255,255,0.55), transparent 60%)" }}
+        className="absolute inset-0 hidden md:block"
+        style={{
+          background:
+            "linear-gradient(90deg, #120D0B 12%, rgba(18,13,11,0.62) 44%, rgba(18,13,11,0) 70%)",
+        }}
+      />
+      {/* Mobile: oscurece el borde inferior donde se ancla el texto */}
+      <div
+        aria-hidden
+        className="absolute inset-0 md:hidden"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(18,13,11,0.3) 0%, rgba(18,13,11,0) 26%, rgba(18,13,11,0.86) 70%, #120D0B 100%)",
+        }}
       />
 
-      {/* meta arriba */}
-      <div className="relative mx-auto flex w-full max-w-7xl items-center justify-between">
-        <span style={ANTON} className="text-xl uppercase tracking-wide md:text-2xl">
-          Musuq
-        </span>
-        <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cream-50/85">
-          Próximamente — 2026
-        </span>
-      </div>
+      {/* ── Contenido editorial ──────────────────────────────────── */}
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-6 pb-20 md:flex-row md:items-center md:justify-start md:pb-0">
+        <div className="w-full md:w-[48%]">
+          <span className="animate-fade-in block text-[12px] font-semibold uppercase tracking-[0.32em] text-terracotta-light">
+            Próximamente
+          </span>
 
-      {/* título gigante */}
-      <h1
-        style={ANTON}
-        className="relative mx-auto w-full max-w-7xl text-[clamp(4.5rem,17vw,13.5rem)] uppercase leading-[0.8] tracking-[0.01em]"
-      >
-        Algo
-        <br />
-        nuevo
-      </h1>
+          <h1
+            className="animate-fade-in mt-6 font-display text-[clamp(3rem,8.5vw,6.75rem)] font-normal leading-[0.92] tracking-[-0.035em]"
+            style={{ animationDelay: "100ms" }}
+          >
+            Algo{" "}
+            <em className="not-italic font-semibold text-terracotta-light">nuevo</em>
+            <br />
+            está por llegar
+          </h1>
 
-      {/* sub + CTA abajo */}
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <p className="max-w-md text-base leading-relaxed text-cream-50/85">
-          Estamos construyendo algo distinto para tu negocio. Muy pronto lo vas a
-          poder tocar.
-        </p>
-        <a
-          href={APP_URL}
-          className="group inline-flex w-fit items-center gap-2 rounded-full bg-cream-50 px-7 py-4 text-[15px] font-semibold text-terracotta transition-transform duration-200 hover:scale-[1.03] active:scale-95"
-        >
-          Quiero saber más
-          <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-        </a>
+          <p
+            className="animate-fade-in mt-7 max-w-md text-lg leading-relaxed text-cream-50/70"
+            style={{ animationDelay: "180ms" }}
+          >
+            Estamos construyendo algo distinto para tu negocio.
+            Muy pronto lo vas a poder tocar.
+          </p>
+
+          <div
+            className="animate-fade-in mt-9"
+            style={{ animationDelay: "260ms" }}
+          >
+            <a
+              href={APP_URL}
+              className="group inline-flex items-center gap-2 rounded-full border border-cream-50/25 bg-cream-50/[0.03] px-8 py-4 text-[15px] font-semibold text-cream-50 backdrop-blur-sm transition-all duration-200 hover:border-terracotta hover:bg-terracotta active:scale-95"
+            >
+              Quiero saber más
+              <span className="transition-transform duration-200 group-hover:translate-x-0.5">
+                →
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
