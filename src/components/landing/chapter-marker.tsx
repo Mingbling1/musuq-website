@@ -1,30 +1,21 @@
 /**
- * Marcador de capítulo. En desktop: etiqueta vertical al costado izquierdo
- * de la sección (editorial, no genérico). En móvil: índice horizontal compacto
- * que reemplaza al eyebrow. El número va en terracota; el resto hereda el color
- * de la sección (currentColor) para funcionar sobre dark y cream.
+ * Marcador de capítulo — estilo "número gigante outline" (D3).
+ * El número va en contorno terracota (hueco); el label hereda el color de la
+ * sección (currentColor) para funcionar sobre dark y cream.
+ * Centrado, arriba del titular. Mismo look en móvil y desktop.
  */
 export function ChapterMarker({ num, label }: { num: string; label: string }) {
   return (
-    <>
-      {/* Desktop: vertical al costado */}
+    <div className="relative z-10 mx-auto mb-7 flex w-fit items-end gap-3.5 md:mb-9">
       <span
         aria-hidden
-        className="pointer-events-none absolute left-4 top-28 z-20 hidden select-none md:block lg:left-8"
+        className="font-display text-[3.25rem] font-semibold leading-[0.74] tracking-[-0.03em] text-transparent [-webkit-text-stroke:1.5px_#C8553D] md:text-[4.75rem] md:[-webkit-text-stroke:2px_#C8553D]"
       >
-        <span className="flex items-center gap-3 rotate-180 text-[11px] font-semibold uppercase tracking-[0.3em] [writing-mode:vertical-rl]">
-          <span className="tabular-nums text-terracotta">{num}</span>
-          <span className="h-10 w-px bg-current opacity-20" />
-          <span className="opacity-45">{label}</span>
-        </span>
+        {num}
       </span>
-
-      {/* Móvil: índice horizontal centrado */}
-      <span className="relative z-10 mx-auto mb-5 flex w-fit items-center gap-2.5 text-[12px] font-semibold uppercase tracking-[0.22em] md:hidden">
-        <span className="tabular-nums text-terracotta">{num}</span>
-        <span className="h-px w-6 bg-current opacity-25" />
-        <span className="opacity-55">{label}</span>
+      <span className="pb-2 text-[12px] font-semibold uppercase tracking-[0.2em] opacity-45 md:pb-3">
+        {label}
       </span>
-    </>
+    </div>
   );
 }
