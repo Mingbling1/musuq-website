@@ -31,104 +31,91 @@ export function Navbar() {
 
   // Sobre el hero dark → claro; al hacer scroll → barra cream con texto oscuro.
   const light = !scrolled && !open;
+  const border = light ? "border-cream-50/25" : "border-warm-800/15";
+  const txt = light ? "text-cream-50/80 hover:text-cream-50" : "text-warm-700 hover:text-warm-800";
 
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-          light
-            ? "border-cream-50/15 bg-transparent"
-            : "border-warm-800/10 bg-cream-100/92 backdrop-blur-md"
+        className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${border} ${
+          light ? "bg-transparent" : "bg-cream-100/95 backdrop-blur-md"
         }`}
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 md:px-6">
-          {/* Marca */}
+        {/* Fila de celdas con borders — edge-to-edge, sin corchetes */}
+        <div className="flex items-stretch">
+          {/* Celda marca (ocupa el espacio) */}
           <a
             href="#top"
             onClick={() => setOpen(false)}
-            className={`inline-flex items-center gap-2.5 ${light ? "text-cream-50" : "text-warm-800"}`}
+            className={`flex flex-1 items-center gap-2.5 border-r px-5 py-3.5 md:px-6 ${border} ${
+              light ? "text-cream-50" : "text-warm-800"
+            }`}
             aria-label="Musuq inicio"
           >
             <Logo showText={false} size={26} className={light ? "text-cream-50" : "text-warm-800"} />
             <span className="font-display text-2xl font-medium lowercase tracking-[-0.02em]">musuq</span>
           </a>
 
-          {/* Links editoriales entre corchetes */}
-          <div className="hidden items-center gap-2 md:flex">
-            {links.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className={`inline-flex items-center gap-1 px-2 py-1 text-[11px] font-medium uppercase tracking-[0.14em] transition-colors ${
-                  light ? "text-cream-50/75 hover:text-cream-50" : "text-warm-600 hover:text-warm-800"
-                }`}
-              >
-                <span className={light ? "text-cream-50/40" : "text-warm-400"}>[</span>
-                {l.label}
-                <span className={light ? "text-cream-50/40" : "text-warm-400"}>]</span>
-              </a>
-            ))}
+          {/* Celdas de navegación (desktop) */}
+          {links.map((l) => (
             <a
-              href={APP_URL}
-              className={`inline-flex items-center gap-1 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-                light ? "text-terracotta-light hover:text-cream-50" : "text-terracotta hover:text-warm-800"
-              }`}
+              key={l.href}
+              href={l.href}
+              className={`hidden items-center border-r px-6 py-3.5 text-[12px] font-medium uppercase tracking-[0.14em] transition-colors md:flex ${border} ${txt}`}
             >
-              <span className="opacity-50">[</span>
-              Crear cuenta
-              <span className="opacity-50">]</span>
+              {l.label}
             </a>
-          </div>
+          ))}
 
-          {/* Hamburguesa (móvil) */}
+          {/* Celda CTA destacada en terracota (desktop) */}
+          <a
+            href={APP_URL}
+            className="hidden items-center bg-terracotta px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-cream-50 transition-colors hover:bg-[#b0472f] md:flex"
+          >
+            Crear cuenta
+          </a>
+
+          {/* Celda hamburguesa (móvil) */}
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
             aria-expanded={open}
-            className={`-mr-1.5 inline-flex h-10 w-10 items-center justify-center md:hidden ${
+            className={`flex w-14 items-center justify-center border-l md:hidden ${border} ${
               light ? "text-cream-50" : "text-warm-800"
             }`}
           >
             {open ? <X className="h-6 w-6" strokeWidth={1.8} /> : <Menu className="h-6 w-6" strokeWidth={1.8} />}
           </button>
-        </nav>
+        </div>
       </header>
 
-      {/* Overlay de menú móvil */}
+      {/* Overlay de menú móvil — celdas con borders */}
       <div
         className={`fixed inset-0 z-40 flex flex-col bg-cream-100 px-6 pb-10 pt-24 transition-[opacity,transform] duration-200 ease-out md:hidden ${
           open ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-1.5 opacity-0"
         }`}
       >
-        <nav className="flex flex-col border-t border-warm-800/10">
-          {links.map((l) => (
+        <nav className="flex flex-col border-2 border-warm-800">
+          {links.map((l, i) => (
             <a
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="flex items-center gap-2 border-b border-warm-800/10 py-4 text-[13px] font-semibold uppercase tracking-[0.16em] text-warm-700"
+              className={`px-5 py-4 text-[13px] font-medium uppercase tracking-[0.16em] text-warm-700 ${
+                i > 0 ? "border-t-2 border-warm-800" : ""
+              }`}
             >
-              <span className="text-warm-400">[</span>
               {l.label}
-              <span className="text-warm-400">]</span>
             </a>
           ))}
+          <a
+            href={APP_URL}
+            className="border-t-2 border-warm-800 bg-terracotta px-5 py-4 text-[13px] font-semibold uppercase tracking-[0.16em] text-cream-50"
+          >
+            Crear cuenta
+          </a>
         </nav>
-        <div className="mt-auto flex flex-col gap-3">
-          <a
-            href={APP_URL}
-            className="inline-flex items-center justify-center border border-warm-800/20 px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-warm-800"
-          >
-            [ Iniciar sesión ]
-          </a>
-          <a
-            href={APP_URL}
-            className="inline-flex items-center justify-center bg-terracotta px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-cream-50"
-          >
-            [ Crear cuenta ]
-          </a>
-        </div>
       </div>
     </>
   );
