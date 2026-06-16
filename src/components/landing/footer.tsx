@@ -55,7 +55,7 @@ export function Footer() {
                 i === 0 ? "border-b-2 border-warm-800 sm:border-b-0 sm:border-r-2" : ""
               }`}
             >
-              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-warm-400">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-copper">
                 {group}
               </h3>
               <ul className="mt-4 space-y-2.5">
@@ -74,10 +74,10 @@ export function Footer() {
           ))}
         </div>
 
-        {/* fila 3: legal */}
-        <div className="flex flex-col items-start justify-between gap-1 border-t-2 border-warm-800 px-6 py-4 text-[12px] text-warm-500 sm:flex-row sm:items-center md:px-8">
+        {/* fila 3: legal — banda marrón (base/fundamento de la página) */}
+        <div className="flex flex-col items-start justify-between gap-1 border-t-2 border-warm-800 bg-[#6B4A33] px-6 py-4 text-[12px] text-cream-50/70 sm:flex-row sm:items-center md:px-8">
           <span>© 2026 Musuq · Todos los derechos reservados.</span>
-          <a href="mailto:hello@musuq.tech" className="transition-colors hover:text-warm-800">
+          <a href="mailto:hello@musuq.tech" className="transition-colors hover:text-cream-50">
             hello@musuq.tech
           </a>
         </div>
