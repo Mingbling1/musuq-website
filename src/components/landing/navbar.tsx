@@ -67,10 +67,12 @@ export function Navbar() {
             </a>
           ))}
 
-          {/* Celda CTA destacada en terracota (desktop) */}
+          {/* Celda CTA destacada (invierte sobre el hero terracota) */}
           <a
             href={APP_URL}
-            className="hidden items-center bg-terracotta px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-cream-50 transition-colors hover:bg-[#b0472f] md:flex"
+            className={`hidden items-center px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] transition-colors md:flex ${
+              light ? "bg-cream-50 text-terracotta hover:bg-cream-200" : "bg-terracotta text-cream-50 hover:bg-[#b0472f]"
+            }`}
           >
             Crear cuenta
           </a>
