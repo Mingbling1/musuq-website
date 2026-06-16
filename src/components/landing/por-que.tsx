@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { Check, X } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
@@ -76,6 +77,19 @@ export function PorQue() {
             </span>
           </div>
         ))}
+      </div>
+
+      {/* ── Foto: dueño en control ──────────────────────────────── */}
+      <div className="mx-auto mt-10 max-w-2xl overflow-hidden border-2 border-warm-800">
+        <div className="relative aspect-[16/10] w-full">
+          <Image
+            src="/brand/owner-control.webp"
+            alt="Dueño de un restaurante peruano, tranquilo y en control de su negocio"
+            fill
+            sizes="(min-width: 768px) 42rem, 100vw"
+            className="object-cover"
+          />
+        </div>
       </div>
 
       {/* ── Remate ──────────────────────────────────────────────── */}

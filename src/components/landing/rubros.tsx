@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
   UtensilsCrossed,
@@ -294,6 +295,19 @@ export function Rubros() {
           <div key={feature} className="scene-in relative mt-5">
             <Scene />
           </div>
+        </div>
+      </div>
+
+      {/* ── Foto: el pedido en la vida real (dispositivo en escena) ─ */}
+      <div className="mx-auto mt-6 max-w-5xl overflow-hidden border-2 border-warm-800">
+        <div className="relative aspect-[16/9] w-full">
+          <Image
+            src="/brand/hands-phone.webp"
+            alt="Manos de cocinero emplatando, con el pedido llegando al celular en el mostrador"
+            fill
+            sizes="(min-width: 768px) 64rem, 100vw"
+            className="object-cover"
+          />
         </div>
       </div>
 
