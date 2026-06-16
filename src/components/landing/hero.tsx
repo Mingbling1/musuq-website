@@ -12,9 +12,9 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="bg-terracotta px-2.5 pb-2.5 pt-[60px] md:px-3 md:pb-3 md:pt-[68px]"
+      className="bg-cream-100 px-2.5 pb-2.5 pt-[60px] md:px-3 md:pb-3 md:pt-[68px]"
     >
-      <div className="relative flex min-h-[calc(100svh-70px)] flex-col justify-between overflow-hidden border-2 border-cream-50/30 px-6 pb-12 pt-9 text-cream-50 md:min-h-[calc(100svh-80px)] md:px-10 md:pb-14 md:pt-12">
+      <div className="relative flex min-h-[calc(100svh-70px)] flex-col justify-between overflow-hidden border-2 border-warm-800 bg-terracotta px-6 pb-12 pt-9 text-cream-50 md:min-h-[calc(100svh-80px)] md:px-10 md:pb-14 md:pt-12">
         {/* imagen tenue (textura) */}
         <Image
           src="/brand/hero-rock-desktop.jpg"
