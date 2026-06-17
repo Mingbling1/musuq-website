@@ -137,32 +137,67 @@ function QrScene() {
 
 function ComandaScene() {
   const tickets = [
-    { mesa: "Mesa 4", hora: "19:42", items: "2× Lomo saltado · 1× Chicha", nuevo: true },
-    { mesa: "Para llevar #128", hora: "19:41", items: "1× Café · 1× Alfajor", nuevo: false },
-    { mesa: "Mesa 2", hora: "19:39", items: "1× Ceviche · 2× Limonada", nuevo: false },
+    { mesa: "Mesa 4", hora: "19:42", items: ["2× Lomo saltado", "1× Chicha morada"], estado: "nuevo" },
+    { mesa: "Para llevar #128", hora: "19:41", items: ["1× Café", "1× Alfajor"], estado: "cocina" },
+    { mesa: "Mesa 2", hora: "19:39", items: ["1× Ceviche", "2× Limonada"], estado: "cocina" },
   ];
   return (
-    <div className="space-y-2.5">
-      {tickets.map((t, i) => (
-        <div key={t.mesa} className="ticket-in bg-cream-50 px-3.5 py-3" style={{ animationDelay: `${i * 110}ms` }}>
-          <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-warm-800">{t.mesa}</span>
-            <span className="flex items-center gap-2">
-              {t.nuevo && (
-                <span className="flex items-center gap-1.5 bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
-                  <span className="relative flex h-1.5 w-1.5">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
-                    <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cream-50" />
+    <div className="pt-1">
+      <p className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-cream-50/85">
+        <span>Cocina · en vivo</span>
+        <span className="flex items-center gap-1.5 text-cream-50/70">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cream-50" />
+          </span>
+          3 activos
+        </span>
+      </p>
+      <div className="mt-2.5 space-y-2">
+        {tickets.map((t, i) => (
+          <div
+            key={t.mesa}
+            className="ticket-in bg-cream-50 px-3.5 py-2.5 shadow-[0_8px_20px_-12px_rgba(26,26,26,0.5)]"
+            style={{ animationDelay: `${i * 150}ms` }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-sm font-semibold text-warm-800">{t.mesa}</span>
+              <span className="flex items-center gap-2">
+                {t.estado === "nuevo" ? (
+                  <span className="flex items-center gap-1.5 bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
+                    <span className="relative flex h-1.5 w-1.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
+                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cream-50" />
+                    </span>
+                    Nuevo
                   </span>
-                  Nuevo
-                </span>
-              )}
-              <span className="text-[11px] tabular-nums text-warm-400">{t.hora}</span>
-            </span>
+                ) : (
+                  <span className="bg-copper/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-copper">
+                    En cocina
+                  </span>
+                )}
+                <span className="text-[11px] tabular-nums text-warm-400">{t.hora}</span>
+              </span>
+            </div>
+            <div className="mt-1.5 space-y-0.5">
+              {t.items.map((it) => (
+                <p key={it} className="flex items-center gap-1.5 text-[12px] text-warm-600">
+                  <span className="h-1 w-1 shrink-0 rounded-full bg-terracotta/50" />
+                  {it}
+                </p>
+              ))}
+            </div>
+            {t.estado === "nuevo" && (
+              <div className="mt-2 h-1 w-full overflow-hidden bg-warm-800/10">
+                <div
+                  className="animate-fill h-full bg-terracotta"
+                  style={{ "--fill": "100%", animationDelay: "550ms" } as React.CSSProperties}
+                />
+              </div>
+            )}
           </div>
-          <p className="mt-1 text-[13px] text-warm-600">{t.items}</p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
@@ -173,19 +208,37 @@ function CobrosScene() {
     { n: "Tarjeta", on: false }, { n: "Efectivo", on: false },
   ];
   return (
-    <div className="pt-2">
-      <p className="text-[12px] uppercase tracking-[0.18em] text-cream-50/70">Total a cobrar</p>
-      <p style={ANTON} className="text-5xl tabular-nums text-cream-50">S/ 42.00</p>
+    <div className="pt-1">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cream-50/75">Total a cobrar</p>
+      <p style={ANTON} className="pop-in mt-0.5 text-[3.25rem] leading-none tabular-nums text-cream-50">S/ 42.00</p>
       <div className="mt-5 grid grid-cols-2 gap-2">
         {metodos.map((m, i) => (
-          <div key={m.n} className={`pop-in px-3 py-3 text-sm font-semibold ${m.on ? "bg-cream-50 text-terracotta" : "bg-cream-50/15 text-cream-50/75"}`} style={{ animationDelay: `${i * 80}ms` }}>
+          <div
+            key={m.n}
+            className={`pop-in relative flex items-center justify-center px-3 py-3 text-sm font-semibold ${
+              m.on ? "bg-cream-50 text-terracotta ring-2 ring-cream-50" : "bg-cream-50/12 text-cream-50/75"
+            }`}
+            style={{ animationDelay: `${i * 90}ms` }}
+          >
+            {m.on && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
+                <span className="relative inline-flex h-4 w-4 items-center justify-center rounded-full bg-cream-50">
+                  <Check className="h-2.5 w-2.5 text-terracotta" strokeWidth={3.5} />
+                </span>
+              </span>
+            )}
             {m.n}
           </div>
         ))}
       </div>
-      <p className="pop-in mt-4 inline-flex items-center gap-2 text-[13px] font-medium text-cream-50" style={{ animationDelay: "360ms" }}>
-        ✓ Cobrado con Yape
-      </p>
+      <div className="pop-in mt-4 flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5" style={{ animationDelay: "560ms" }}>
+        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta text-cream-50">
+          <Check className="h-3.5 w-3.5" strokeWidth={3} />
+        </span>
+        <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Pagado con Yape</span>
+        <span className="ml-auto text-[11px] font-medium text-warm-500">en 2 s</span>
+      </div>
     </div>
   );
 }
