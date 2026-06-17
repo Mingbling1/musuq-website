@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate } from "framer-motion";
 
 const APP_URL = "https://app.musuq.tech";
@@ -31,8 +32,16 @@ export function Hero() {
   const textT = useMotionTemplate`translate3d(${tX}px, ${tY}px, 0)`;
 
   const reduced = useRef(false);
+  const [showVideo, setShowVideo] = useState(false);
   useEffect(() => {
     reduced.current = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Carga el video DESPUÉS del primer render para no competir con el LCP.
+    const start = () => setShowVideo(true);
+    if (document.readyState === "complete") start();
+    else {
+      window.addEventListener("load", start, { once: true });
+      return () => window.removeEventListener("load", start);
+    }
   }, []);
 
   const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -56,20 +65,31 @@ export function Hero() {
         onMouseLeave={onLeave}
         className="relative flex min-h-[calc(100svh-90px)] flex-col justify-end overflow-hidden border-2 border-warm-800 bg-terracotta"
       >
-        {/* ── Video de fondo en loop perpetuo (Kling v3.0, A=B) + parallax ── */}
+        {/* ── Media de fondo + parallax. Poster = LCP rápido; el video carga luego ── */}
         <motion.div aria-hidden className="absolute inset-0" style={{ transform: videoT }}>
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster="/brand/ceviche-band.webp"
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-          >
-            <source src="/brand/ceviche-hero-2.mp4" type="video/mp4" />
-          </video>
+          <Image
+            src="/brand/ceviche-band.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+          {showVideo && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              poster="/brand/ceviche-band.webp"
+              aria-hidden
+              onCanPlay={(e) => e.currentTarget.classList.add("opacity-100")}
+              className="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-700"
+            >
+              <source src="/brand/ceviche-hero-2.mp4" type="video/mp4" />
+            </video>
+          )}
         </motion.div>
 
         {/* ruido + tinte de marca + scrim para legibilidad */}

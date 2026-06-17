@@ -8,9 +8,11 @@ Landing page profesional para estudio digital peruano. Nombre en quechua: "musuq
 
 - **Framework:** Next.js 16.2.1 (React Compiler habilitado) — LEER `node_modules/next/dist/docs/` antes de tocar APIs
 - **UI:** React 19, Tailwind CSS 4, Framer Motion, shadcn/ui (base-nova), Lucide React
-- **Fuentes:** DM Sans (sans), Playfair Display (serif)
-- **Paleta:** cream, warm (grises-cafe), terracotta (#C8553D), sage (#6B7C5E), copper (#B87333)
+- **Fuentes:** Switzer (cuerpo, `--font-sans`), Clash Display (`--font-fraunces`), Anton (`--font-anton`), Caveat (`--font-caveat`)
+- **Paleta:** crema `#FAF8F5` (base) · terracota `#C8553D` (acción) · carbón `#1A1A1A` (tinta/bordes) · marrón `#6B4A33` + copper `#B87333` (terciarios). **Sin verde.**
 - **Lenguaje:** Todo el contenido en espanol
+
+> **Marca:** la landing usa su propio toolkit **editorial-brutalista** (≠ toolkit de las apps). Ver **`docs/brand-landing.md`** (paleta, tipografía, layout, motion y la receta Higgsfield de fotos/video). El toolkit de las apps (web/iOS/Android) vive aparte en `musuq-docs/marca/`.
 
 ## Estructura
 
