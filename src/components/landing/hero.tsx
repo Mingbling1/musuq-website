@@ -1,10 +1,16 @@
+import Image from "next/image";
+
 const APP_URL = "https://app.musuq.tech";
 const ANTON = { fontFamily: "var(--font-anton)" } as const;
 const CAVEAT = { fontFamily: "var(--font-caveat)" } as const;
 
+// Titular con palabras que suben al cargar (kinetic type).
+const WORDS = ["Vende,", "cobra", "y"];
+
 /**
- * Hero producto-en-vivo: marco terracota sobre crema, copy que dice qué es
- * Musuq. (El video loop del hero está en planeamiento — irá aquí.)
+ * Hero "motionsite": media full-bleed en loop dentro del marco terracota,
+ * con ruido + scrim + titular cinético. Paso 1 usa el still del ceviche;
+ * el <video> A→B (loop perpetuo) reemplazará al <Image> cuando esté listo.
  */
 export function Hero() {
   return (
@@ -12,43 +18,77 @@ export function Hero() {
       id="top"
       className="bg-cream-100 px-2.5 pb-2.5 pt-[60px] md:px-3 md:pb-3 md:pt-[68px]"
     >
-      <div className="relative flex min-h-[calc(100svh-90px)] flex-col items-center justify-center overflow-hidden border-2 border-warm-800 bg-terracotta px-6 py-20 text-center text-cream-50 md:px-10 md:py-24">
-        {/* glow suave */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -right-[6%] top-0 h-[120%] w-[55%] rounded-full opacity-25 blur-3xl"
-          style={{ background: "radial-gradient(circle, rgba(255,255,255,0.55), transparent 60%)" }}
+      <div className="relative flex min-h-[calc(100svh-90px)] flex-col justify-end overflow-hidden border-2 border-warm-800 bg-terracotta">
+        {/* ── Media de fondo (Paso 1: still · luego <video> en loop) ── */}
+        {/*
+          Paso 2 — reemplazar este <Image> por:
+          <video src="<mp4 del CDN>" autoPlay loop muted playsInline
+                 poster="/brand/ceviche-band.webp"
+                 className="absolute inset-0 h-full w-full object-cover" />
+        */}
+        <Image
+          src="/brand/ceviche-band.webp"
+          alt="Cocina peruana en acción"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
 
-        <div className="relative max-w-3xl">
+        {/* ruido + tinte de marca + scrim para legibilidad */}
+        <div aria-hidden className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.5] mix-blend-overlay" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-terracotta/35 mix-blend-multiply" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-warm-800/85 via-warm-800/15 to-transparent" />
+
+        {/* ── Contenido (abajo, estilo editorial) ── */}
+        <div className="relative w-full p-6 pt-32 text-cream-50 md:p-10 md:pt-40">
           <span className="block text-[12px] font-semibold uppercase tracking-[0.24em] text-cream-50/85">
             Punto de venta para tu restaurante
           </span>
-          <h1
-            style={ANTON}
-            className="mt-5 text-[clamp(3.25rem,11vw,8rem)] uppercase leading-[0.9] tracking-[0.01em]"
-          >
-            Vende, cobra y{" "}
-            <span style={CAVEAT} className="lowercase tracking-normal text-cream-50/95">controla</span>
-          </h1>
-          <p className="mx-auto mt-6 max-w-md text-lg leading-relaxed text-cream-50/85">
-            El sistema que conecta tu mesa, tu cocina y tu caja. Toma el pedido,
-            avísale a la cocina y cobra con Yape, Plin o tarjeta, todo en un toque.
-          </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href={APP_URL}
-              className="group inline-flex w-fit items-center gap-2 bg-cream-50 px-7 py-4 text-[15px] font-semibold text-terracotta transition-colors hover:bg-cream-200"
+
+          <div className="mt-3 grid items-end gap-6 lg:grid-cols-[1fr_22rem]">
+            <h1
+              style={ANTON}
+              className="text-[clamp(3.25rem,11vw,9rem)] uppercase leading-[0.85] tracking-[0.01em]"
             >
-              Crear cuenta gratis
-              <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
-            </a>
-            <a
-              href="#rubros"
-              className="text-[15px] font-semibold text-cream-50 underline decoration-cream-50/40 underline-offset-4 transition-colors hover:decoration-cream-50"
-            >
-              Ver cómo funciona
-            </a>
+              {WORDS.map((w, i) => (
+                <span
+                  key={w}
+                  className="word-rise mr-[0.25em]"
+                  style={{ animationDelay: `${i * 0.09}s` }}
+                >
+                  {w}
+                </span>
+              ))}
+              <span
+                style={{ ...CAVEAT, animationDelay: `${WORDS.length * 0.09}s` }}
+                className="word-rise lowercase tracking-normal text-cream-50/95"
+              >
+                controla
+              </span>
+            </h1>
+
+            <div className="lg:pb-3">
+              <p className="max-w-sm text-base leading-relaxed text-cream-50/85">
+                Conecta tu mesa, tu cocina y tu caja. Toma el pedido, avísale a la
+                cocina y cobra con Yape, Plin o tarjeta, todo en un toque.
+              </p>
+              <div className="mt-6 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+                <a
+                  href={APP_URL}
+                  className="group inline-flex w-fit items-center gap-2 bg-cream-50 px-7 py-4 text-[15px] font-semibold text-terracotta transition-colors hover:bg-cream-200"
+                >
+                  Crear cuenta gratis
+                  <span className="transition-transform duration-200 group-hover:translate-x-0.5">→</span>
+                </a>
+                <a
+                  href="#rubros"
+                  className="text-[15px] font-semibold text-cream-50 underline decoration-cream-50/40 underline-offset-4 transition-colors hover:decoration-cream-50"
+                >
+                  Ver cómo funciona
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
