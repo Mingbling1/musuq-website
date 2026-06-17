@@ -28,7 +28,7 @@ export function Hero() {
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover"
         >
-          <source src="/brand/ceviche-hero-2.mp4" type="video/mp4" />
+          <source src="/brand/ceviche-hero-4.mp4" type="video/mp4" />
         </video>
 
         {/* ruido + tinte de marca + scrim para legibilidad */}
