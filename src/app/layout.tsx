@@ -38,44 +38,58 @@ const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], weight: [
 export const metadata: Metadata = {
   metadataBase: new URL("https://musuq.tech"),
   title: {
-    default: "Musuq — Tecnología que impulsa cada venta",
+    default: "Musuq — App para restaurantes: vende, cobra y controla",
     template: "%s | Musuq",
   },
   description:
-    "Musuq es la plataforma de gestión y punto de venta para el comercio peruano. Vende, cobra y controla tu negocio desde un solo lugar. Hecho para mypes — fácil, rápido y hecho en Perú.",
+    "App y punto de venta para restaurantes y cafeterías en Perú. Sube tu carta con una foto, recibe pedidos por QR, manda la comanda a cocina y cobra con Yape, Plin o tarjeta. Controla tu negocio y emite boleta y factura electrónica, todo en un solo lugar.",
   keywords: [
-    "punto de venta perú",
-    "app de ventas perú",
-    "software para mypes perú",
-    "gestión de negocio perú",
-    "pos perú",
-    "caja registradora digital perú",
-    "control de ventas perú",
-    "app para bodegas perú",
+    "app para restaurantes",
     "app para restaurantes perú",
-    "facturación electrónica perú",
+    "software para restaurantes perú",
+    "sistema para restaurantes",
+    "punto de venta para restaurantes",
+    "app para controlar mi negocio",
+    "app para administrar mi negocio",
+    "controlar las ventas de mi negocio",
+    "carta digital con qr",
+    "carta inteligente restaurante",
+    "menú digital qr",
+    "comanda digital cocina",
+    "cobrar con yape en mi negocio",
+    "pos yape plin perú",
+    "boleta y factura electrónica restaurante",
+    "facturación electrónica sunat perú",
   ],
   authors: [{ name: "Musuq" }],
   creator: "Musuq",
   publisher: "Musuq",
   openGraph: {
-    title: "Musuq — Tecnología que impulsa cada venta",
+    title: "Musuq — App para restaurantes: vende, cobra y controla",
     description:
-      "La plataforma de gestión y punto de venta para el comercio peruano. Vende, cobra y controla tu negocio desde un solo lugar.",
+      "Sube tu carta con una foto, recibe pedidos por QR, manda la comanda a cocina y cobra con Yape, Plin o tarjeta. Controla tu restaurante desde un solo lugar.",
     url: "https://musuq.tech",
     siteName: "Musuq",
     locale: "es_PE",
     type: "website",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "Musuq — App para restaurantes: vende, cobra y controla",
+      },
+    ],
   },
   alternates: {
     canonical: "https://musuq.tech",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Musuq — Tecnología que impulsa cada venta",
+    title: "Musuq — App para restaurantes: vende, cobra y controla",
     description:
-      "La plataforma de gestión y punto de venta para el comercio peruano.",
+      "Carta digital con QR, comanda a cocina y cobros con Yape, Plin o tarjeta. Controla tu restaurante desde un solo lugar.",
     images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
   robots: {
@@ -116,6 +130,45 @@ const productSchema = {
   },
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Musuq sirve para mi restaurante o cafetería?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Musuq es una app y punto de venta pensada para restaurantes y cafeterías: toma pedidos, manda la comanda a cocina y cobra, todo desde un solo lugar.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Tiene carta digital con QR?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Subes tu carta con una foto y la IA la arma sola; tus clientes escanean el QR de la mesa y piden desde su celular.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Puedo controlar las ventas de mi negocio?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Musuq registra cada venta y te muestra tus ganancias, inventario y reportes en tiempo real para controlar tu negocio.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cobra con Yape, Plin y tarjeta?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí. Cobras con Yape, Plin, tarjeta y efectivo en una sola caja, y emites boleta y factura electrónica ante SUNAT automáticamente.",
+      },
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -130,6 +183,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
         <SmoothScroll>
           <Navbar />
