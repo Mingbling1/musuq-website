@@ -167,7 +167,7 @@ export function Pricing() {
 
               <a
                 href={p.href}
-                className={`mt-7 inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold transition-colors ${
+                className={`mt-7 inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold transition-[background-color,transform] active:scale-[0.98] ${
                   drenched
                     ? "bg-cream-50 text-warm-800 hover:bg-cream-200"
                     : "bg-terracotta text-cream-50 hover:bg-[#b0472f]"

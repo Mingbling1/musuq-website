@@ -13,7 +13,7 @@ export function ChapterMarker({ num, label }: { num: string; label: string }) {
       >
         {num}
       </span>
-      <span className="pb-2 text-[12px] font-semibold uppercase tracking-[0.2em] opacity-45 md:pb-3">
+      <span className="pb-2 text-[12px] font-semibold uppercase tracking-[0.2em] opacity-70 md:pb-3">
         {label}
       </span>
     </div>

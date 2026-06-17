@@ -1,48 +1,52 @@
-# DESIGN.md — Musuq (landing)
+# DESIGN.md — Landing (musuq.tech)
 
-## Color (OKLCH, neutrales tintados — nunca #000/#fff)
+> **Dos toolkits, no mezclar.** Este es el de la **landing** (register: **brand**),
+> estilo editorial-brutalista sobre **crema**. El de las **apps** (web/iOS/Android,
+> register: product) vive en `musuq-app/DESIGN.md` y usa **fondo BLANCO**, cards y
+> fuente Barlow. No aplicar el lenguaje de la app a la landing ni viceversa.
+> Receta de fotos/video y assets: `docs/brand-landing.md`.
 
-Estrategia: **Committed** — la terracota carga la identidad sobre una base crema cálida; secciones puntuales **drenched** en carbón para contraste dramático.
+## Register
+**Brand** — la landing es marketing; el diseño ES el producto. Maximalismo editorial controlado, no UI de app.
 
-| Rol | Hex | OKLCH aprox | Uso |
-|---|---|---|---|
-| Crema (fondo) | `#FAF8F5` | `oklch(0.98 0.004 80)` | base luminosa |
-| Terracota (marca) | `#C8553D` | `oklch(0.59 0.13 38)` | acción, énfasis, identidad |
-| Carbón (texto/secciones) | `#1A1A1A` | `oklch(0.22 0.004 60)` | texto, secciones drenched |
-| Marrón (acento) | `#6B4A33` | `oklch(0.42 0.05 55)` | acento secundario, profundidad cálida |
-| Terracota clara | `#D4765F` | `oklch(0.68 0.11 38)` | sobre carbón, hovers |
+## Color (OKLCH, neutros tintados — nunca #000/#fff)
+Estrategia: **drenched dentro de marcos**, base crema fuera. El fondo de página es siempre crema y no cambia.
 
-Neutros tintados hacia el hue cálido (chroma 0.004–0.01). **Sin verde.**
+| Rol | Hex | Uso |
+|---|---|---|
+| Crema (fondo, fijo) | `#FAF8F5` (cream-50 `#FDFCFA`) | base luminosa de toda la página |
+| Terracota (acción) | `#C8553D` (light `#D4765F`) | rellena **dentro** de bordes/celdas |
+| Carbón (tinta/bordes) | `#1A1A1A` | texto y bordes de 2px |
+| Grises cálidos | warm-600 `#4A4540` · 500 `#8A8378` · 400 `#B5ADA3` | texto secundario |
+| Marrón (terciario) | `#6B4A33` | profundidad "tierra" |
+| Copper (acento) | `#B87333` | números, badges, títulos |
+
+**Sin verde.** Reparto: terracota → Hero/CTA/Rubros/Cierre · marrón → Módulos, tier alto de Pricing, base del Footer · copper → acentos.
 
 ## Theme
-
-**Escena:** un comerciante peruano revisa Musuq en su celular dentro de su local moderno y bien iluminado, de día, sintiéndose en control y orgulloso. → Base **clara y cálida** (crema), con **rupturas en carbón drenched** para momentos de peso (manifiesto, cierre, antes/después). El carbón da drama; la crema da calidez y aspiración.
+Escena: un cocinero peruano en su local moderno y bien iluminado, de día, en control. Base **clara y cálida** (crema); el peso lo dan los **bordes carbón** y los bloques **drenched** dentro de marcos, no fondos oscuros.
 
 ## Typography
+- **Display brutalista:** Anton (`--font-anton`), uppercase condensada, `leading-[0.85]`. Es la voz visual.
+- **Acento manuscrito:** Caveat (`--font-caveat`) para una palabra suelta.
+- **Cuerpo / UI:** Switzer (`--font-sans`), 400/500/600.
+- **Wordmark / serif:** Clash Display (`--font-fraunces`).
+- Escala con contraste ≥1.25; titulares grandes y seguros. Cuerpo 65–75ch.
 
-- **Display / títulos / wordmark:** Barlow Semi Condensed **Bold (700)** como peso por defecto — kinético pero **medido, no Ultra/800** (decisión final: el bold se bajó ~20%). `tracking` apretado, `leading` ~0.9. Es la voz visual.
-- **Cuerpo:** Barlow 400/500. Line-length 65–75ch.
-- Escala con contraste ≥1.25; nada plano. Los titulares deben ser grandes y seguros.
-
-## Elevación y layout (anti-genérico)
-
-- **Prohibido el card border+shadow** como recurso. Profundidad por: bloques de color full-bleed, cambios de fondo (crema ↔ carbón), espacio negativo generoso, superposición/parallax, hairlines finísimos solo cuando aportan.
-- Layouts **editoriales y asimétricos**, no grillas de cards idénticas. Romper el ritmo del spacing a propósito.
-- Pocos contenedores; secciones que respiran a ancho completo.
+## Elevación y layout
+- **Esquinas rectas.** Profundidad por **borde de 2px** carbón, no sombras. Prohibido el patrón card border+shadow como recurso.
+- **Celdas con borde** (grid-lines: `bg-warm-800 gap-[2px]` + celdas crema; o `border-2` + divisores `border-t-2`/`border-l-2`).
+- Secciones **drenched** → enmarcadas en border con padding. Sin fondo → limpias. Layouts editoriales, no grillas de cards idénticas.
 
 ## Motion
-
-- **Lenis** smooth scroll global. Scroll-driven: reveals por línea (clip/mask), parallax por capas, scroll-scrub en secciones clave, contadores atados al scroll.
-- Easing **ease-out-expo/quart**. Sin bounce/elastic. No animar propiedades de layout (usar transform/opacity).
+- Smooth scroll (Lenis). Easing ease-out-expo `cubic-bezier(0.16,1,0.3,1)`; solo `transform`/`opacity`; sin bounce.
+- Loops de demo en Rubros (riel de pedidos, escaneo de carta, flujo de cobro). Parallax con spring en el hero. **Video loop del hero = pieza central.**
 - Fallback completo con `prefers-reduced-motion` (estado final visible en SSR).
-- El **video loop** del producto es pieza central, no decorativo.
 
 ## Mascota
+Zorro (poses en `Brand/Mascota`). Aparece contenido e integrado en momentos de marca, no como sticker pegado.
 
-Zorro (3 poses en `Brand/Mascota`). Aparece en hero y momentos de emoción/cierre. Tamaño contenido, integrado, no sticker pegado.
+## Bans
+side-stripe borders · gradient text · hero-metric template · grillas de cards idénticas · **em dashes en copy** · esquinas muy redondeadas · serif tipo Georgia/Playfair · estética rústico-pobreza · **fondo blanco (eso es de la app)**.
 
-## Bans (refuerzo del shared law)
-
-side-stripe borders · gradient text · hero-metric template · grillas de cards idénticas · em dashes en copy · estética rústico-pobreza.
-
-**Glassmorphism:** permitido como **acento sutil y con propósito** (navbar frosted, chips flotantes sobre fondos con profundidad). Prohibido **pesado / como default** o si baja la legibilidad del texto.
+**Glassmorphism:** solo acento sutil y con propósito (navbar frosted); nunca pesado/default ni si baja la legibilidad.

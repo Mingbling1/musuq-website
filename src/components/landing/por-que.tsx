@@ -72,7 +72,7 @@ export function PorQue() {
           type="button"
           onClick={() => select(false)}
           className={`px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-            after ? "text-warm-500 hover:text-warm-800" : "bg-warm-800 text-cream-50"
+            after ? "text-warm-600 hover:text-warm-800" : "bg-warm-800 text-cream-50"
           }`}
         >
           Sin Musuq
@@ -81,7 +81,7 @@ export function PorQue() {
           type="button"
           onClick={() => select(true)}
           className={`border-l-2 border-warm-800 px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
-            after ? "bg-terracotta text-cream-50" : "text-warm-500 hover:text-warm-800"
+            after ? "bg-terracotta text-cream-50" : "text-warm-600 hover:text-warm-800"
           }`}
         >
           Con Musuq

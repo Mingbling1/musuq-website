@@ -302,7 +302,7 @@ export function Rubros() {
           {activeRubro.label}
           <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`} strokeWidth={2} />
         </button>
-        <p className="mt-2.5 text-[12px] text-warm-500">Empezamos por restaurantes · más rubros en camino</p>
+        <p className="mt-2.5 text-[12px] text-warm-600">Empezamos por restaurantes · más rubros en camino</p>
 
         {open && (
           <div role="listbox" className="pop-in absolute top-14 z-30 w-[min(90vw,360px)] border-2 border-warm-800 bg-cream-50">

@@ -71,7 +71,7 @@ export function Modulos() {
           <span style={CAVEAT} className="lowercase tracking-normal text-terracotta">más</span>
         </h2>
         <p className="mx-auto mt-5 max-w-md text-base leading-relaxed text-warm-600">
-          Todo lo que tu negocio necesita para vender, cobrar y crecer — en un
+          Todo lo que tu negocio necesita para vender, cobrar y crecer, en un
           solo lugar.
         </p>
       </Reveal>

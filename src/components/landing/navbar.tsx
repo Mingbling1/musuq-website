@@ -51,7 +51,7 @@ export function Navbar() {
           {/* Celda CTA terracota (desktop) */}
           <a
             href={APP_URL}
-            className="hidden items-center bg-terracotta px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-cream-50 transition-colors hover:bg-[#b0472f] md:flex"
+            className="hidden items-center bg-terracotta px-6 py-3.5 text-[12px] font-semibold uppercase tracking-[0.14em] text-cream-50 transition-[background-color,transform] hover:bg-[#b0472f] active:scale-[0.97] md:flex"
           >
             Crear cuenta
           </a>
