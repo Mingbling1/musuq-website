@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const APP_URL = "https://app.musuq.tech";
 const ANTON = { fontFamily: "var(--font-anton)" } as const;
 const CAVEAT = { fontFamily: "var(--font-caveat)" } as const;
@@ -19,21 +17,19 @@ export function Hero() {
       className="bg-cream-100 px-2.5 pb-2.5 pt-[60px] md:px-3 md:pb-3 md:pt-[68px]"
     >
       <div className="relative flex min-h-[calc(100svh-90px)] flex-col justify-end overflow-hidden border-2 border-warm-800 bg-terracotta">
-        {/* ── Media de fondo (Paso 1: still · luego <video> en loop) ── */}
-        {/*
-          Paso 2 — reemplazar este <Image> por:
-          <video src="<mp4 del CDN>" autoPlay loop muted playsInline
-                 poster="/brand/ceviche-band.webp"
-                 className="absolute inset-0 h-full w-full object-cover" />
-        */}
-        <Image
-          src="/brand/ceviche-band.webp"
-          alt="Cocina peruana en acción"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {/* ── Video de fondo en loop perpetuo (Kling v3.0, A=B) ── */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster="/brand/ceviche-band.webp"
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        >
+          <source src="/brand/ceviche-hero.mp4" type="video/mp4" />
+        </video>
 
         {/* ruido + tinte de marca + scrim para legibilidad */}
         <div aria-hidden className="noise-overlay pointer-events-none absolute inset-0 opacity-[0.5] mix-blend-overlay" />
