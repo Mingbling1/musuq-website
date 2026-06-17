@@ -465,6 +465,18 @@ body::after {
   .animate-fill { width: var(--fill, 100%); }
 }
 
+/* Celular Musuq — riel de pedidos en loop perpetuo (NUEVO→COCINA→LISTO→COBRADO) */
+@keyframes phone-state {
+  0%, 3%    { opacity: 0; transform: translateY(8px) scale(0.96); }
+  7%, 22%   { opacity: 1; transform: none; }
+  26%, 100% { opacity: 0; transform: translateY(-8px) scale(0.98); }
+}
+.phone-state { animation: phone-state 9s cubic-bezier(0.16, 1, 0.3, 1) infinite both; }
+@media (prefers-reduced-motion: reduce) {
+  .phone-state { animation: none; opacity: 0; }
+  .phone-state-default { opacity: 1; }
+}
+
 /* Sección Módulos — onda líquida terracota (placeholder de video) */
 @keyframes liquid-breathe {
   0%, 100% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.65; }
