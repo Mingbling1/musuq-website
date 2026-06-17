@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import {
   UtensilsCrossed,
   Store,
@@ -12,6 +12,7 @@ import {
   Search,
   Check,
   Sparkles,
+  Receipt,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
@@ -136,24 +137,29 @@ function QrScene() {
 }
 
 function ComandaScene() {
+  const flujo = ["Nuevo", "En cocina", "Listo", "Entregado"];
   const tickets = [
     { mesa: "Mesa 4", hora: "19:42", items: ["2× Lomo saltado", "1× Chicha morada"], estado: "nuevo" },
-    { mesa: "Para llevar #128", hora: "19:41", items: ["1× Café", "1× Alfajor"], estado: "cocina" },
     { mesa: "Mesa 2", hora: "19:39", items: ["1× Ceviche", "2× Limonada"], estado: "cocina" },
+    { mesa: "Para llevar #128", hora: "19:41", items: ["1× Café", "1× Alfajor"], estado: "listo" },
   ];
   return (
     <div className="pt-1">
-      <p className="flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.14em] text-cream-50/85">
-        <span>Cocina · en vivo</span>
-        <span className="flex items-center gap-1.5 text-cream-50/70">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-cream-50" />
-          </span>
-          3 activos
-        </span>
-      </p>
-      <div className="mt-2.5 space-y-2">
+      {/* flujo del pedido (riel) */}
+      <div className="flex items-center gap-1.5">
+        {flujo.map((s, i) => (
+          <Fragment key={s}>
+            <span className={`text-[9px] font-bold uppercase tracking-wide ${i <= 2 ? "text-cream-50" : "text-cream-50/45"}`}>
+              {s}
+            </span>
+            {i < flujo.length - 1 && (
+              <span className={`h-px flex-1 ${i <= 1 ? "bg-cream-50/70" : "bg-cream-50/25"}`} />
+            )}
+          </Fragment>
+        ))}
+      </div>
+
+      <div className="mt-3 space-y-2">
         {tickets.map((t, i) => (
           <div
             key={t.mesa}
@@ -163,7 +169,7 @@ function ComandaScene() {
             <div className="flex items-center justify-between">
               <span className="text-sm font-semibold text-warm-800">{t.mesa}</span>
               <span className="flex items-center gap-2">
-                {t.estado === "nuevo" ? (
+                {t.estado === "nuevo" && (
                   <span className="flex items-center gap-1.5 bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
                     <span className="relative flex h-1.5 w-1.5">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
@@ -171,9 +177,16 @@ function ComandaScene() {
                     </span>
                     Nuevo
                   </span>
-                ) : (
+                )}
+                {t.estado === "cocina" && (
                   <span className="bg-copper/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-copper">
                     En cocina
+                  </span>
+                )}
+                {t.estado === "listo" && (
+                  <span className="flex items-center gap-1 bg-cream-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-terracotta ring-1 ring-terracotta/40">
+                    <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
+                    Listo
                   </span>
                 )}
                 <span className="text-[11px] tabular-nums text-warm-400">{t.hora}</span>
@@ -194,6 +207,9 @@ function ComandaScene() {
                   style={{ "--fill": "100%", animationDelay: "550ms" } as React.CSSProperties}
                 />
               </div>
+            )}
+            {t.estado === "listo" && (
+              <p className="mt-1.5 text-[11px] font-semibold text-terracotta">Recoger en barra →</p>
             )}
           </div>
         ))}
@@ -232,12 +248,24 @@ function CobrosScene() {
           </div>
         ))}
       </div>
-      <div className="pop-in mt-4 flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5" style={{ animationDelay: "560ms" }}>
-        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta text-cream-50">
-          <Check className="h-3.5 w-3.5" strokeWidth={3} />
-        </span>
-        <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Pagado con Yape</span>
-        <span className="ml-auto text-[11px] font-medium text-warm-500">en 2 s</span>
+      <div className="mt-4 space-y-2">
+        <div className="pop-in flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5" style={{ animationDelay: "560ms" }}>
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta text-cream-50">
+            <Check className="h-3.5 w-3.5" strokeWidth={3} />
+          </span>
+          <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Pagado con Yape</span>
+          <span className="ml-auto text-[11px] font-medium text-warm-500">en 2 s</span>
+        </div>
+        <div className="pop-in flex items-center gap-2.5 bg-cream-50/12 px-3.5 py-2.5 text-cream-50" style={{ animationDelay: "900ms" }}>
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center bg-cream-50/15">
+            <Receipt className="h-3.5 w-3.5" strokeWidth={2} />
+          </span>
+          <span className="text-[13px] font-semibold">Boleta electrónica enviada</span>
+          <span className="ml-auto flex items-center gap-1 text-[11px] font-medium text-cream-50/70">
+            <Check className="h-3 w-3" strokeWidth={3} />
+            SUNAT
+          </span>
+        </div>
       </div>
     </div>
   );
