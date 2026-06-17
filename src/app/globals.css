@@ -475,6 +475,27 @@ body::after {
 .animate-scan-menu { animation: scan-menu 2.6s cubic-bezier(0.45, 0, 0.55, 1) infinite; }
 @media (prefers-reduced-motion: reduce) { .animate-scan-menu { animation: none; } }
 
+/* Rubros · flujo animado — etapas que se completan en secuencia y reinician (7s) */
+@keyframes flow-line {
+  0%   { transform: scaleX(0); }
+  82%  { transform: scaleX(1); }
+  100% { transform: scaleX(1); }
+}
+.flow-line { transform-origin: left center; animation: flow-line 7s ease-in-out infinite; }
+
+@keyframes flow-s1 { 0%, 4% { opacity: 0.3; transform: scale(0.85); } 9% { opacity: 1; transform: scale(1.18); } 13%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes flow-s2 { 0%, 28% { opacity: 0.3; transform: scale(0.85); } 33% { opacity: 1; transform: scale(1.18); } 37%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes flow-s3 { 0%, 52% { opacity: 0.3; transform: scale(0.85); } 57% { opacity: 1; transform: scale(1.18); } 61%, 100% { opacity: 1; transform: scale(1); } }
+@keyframes flow-s4 { 0%, 76% { opacity: 0.3; transform: scale(0.85); } 81% { opacity: 1; transform: scale(1.18); } 85%, 100% { opacity: 1; transform: scale(1); } }
+.flow-s1 { animation: flow-s1 7s ease-in-out infinite; }
+.flow-s2 { animation: flow-s2 7s ease-in-out infinite; }
+.flow-s3 { animation: flow-s3 7s ease-in-out infinite; }
+.flow-s4 { animation: flow-s4 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .flow-line { animation: none; transform: scaleX(1); }
+  .flow-s1, .flow-s2, .flow-s3, .flow-s4 { animation: none; opacity: 1; transform: none; }
+}
+
 /* Hero motionsite — textura de ruido sobre el video/still de fondo */
 .noise-overlay {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");

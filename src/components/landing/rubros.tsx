@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   UtensilsCrossed,
   Store,
@@ -13,6 +13,7 @@ import {
   Check,
   Sparkles,
   Receipt,
+  Wallet,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
@@ -137,80 +138,44 @@ function QrScene() {
 }
 
 function ComandaScene() {
-  const flujo = ["Nuevo", "En cocina", "Listo", "Entregado"];
-  const tickets = [
-    { mesa: "Mesa 4", hora: "19:42", items: ["2× Lomo saltado", "1× Chicha morada"], estado: "nuevo" },
-    { mesa: "Mesa 2", hora: "19:39", items: ["1× Ceviche", "2× Limonada"], estado: "cocina" },
-    { mesa: "Para llevar #128", hora: "19:41", items: ["1× Café", "1× Alfajor"], estado: "listo" },
-  ];
+  const steps = ["Nuevo", "En cocina", "Listo", "Entregado"];
   return (
     <div className="pt-1">
-      {/* flujo del pedido (riel) */}
-      <div className="flex items-center gap-1.5">
-        {flujo.map((s, i) => (
-          <Fragment key={s}>
-            <span className={`text-[9px] font-bold uppercase tracking-wide ${i <= 2 ? "text-cream-50" : "text-cream-50/45"}`}>
-              {s}
+      {/* pedido */}
+      <div className="bg-cream-50 px-3.5 py-3 shadow-[0_8px_20px_-12px_rgba(26,26,26,0.5)]">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold text-warm-800">Mesa 4</span>
+          <span className="flex items-center gap-1.5 text-[11px] font-medium text-terracotta">
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracotta opacity-75" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-terracotta" />
             </span>
-            {i < flujo.length - 1 && (
-              <span className={`h-px flex-1 ${i <= 1 ? "bg-cream-50/70" : "bg-cream-50/25"}`} />
-            )}
-          </Fragment>
-        ))}
+            En curso
+          </span>
+        </div>
+        <div className="mt-1.5 space-y-0.5">
+          {["2× Lomo saltado", "1× Chicha morada"].map((it) => (
+            <p key={it} className="flex items-center gap-1.5 text-[12px] text-warm-600">
+              <span className="h-1 w-1 shrink-0 rounded-full bg-terracotta/50" />
+              {it}
+            </p>
+          ))}
+        </div>
       </div>
 
-      <div className="mt-3 space-y-2">
-        {tickets.map((t, i) => (
-          <div
-            key={t.mesa}
-            className="ticket-in bg-cream-50 px-3.5 py-2.5 shadow-[0_8px_20px_-12px_rgba(26,26,26,0.5)]"
-            style={{ animationDelay: `${i * 150}ms` }}
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-semibold text-warm-800">{t.mesa}</span>
-              <span className="flex items-center gap-2">
-                {t.estado === "nuevo" && (
-                  <span className="flex items-center gap-1.5 bg-terracotta px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-cream-50">
-                    <span className="relative flex h-1.5 w-1.5">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream-50 opacity-75" />
-                      <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-cream-50" />
-                    </span>
-                    Nuevo
-                  </span>
-                )}
-                {t.estado === "cocina" && (
-                  <span className="bg-copper/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-copper">
-                    En cocina
-                  </span>
-                )}
-                {t.estado === "listo" && (
-                  <span className="flex items-center gap-1 bg-cream-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-terracotta ring-1 ring-terracotta/40">
-                    <Check className="h-2.5 w-2.5" strokeWidth={3.5} />
-                    Listo
-                  </span>
-                )}
-                <span className="text-[11px] tabular-nums text-warm-400">{t.hora}</span>
-              </span>
-            </div>
-            <div className="mt-1.5 space-y-0.5">
-              {t.items.map((it) => (
-                <p key={it} className="flex items-center gap-1.5 text-[12px] text-warm-600">
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-terracotta/50" />
-                  {it}
-                </p>
-              ))}
-            </div>
-            {t.estado === "nuevo" && (
-              <div className="mt-2 h-1 w-full overflow-hidden bg-warm-800/10">
-                <div
-                  className="animate-fill h-full bg-terracotta"
-                  style={{ "--fill": "100%", animationDelay: "550ms" } as React.CSSProperties}
-                />
-              </div>
-            )}
-            {t.estado === "listo" && (
-              <p className="mt-1.5 text-[11px] font-semibold text-terracotta">Recoger en barra →</p>
-            )}
+      {/* seguimiento animado: la etapa avanza por el riel en loop */}
+      <p className="mt-5 text-[10px] font-bold uppercase tracking-[0.16em] text-cream-50/75">
+        Seguimiento del pedido
+      </p>
+      <div className="relative mt-3.5 flex items-start justify-between">
+        <div className="absolute inset-x-3 top-[7px] h-0.5 bg-cream-50/20" />
+        <div className="flow-line absolute left-3 top-[7px] h-0.5 bg-cream-50" style={{ width: "calc(100% - 1.5rem)" }} />
+        {steps.map((s, i) => (
+          <div key={s} className="relative z-10 flex w-14 flex-col items-center gap-1.5">
+            <span className={`flow-s${i + 1} flex h-4 w-4 items-center justify-center rounded-full bg-cream-50 text-terracotta`}>
+              <Check className="h-2.5 w-2.5" strokeWidth={4} />
+            </span>
+            <span className="text-center text-[8px] font-bold uppercase leading-tight text-cream-50/85">{s}</span>
           </div>
         ))}
       </div>
@@ -248,20 +213,28 @@ function CobrosScene() {
           </div>
         ))}
       </div>
-      <div className="mt-4 space-y-2">
-        <div className="pop-in flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5" style={{ animationDelay: "560ms" }}>
+      {/* flujo de cobro animado: avanza paso a paso en loop */}
+      <div className="mt-4 space-y-1.5">
+        <div className="flow-s1 flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5">
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta text-cream-50">
+            <Wallet className="h-3.5 w-3.5" strokeWidth={2.2} />
+          </span>
+          <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Cobrando con Yape</span>
+          <span className="ml-auto text-[11px] font-medium text-warm-500">S/ 42.00</span>
+        </div>
+        <div className="flow-s2 flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5">
           <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta text-cream-50">
             <Check className="h-3.5 w-3.5" strokeWidth={3} />
           </span>
-          <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Pagado con Yape</span>
+          <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Pago confirmado</span>
           <span className="ml-auto text-[11px] font-medium text-warm-500">en 2 s</span>
         </div>
-        <div className="pop-in flex items-center gap-2.5 bg-cream-50/12 px-3.5 py-2.5 text-cream-50" style={{ animationDelay: "900ms" }}>
-          <span className="flex h-6 w-6 shrink-0 items-center justify-center bg-cream-50/15">
-            <Receipt className="h-3.5 w-3.5" strokeWidth={2} />
+        <div className="flow-s3 flex items-center gap-2.5 bg-cream-50 px-3.5 py-2.5">
+          <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-terracotta text-cream-50">
+            <Receipt className="h-3.5 w-3.5" strokeWidth={2.2} />
           </span>
-          <span className="text-[13px] font-semibold">Boleta electrónica enviada</span>
-          <span className="ml-auto flex items-center gap-1 text-[11px] font-medium text-cream-50/70">
+          <span className="text-[13px] font-bold uppercase tracking-wide text-terracotta">Boleta enviada</span>
+          <span className="ml-auto flex items-center gap-1 text-[11px] font-medium text-warm-500">
             <Check className="h-3 w-3" strokeWidth={3} />
             SUNAT
           </span>
