@@ -408,8 +408,8 @@ export function Rubros() {
       <div className="mx-auto mt-6 max-w-5xl overflow-hidden border-2 border-warm-800">
         <div className="relative aspect-[16/9] w-full">
           <Image
-            src="/brand/hands-phone.webp"
-            alt="Manos de cocinero emplatando, con el pedido llegando al celular en el mostrador"
+            src="/brand/hands-phone-2.webp"
+            alt="Manos de cocinero emplatando, con el pedido listo en la app Musuq del mostrador"
             fill
             sizes="(min-width: 768px) 64rem, 100vw"
             className="object-cover"
