@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { MusuqPhone } from "@/components/landing/musuq-phone";
 import { useEffect, useRef, useState } from "react";
 import {
   UtensilsCrossed,
@@ -309,10 +308,6 @@ export function Rubros() {
             sizes="(min-width: 768px) 64rem, 100vw"
             className="object-cover"
           />
-          {/* celular con la app Musuq flotando */}
-          <div className="absolute bottom-4 right-4 origin-bottom-right scale-[0.6] sm:bottom-6 sm:right-8 sm:scale-[0.78] lg:scale-90">
-            <MusuqPhone />
-          </div>
         </div>
       </div>
 
