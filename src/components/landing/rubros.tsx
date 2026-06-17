@@ -11,6 +11,7 @@ import {
   ChevronDown,
   Search,
   Check,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
@@ -39,18 +40,69 @@ const FEATURES: Feature[] = [
 
 /* ── Escenas del panel vivo (crema sobre terracota drenched) ──────── */
 function IaScene() {
-  const widths = ["88%", "72%", "94%", "60%"];
+  const menuLines = ["62%", "84%", "48%", "76%", "40%"];
+  const dishes = [
+    { n: "Lomo saltado", p: "28" },
+    { n: "Ají de gallina", p: "24" },
+    { n: "Ceviche mixto", p: "32" },
+    { n: "Causa limeña", p: "18" },
+  ];
+  const base = 700; // ms: empieza tras el primer barrido del escáner
   return (
-    <div className="flex gap-4 pt-2">
-      <div className="pop-in h-36 w-28 shrink-0 bg-cream-50/12 ring-1 ring-cream-50/25" />
-      <div className="flex-1 space-y-2.5 pt-1">
-        <p className="text-[12px] uppercase tracking-[0.16em] text-cream-50/70">Carta detectada</p>
-        {widths.map((w, i) => (
-          <div key={i} className="flex items-center gap-2">
-            <div className="animate-fill h-3 bg-cream-50/30" style={{ "--fill": w, animationDelay: `${i * 160}ms` } as React.CSSProperties} />
+    <div className="pt-2">
+      <div className="grid grid-cols-[112px_1fr] gap-4">
+        {/* foto de la carta (papel) con escáner */}
+        <div className="pop-in relative h-[150px] w-[112px] shrink-0 overflow-hidden bg-cream-50 shadow-[0_10px_24px_-10px_rgba(26,26,26,0.6)] ring-1 ring-cream-50/30">
+          <div className="space-y-2 p-2.5">
+            <div className="h-2.5 w-1/2 bg-warm-800/30" />
+            {menuLines.map((w, i) => (
+              <div key={i} className="flex items-center justify-between gap-1.5">
+                <div className="h-1.5 bg-warm-800/15" style={{ width: w }} />
+                <div className="h-1.5 w-4 bg-warm-800/15" />
+              </div>
+            ))}
           </div>
-        ))}
-        <p className="pt-1 text-[12px] text-cream-50/70">12 platos · precios listos</p>
+          {/* línea de escaneo */}
+          <div className="animate-scan-menu absolute inset-x-1 top-0 h-[3px] bg-cream-50 shadow-[0_0_14px_3px_rgba(255,255,255,0.85)]" />
+          <span className="absolute bottom-1.5 left-1.5 bg-warm-800/85 px-1.5 py-0.5 text-[8px] font-semibold uppercase tracking-wide text-cream-50">
+            tu carta
+          </span>
+        </div>
+
+        {/* platos detectados por la IA */}
+        <div className="min-w-0">
+          <p className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-cream-50/85">
+            <Sparkles className="h-3.5 w-3.5" strokeWidth={2} />
+            Leyendo con IA…
+          </p>
+          <div className="mt-2.5 space-y-1.5">
+            {dishes.map((d, i) => (
+              <div
+                key={d.n}
+                className="pop-in flex items-center justify-between gap-2 bg-cream-50/12 px-2.5 py-1.5"
+                style={{ animationDelay: `${base + i * 320}ms` }}
+              >
+                <span className="flex items-center gap-1.5 truncate text-[12px] text-cream-50">
+                  <Check className="h-3 w-3 shrink-0 text-terracotta-light" strokeWidth={3} />
+                  {d.n}
+                </span>
+                <span className="shrink-0 text-[12px] tabular-nums text-cream-50/80">S/ {d.p}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* remate: ¡funciona! */}
+      <div
+        className="pop-in mt-3 flex items-center justify-between bg-cream-50 px-3.5 py-2.5"
+        style={{ animationDelay: `${base + dishes.length * 320 + 250}ms` }}
+      >
+        <span className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-wide text-terracotta">
+          <Check className="h-3.5 w-3.5" strokeWidth={3} />
+          Carta lista
+        </span>
+        <span className="text-[11px] font-medium text-warm-600">12 platos · sin tipear nada</span>
       </div>
     </div>
   );
