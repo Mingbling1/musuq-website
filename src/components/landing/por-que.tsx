@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Check, X } from "lucide-react";
 import { Reveal } from "@/components/landing/reveal";
 import { ChapterMarker } from "@/components/landing/chapter-marker";
@@ -18,9 +18,41 @@ const PAIRS: { antes: string; despues: string }[] = [
 
 export function PorQue() {
   const [after, setAfter] = useState(true);
+  const pausedRef = useRef(false);
+  const inViewRef = useRef(true);
+  const sectionRef = useRef<HTMLElement>(null);
+  const resumeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Auto-itera Sin/Con Musuq de forma perpetua. Pausa 5 s al interactuar y se
+  // detiene si la sección no está a la vista o hay prefers-reduced-motion.
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const id = setInterval(() => {
+      if (!pausedRef.current && inViewRef.current) setAfter((v) => !v);
+    }, 3600);
+    return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([e]) => { inViewRef.current = e.isIntersecting; },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const select = (val: boolean) => {
+    setAfter(val);
+    pausedRef.current = true;
+    if (resumeRef.current) clearTimeout(resumeRef.current);
+    resumeRef.current = setTimeout(() => { pausedRef.current = false; }, 5000);
+  };
 
   return (
-    <section id="por-que" className="bg-cream-100 px-6 py-24 text-warm-800 md:py-32">
+    <section ref={sectionRef} id="por-que" className="bg-cream-100 px-6 py-24 text-warm-800 md:py-32">
       <ChapterMarker num="01" label="Por qué" />
 
       <Reveal className="mx-auto max-w-2xl text-center">
@@ -38,7 +70,7 @@ export function PorQue() {
       <div className="mx-auto mt-9 flex w-fit border-2 border-warm-800">
         <button
           type="button"
-          onClick={() => setAfter(false)}
+          onClick={() => select(false)}
           className={`px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
             after ? "text-warm-500 hover:text-warm-800" : "bg-warm-800 text-cream-50"
           }`}
@@ -47,7 +79,7 @@ export function PorQue() {
         </button>
         <button
           type="button"
-          onClick={() => setAfter(true)}
+          onClick={() => select(true)}
           className={`border-l-2 border-warm-800 px-7 py-3 text-[13px] font-semibold uppercase tracking-[0.14em] transition-colors ${
             after ? "bg-terracotta text-cream-50" : "text-warm-500 hover:text-warm-800"
           }`}
