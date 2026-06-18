@@ -1,7 +1,5 @@
 "use client";
 
-import { PhoneShowcase } from "./phone-showcase";
-
 const APP_URL = "https://app.musuq.tech";
 const ANTON = { fontFamily: "var(--font-anton)" } as const;
 const CAVEAT = { fontFamily: "var(--font-caveat)" } as const;
@@ -58,10 +56,8 @@ export function Hero() {
           </div>
         </div>
 
-        {/* ── Derecha: el celular (3D en desktop, estático en móvil) ── */}
-        <div className="relative flex min-h-[420px] items-center justify-center border-t-2 border-warm-800 bg-cream-300 p-8 lg:border-l-2 lg:border-t-0">
-          <PhoneShowcase />
-        </div>
+        {/* ── Derecha: en blanco por ahora (pendiente: resolver el visual del hero) ── */}
+        <div className="relative hidden border-warm-800 bg-cream-100 lg:block lg:border-l-2" />
       </div>
     </section>
   );
