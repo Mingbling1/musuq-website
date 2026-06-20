@@ -3,9 +3,7 @@ import localFont from "next/font/local";
 import { Anton, Caveat } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import { Navbar } from "@/components/landing/navbar";
-import { Footer } from "@/components/landing/footer";
-import { SmoothScroll } from "@/components/smooth-scroll";
+// Navbar/Footer/SmoothScroll quitados: el landing rebrand los trae en su propio markup.
 
 // Cuerpo / UI — Switzer (neo-grotesca, self-hosted)
 const switzer = localFont({
@@ -38,7 +36,7 @@ const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], weight: [
 export const metadata: Metadata = {
   metadataBase: new URL("https://musuq.tech"),
   title: {
-    default: "Musuq — App para restaurantes: vende, cobra y controla",
+    default: "Tecnología que impulsa cada venta · Musuq",
     template: "%s | Musuq",
   },
   description:
@@ -65,7 +63,7 @@ export const metadata: Metadata = {
   creator: "Musuq",
   publisher: "Musuq",
   openGraph: {
-    title: "Musuq — App para restaurantes: vende, cobra y controla",
+    title: "Tecnología que impulsa cada venta · Musuq",
     description:
       "Sube tu carta con una foto, recibe pedidos por QR, manda la comanda a cocina y cobra con Yape, Plin o tarjeta. Controla tu restaurante desde un solo lugar.",
     url: "https://musuq.tech",
@@ -74,11 +72,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/assets/og-image.jpg",
         width: 1200,
         height: 630,
-        type: "image/png",
-        alt: "Musuq — App para restaurantes: vende, cobra y controla",
+        type: "image/jpeg",
+        alt: "Tecnología que impulsa cada venta · Musuq",
       },
     ],
   },
@@ -87,10 +85,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Musuq — App para restaurantes: vende, cobra y controla",
+    title: "Tecnología que impulsa cada venta · Musuq",
     description:
       "Carta digital con QR, comanda a cocina y cobros con Yape, Plin o tarjeta. Controla tu restaurante desde un solo lugar.",
-    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    images: [{ url: "/assets/og-image.jpg", width: 1200, height: 630 }],
   },
   robots: {
     index: true,
@@ -179,7 +177,7 @@ export default function RootLayout({
       lang="es"
       className={`${switzer.variable} ${clash.variable} ${anton.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans">
+      <body className="min-h-full antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
@@ -188,11 +186,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
-        <SmoothScroll>
-          <Navbar />
-          {children}
-          <Footer />
-        </SmoothScroll>
+        {children}
         <Analytics />
       </body>
     </html>
