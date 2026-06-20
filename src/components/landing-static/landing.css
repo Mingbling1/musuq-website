@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
   :root{
-    --canvas:#FAF8F5; --ink:#1E1C1C; --muted:#706464; --line:rgba(30,28,28,.10);
+    --canvas:#FAF8F5; --ink:#1E1C1C; --muted:#706464; --line:rgba(30,28,28,.10); --nav-h:68px;
     --subtle:#F7F2EC; --terra:#C8553D; --terra-tint:#FCEFEC; --cobre:#B87333;
     --r-md:16px; --r-lg:24px; --r-xl:32px; --r-pill:999px;
     --ease:cubic-bezier(.22,.61,.36,1); --dur:.4s; --max:1200px;
@@ -156,7 +156,7 @@
   }
 
   .scrolly{position:relative}
-  .scrolly__sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;border-top:1px solid var(--line)}
+  .scrolly__sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;border-top:1px solid var(--line)}
   .scrolly__grid{width:100%;max-width:var(--max);margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
   .steps{position:relative;min-height:300px}
   .step{position:absolute;inset:0;opacity:0;transform:translateY(14px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);pointer-events:none;display:flex;flex-direction:column;justify-content:center}
@@ -335,10 +335,8 @@
   @media (max-width:860px){.ft__top{grid-template-columns:1fr;gap:26px}.ft__cols{grid-template-columns:1fr 1fr}}
 
   @media (max-width:860px){
-    .hero .wrap,.scrolly__grid{grid-template-columns:1fr}
-    .hero__media{display:none}.scrolly__grid{gap:24px}
-    .phone{order:-1;width:240px;height:490px}.tpv__monitor{width:320px;height:200px}
-    .steps{min-height:220px}.dots{display:none}
+    .hero .wrap{grid-template-columns:1fr}
+    .hero__media{display:none}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.step,.btn{transition:none}.reveal{opacity:1;transform:none}.clouds,.balloon,.bird{animation:none}}
 
@@ -352,4 +350,54 @@
        los items de primer nivel heredaban color crema y quedaban invisibles. Forzar tinta. */
     .nav.open .nav__menu .nav-trigger,
     .nav.open .nav__menu .nav-link{color:var(--ink)}
+  }
+
+  /* ============================================================
+     SCROLLYTELLING MOBILE  ·  Enfoque B "Celular anclado arriba"
+     Conserva el pin (cross-fade + rotacion 3D) en mobile pero ahora
+     CABE en iPhone: el pin se mide en svh (alto realmente visible de
+     Safari, no 100vh que incluye el area bajo las barras) y se ancla
+     bajo el header con align-items:flex-start, asi el celular nunca
+     queda tapado arriba y el boton nunca cae fuera (cualquier sobrante
+     cae como flujo debajo, no lo recorta). El celular es fluido
+     (aspect-ratio 0.489 device-real + clamp sobre svh): grande en
+     pantallas altas (iPhone 17), mas chico en iPhones pequenos,
+     siempre cabiendo. layout() autoajusta cada pantalla interna.
+     ============================================================ */
+  @media (max-width:860px){
+    .scrolly__grid{grid-template-columns:1fr;gap:16px;padding:0 22px;align-content:start}
+
+    /* Pin medido en svh y anclado bajo el header (no 100vh, no centrado) */
+    .scrolly__sticky{
+      top:var(--nav-h);
+      height:calc(100svh - var(--nav-h));
+      height:calc(min(100svh,100dvh) - var(--nav-h));
+      align-items:flex-start;padding-top:12px;border-top:0;
+    }
+
+    /* Celular fluido: ancho derivado por aspect-ratio; el alto toma lo
+       que queda tras reservar el bloque de texto. Encogerlo es seguro:
+       layout() reajusta cada pantalla a win.clientHeight. */
+    .phone{
+      order:-1;justify-self:center;margin:0 auto;
+      width:auto;aspect-ratio:178/364;
+      height:clamp(290px, calc(100svh - 318px), 430px);
+      border-radius:34px;
+    }
+    .phone__island{width:70px;height:18px;top:7px;border-radius:10px}
+
+    /* Monitor TPV (seccion 2): holgado, compacto y centrado */
+    .stage{justify-self:center}
+    .tpv__monitor{width:300px;height:188px}
+
+    /* Steps siguen absolutos (cross-fade intacto) -> conservan un
+       min-height real para no colapsar; anclados arriba. Texto compacto. */
+    .steps{min-height:205px}
+    .step{justify-content:flex-start}
+    .chip{font-size:13px;padding:6px 12px;margin-bottom:10px}
+    .step h2{font-size:24px;line-height:1.14}
+    .step p{margin-top:8px;font-size:14.5px;line-height:1.36;max-width:38ch}
+    .step .btn{margin-top:14px;font-size:15px;padding:11px 18px}
+
+    .dots{display:none}
   }
