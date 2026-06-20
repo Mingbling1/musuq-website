@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap");
-:root{
+  :root{
     --canvas:#FAF8F5; --ink:#1E1C1C; --muted:#706464; --line:rgba(30,28,28,.10);
     --subtle:#F7F2EC; --terra:#C8553D; --terra-tint:#FCEFEC; --cobre:#B87333;
     --r-md:16px; --r-lg:24px; --r-xl:32px; --r-pill:999px;
@@ -341,3 +341,15 @@
     .steps{min-height:220px}.dots{display:none}
   }
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.step,.btn{transition:none}.reveal{opacity:1;transform:none}.clouds,.balloon,.bird{animation:none}}
+
+  /* --- Ajustes responsive mobile (scan 2026-06-20) --- */
+  /* Offset de anclas para que el header sticky (68px) no tape el titulo de la seccion */
+  .benefits,.vs,#scrolly,#scrolly2,.pricing{scroll-margin-top:80px}
+  @media (max-width:860px){
+    /* Hero: reencuadrar a la persona; con object-position:center quedaba cortada al borde */
+    .hero__video{object-position:66% 50%}
+    /* Cajon de menu movil (fondo crema): cuando el nav esta en modo claro sobre el hero,
+       los items de primer nivel heredaban color crema y quedaban invisibles. Forzar tinta. */
+    .nav.open .nav__menu .nav-trigger,
+    .nav.open .nav__menu .nav-link{color:var(--ink)}
+  }
