@@ -20,8 +20,15 @@
   .btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
 
   /* ---- HEADER + MEGA MENU (estilo SumUp) ---- */
-  header.nav{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line)}
-  header.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(250,248,245,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
+  header.nav{position:sticky;top:0;z-index:60;background:transparent;border-bottom:1px solid transparent;transition:background .3s var(--ease),border-color .3s var(--ease)}
+  header.nav::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(10,7,6,.38),rgba(10,7,6,0));transition:opacity .3s var(--ease)}
+  header.nav.is-scrolled{background:var(--canvas);border-bottom-color:var(--line)}
+  header.nav.open{background:var(--canvas)}
+  header.nav.is-scrolled::before,header.nav.open::before{opacity:0}
+  .nav .brand,.nav .nav-trigger,.nav .nav-link,.nav .login{color:var(--canvas);text-shadow:0 1px 12px rgba(0,0,0,.45)}
+  .nav .nav__burger span{background:var(--canvas)}
+  .nav.is-scrolled .brand,.nav.is-scrolled .nav-trigger,.nav.is-scrolled .nav-link,.nav.is-scrolled .login,.nav.open .brand,.nav.open .nav-trigger,.nav.open .nav-link,.nav.open .login{color:var(--ink);text-shadow:none}
+  .nav.is-scrolled .nav__burger span,.nav.open .nav__burger span{background:var(--ink)}
   .nav__bar{max-width:var(--max);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center}
   .brand{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:24px;letter-spacing:-.04em;color:var(--ink);text-decoration:none;margin-right:20px;transition:color .35s var(--ease)}
   /* Logo: brote de 3 hojas. currentColor -> hereda el color del texto del wordmark
@@ -51,7 +58,7 @@
   .mega__col a .ext{font-size:.7em;opacity:.5;vertical-align:2px;margin-left:1px}
   .nav__burger{display:none}
   @media (min-width:861px){
-    .nav-trigger:hover,.nav-link:hover,.nav-item:hover .nav-trigger{background:var(--subtle)}
+    .nav-trigger:hover,.nav-link:hover,.nav-item:hover .nav-trigger{background:rgba(130,120,115,.16)}
     .nav-item:hover .mega,.nav-item:focus-within .mega{opacity:1;visibility:visible;transform:none;transition:opacity .18s var(--ease),transform .18s var(--ease)}
     .nav-item:hover .caret{transform:rotate(-135deg);margin-top:1px}
   }
@@ -221,7 +228,7 @@
   /* ---- TPV 3D (rotación con scroll) ---- */
   #scrolly2 .scrolly__sticky{background:var(--canvas)}
   .stage{justify-self:center;perspective:1500px;width:100%;display:flex;justify-content:center}
-  .tpv{position:relative;transform-style:preserve-3d;will-change:transform;transform:rotateY(-15deg) rotateX(4deg)}
+  .tpv{position:relative;transform-style:preserve-3d;will-change:transform;transition:transform .15s linear;transform:rotateY(-15deg) rotateX(4deg)}
   .tpv__monitor{position:relative;width:480px;height:300px;border-radius:18px;background:#dcd9d1;padding:14px;
     box-shadow:0 30px 60px rgba(0,0,0,.22), inset 0 0 0 1px rgba(255,255,255,.4);transform-style:preserve-3d}
   .tpv__monitor::after{content:"";position:absolute;inset:0;border-radius:18px;transform:translateZ(-16px);background:#c9c6bd}
