@@ -1,7 +1,6 @@
-import LandingStatic from "@/components/landing-static/LandingStatic";
+import Landing from "@/components/landing/Landing";
 
-// Rebrand 2026: la home es el landing estatico portado a Next.
-// (las secciones React anteriores quedan en src/components/landing/, sin uso)
+// Rebrand 2026: landing migrada a componentes React (Framer Motion + landing.css).
 export default function Home() {
-  return <LandingStatic />;
+  return <Landing />;
 }
