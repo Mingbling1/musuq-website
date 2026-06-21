@@ -83,7 +83,7 @@
   }
 
   .hero{position:relative;min-height:100vh;min-height:100dvh;margin-top:calc(-1 * var(--nav-h));padding-top:var(--nav-h);display:flex;align-items:center;overflow:hidden;background:#1a1310}
-  .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;z-index:0}
+  .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;z-index:0;animation:heroKen 24s ease-in-out infinite alternate}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(10,7,6,.82) 0%,rgba(10,7,6,.5) 36%,rgba(10,7,6,.08) 62%,transparent 78%)}
   .hero__sky{position:absolute;inset:0;overflow:hidden;z-index:0}
   .clouds{position:absolute;top:-12%;left:0;width:200%;height:124%;will-change:transform;background-repeat:repeat-x;background-size:50% 100%;animation:cloudDrift 48s linear infinite;
@@ -97,6 +97,12 @@
   @keyframes fly{from{transform:translate(-6vw,0)}to{transform:translate(64vw,-44px)}}
   .hero .wrap{position:relative;z-index:2;width:100%}
   .hero__copy{color:#FDFCFA;max-width:600px}
+  @keyframes heroKen{from{transform:scale(1.04)}to{transform:scale(1.10)}}
+  @keyframes heroRise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  .hero__copy h1,.hero__copy p,.hero__cta{opacity:0;animation:heroRise .95s var(--ease) both}
+  .hero__copy h1{animation-delay:.12s}
+  .hero__copy p{animation-delay:.34s}
+  .hero__cta{animation-delay:.54s}
   .hero h1{font-size:clamp(48px,7vw,92px);color:#FDFCFA;text-shadow:0 2px 30px rgba(0,0,0,.38),0 1px 3px rgba(0,0,0,.28)}
   .hero p{margin-top:20px;font-size:19px;max-width:38ch;color:rgba(255,255,255,.96);text-shadow:0 1px 14px rgba(0,0,0,.42)}
   .hero__cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
@@ -348,7 +354,7 @@
     .hero .wrap{grid-template-columns:1fr}
     .hero__media{display:none}
   }
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.step,.btn{transition:none}.reveal{opacity:1;transform:none}.clouds,.balloon,.bird{animation:none}}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal,.step,.btn{transition:none}.reveal{opacity:1;transform:none}.clouds,.balloon,.bird{animation:none}.hero__img{animation:none}.hero__copy h1,.hero__copy p,.hero__cta{opacity:1;animation:none}}
 
   /* --- Ajustes responsive mobile (scan 2026-06-20) --- */
   /* Offset de anclas para que el header sticky (68px) no tape el titulo de la seccion */
