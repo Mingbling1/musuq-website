@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Musuq — prototipo hero (demo animada en código)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF8F5; --ink:#1A1A1A; --terra:#C8553D; --terra-tint:#FCEFEC;
+    --brown:#6B4A33; --copper:#B87333; --copper-tint:#F4E8D9; --copper-text:#86532A;
+    --success-tint:#F0E9E3; --success-text:#5A3D29; --muted:#6B6B6B;
+    --line:#1A1A1A; --ease:cubic-bezier(0.16,1,0.3,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--cream);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;
+    display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+
+  /* ---- Hero: dos celdas con borde carbón (lenguaje brutalista de la landing) ---- */
+  .hero{width:min(1120px,100%);border:2px solid var(--line);background:var(--cream);
+    display:grid;grid-template-columns:1.1fr 0.9fr}
+  .cell{padding:48px}
+  .cell.left{display:flex;flex-direction:column;justify-content:center;gap:18px}
+  .cell.right{border-left:2px solid var(--line);background:#F2ECE6;
+    display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+
+  .eyebrow{font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:12px;color:var(--terra)}
+  h1{font-family:"Anton",sans-serif;font-weight:400;line-height:.92;font-size:clamp(40px,6vw,76px);
+    text-transform:uppercase;letter-spacing:.005em}
+  h1 .hand{font-family:"Caveat",cursive;text-transform:none;color:var(--terra);font-size:.86em;display:inline-block;margin-top:.04em}
+  .sub{font-size:17px;line-height:1.5;color:#3a3632;max-width:42ch}
+  .ctas{display:flex;gap:14px;align-items:center;margin-top:10px;flex-wrap:wrap}
+  .btn{font-weight:700;font-size:15px;border:2px solid var(--line);padding:14px 22px;cursor:pointer;
+    transition:transform .16s var(--ease)}
+  .btn:active{transform:scale(.97)}
+  .btn.primary{background:var(--terra);color:#fff;border-color:var(--terra)}
+  .btn.ghost{background:transparent;color:var(--ink)}
+
+  /* ---- Celular (la app musuq, en DOM) ---- */
+  .phone{width:300px;height:600px;border-radius:46px;background:var(--ink);padding:12px;
+    box-shadow:0 30px 60px rgba(26,26,26,.22);position:relative}
+  .notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:120px;height:26px;
+    background:var(--ink);border-radius:0 0 16px 16px;z-index:5}
+  .screen{width:100%;height:100%;background:#FFFFFF;border-radius:36px;overflow:hidden;
+    display:flex;flex-direction:column;font-size:14px}
+
+  .app-top{padding:26px 18px 14px;border-bottom:1px solid rgba(26,26,26,.08)}
+  .app-top .wm{font-family:"Barlow Semi Condensed";font-weight:800;font-size:18px;letter-spacing:-.01em}
+  .app-top .tabname{color:var(--muted);font-size:12px;margin-top:2px}
+  .day{margin-top:14px;display:flex;align-items:baseline;justify-content:space-between}
+  .day .lbl{font-size:12px;color:var(--muted)}
+  .day .amt{font-family:"Barlow Semi Condensed";font-weight:800;font-size:24px;transition:transform .3s var(--ease)}
+  .day .amt.bump{transform:scale(1.08)}
+
+  .list{padding:16px;display:flex;flex-direction:column;gap:12px;flex:1}
+  .card{border:1px solid rgba(26,26,26,.10);border-radius:20px;padding:14px;background:#fff;
+    box-shadow:0 4px 16px rgba(26,26,26,.06)}
+  .card.ghost{opacity:.45}
+  .card .row1{display:flex;justify-content:space-between;align-items:center}
+  .card .mesa{font-weight:700}
+  .card .price{font-family:"Barlow Semi Condensed";font-weight:800}
+  .card .dish{color:var(--muted);font-size:13px;margin-top:3px}
+  .badge{margin-top:12px;display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:12px;
+    padding:6px 11px;border-radius:999px;transition:all .25s var(--ease)}
+  .badge .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+  /* estados */
+  .badge[data-st="nuevo"]{background:var(--terra-tint);color:var(--terra)}
+  .badge[data-st="cocina"]{background:var(--copper-tint);color:var(--copper-text)}
+  .badge[data-st="listo"]{background:var(--success-tint);color:var(--success-text)}
+
+  /* card que entra */
+  .card.live{transition:transform .42s var(--ease),opacity .42s var(--ease)}
+  .card.live.enter{transform:translateY(14px);opacity:0}
+
+  /* toast de cobro */
+  .toast{position:absolute;left:16px;right:16px;bottom:18px;background:var(--ink);color:#fff;
+    border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:10px;font-weight:600;
+    transform:translateY(80px);opacity:0;transition:transform .4s var(--ease),opacity .4s var(--ease)}
+  .toast.show{transform:translateY(0);opacity:1}
+  .toast .check{width:22px;height:22px;border-radius:50%;background:var(--terra);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:13px}
+  .toast .amt{margin-left:auto;font-family:"Barlow Semi Condensed";font-weight:800}
+
+  @media (max-width:760px){
+    .hero{grid-template-columns:1fr}
+    .cell.right{border-left:none;border-top:2px solid var(--line);padding:32px}
+    .cell{padding:32px}
+  }
+  /* Accesibilidad: sin movimiento => estado final estático */
+  @media (prefers-reduced-motion: reduce){
+    .card.live,.toast,.day .amt,.badge{transition:none!important}
+  }
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="cell left">
+      <div class="eyebrow">Punto de venta para tu restaurante</div>
+      <h1>Vende, cobra y<br><span class="hand">controla</span></h1>
+      <p class="sub">Toma el pedido, avísale a la cocina y cóbralo con Yape, Plin o tarjeta. Todo desde un toque, en un solo lugar.</p>
+      <div class="ctas">
+        <button class="btn primary">Crear cuenta gratis →</button>
+        <button class="btn ghost">Ver cómo funciona</button>
+      </div>
+    </div>
+
+    <div class="cell right">
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="screen">
+          <div class="app-top">
+            <div class="wm">musuq</div>
+            <div class="tabname">Pedidos · hoy</div>
+            <div class="day">
+              <span class="lbl">Ventas del día</span>
+              <span class="amt" id="amt">S/ 1,240.00</span>
+            </div>
+          </div>
+          <div class="list">
+            <div class="card ghost">
+              <div class="row1"><span class="mesa">Mesa 2</span><span class="price">S/ 18.00</span></div>
+              <div class="dish">Causa limeña</div>
+              <div class="badge" data-st="listo"><span class="dot"></span>Pedido listo</div>
+            </div>
+            <div class="card live" id="liveCard">
+              <div class="row1"><span class="mesa">Mesa 4</span><span class="price">S/ 32.00</span></div>
+              <div class="dish">Lomo saltado</div>
+              <div class="badge" id="badge" data-st="nuevo"><span class="dot"></span><span id="badgeTxt">Nuevo pedido</span></div>
+            </div>
+          </div>
+          <div class="toast" id="toast">
+            <span class="check">✓</span> Cobrado
+            <span class="amt">S/ 32.00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<script>
+  const badge=document.getElementById('badge'),badgeTxt=document.getElementById('badgeTxt');
+  const toast=document.getElementById('toast'),amt=document.getElementById('amt'),card=document.getElementById('liveCard');
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+
+  function setState(st,txt){badge.dataset.st=st;badgeTxt.textContent=txt;}
+
+  async function cycle(){
+    // reset
+    card.classList.add('enter'); toast.classList.remove('show');
+    setState('nuevo','Nuevo pedido'); amt.textContent='S/ 1,240.00';
+    await wait(60);
+    card.classList.remove('enter');           // entra el pedido
+    await wait(1300); setState('cocina','En cocina');
+    await wait(1200); setState('listo','Pedido listo');
+    await wait(1000);
+    toast.classList.add('show');              // cobro
+    amt.classList.add('bump'); amt.textContent='S/ 1,272.00';
+    await wait(320); amt.classList.remove('bump');
+    await wait(1900);                         // descanso para leer
+  }
+  async function loop(){ while(true){ await cycle(); } }
+
+  // Control determinista para capturas/QA: #manual desactiva el loop y expone window.__set
+  window.__set=function(st){
+    card.classList.remove('enter');
+    if(st==='nuevo'){ setState('nuevo','Nuevo pedido'); toast.classList.remove('show'); amt.textContent='S/ 1,240.00'; }
+    if(st==='cocina'){ setState('cocina','En cocina'); toast.classList.remove('show'); amt.textContent='S/ 1,240.00'; }
+    if(st==='listo'){ setState('listo','Pedido listo'); toast.classList.remove('show'); amt.textContent='S/ 1,240.00'; }
+    if(st==='cobrado'){ setState('listo','Pedido listo'); toast.classList.add('show'); amt.textContent='S/ 1,272.00'; }
+  };
+
+  if(reduce){ window.__set('cobrado'); }
+  else if(location.hash.includes('manual')){ window.__set('nuevo'); }
+  else { loop(); }
+</script>
+</body>
+</html>

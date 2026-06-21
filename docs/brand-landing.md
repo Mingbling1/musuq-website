@@ -69,6 +69,6 @@
 - `ceviche-hero-2.mp4` — video loop del hero.
 - `hands-phone-2.webp` — foto de Rubros (celular con la app Musuq).
 - `app-mockup.png`, `zorro-*.png` — mascota / mockups de marca.
-- Iconos: `src/app/icon.svg`, `favicon.ico`, `apple-icon.tsx` — fox terracota `#C8553D` sobre crema.
+- Iconos: `src/app/icon.svg`, `favicon.ico`, `apple-icon.png` — el **isotipo M** de Musuq (squircle terracota `#C8553D` con la M en crema, redondez 22.4% ≈ iOS). Es el **único signo** de la marca; el zorro es solo mascota. **La app (`musuq-app`) usa estos mismos archivos** para que el favicon se vea igual en web y app; si cambian aquí, re-copiar allá.
 
 > Limpieza 2026-06-17: se eliminaron iteraciones obsoletas del hero (`hero-rock-*`, `hero-phone-*`, `hero-cafe`, `app-shot`, `owner-control`).
