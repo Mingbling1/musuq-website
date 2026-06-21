@@ -428,3 +428,44 @@
 
     .dots{display:none}
   }
+
+  /* ============================================================
+     MOTION 2026 · parallax del hero + microinteracciones
+     (Framer en el hero · CSS en los hovers). Aditivo y reversible:
+     nada de esto cambia el layout, solo suma capas de movimiento.
+     El encuadre del hero se conserva (la foto escala desde el centro).
+     ============================================================ */
+  .hero__bg{position:absolute;inset:0;z-index:0;will-change:transform}
+  /* Guia de scroll estilo "mouse", solo en desktop (en mobile el copy va abajo) */
+  .hero__scroll{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:3;width:26px;height:42px;border:2px solid rgba(253,252,250,.5);border-radius:14px;pointer-events:none}
+  .hero__scroll::after{content:"";position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#FDFCFA;animation:scrollDot 1.9s var(--ease) infinite}
+  @keyframes scrollDot{0%{opacity:0;transform:translateY(-3px)}25%{opacity:1}65%{opacity:1;transform:translateY(11px)}100%{opacity:0;transform:translateY(13px)}}
+
+  /* Botones: elevacion + glow al hover (el :active scale(.97) ya existe) */
+  .btn{transition:transform .18s var(--ease),background-color .2s var(--ease),color .2s var(--ease),box-shadow .25s var(--ease)}
+  .btn--dark{box-shadow:0 6px 18px rgba(176,71,51,.20)}
+  .btn--dark:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(176,71,51,.34)}
+  .btn--ghost:hover,.btn--light:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(30,28,28,.12)}
+
+  /* Planes: elevacion con acento terracota */
+  .plan{transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s var(--ease)}
+  .plan:hover{transform:translateY(-5px);box-shadow:0 26px 52px rgba(30,28,28,.12);border-color:rgba(200,85,61,.4)}
+  .plan--pro:hover{box-shadow:0 30px 60px rgba(0,0,0,.4)}
+
+  /* Bloque demo + chip de region: leve elevacion */
+  .demo{transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+  .demo:hover{transform:translateY(-3px);box-shadow:0 22px 46px rgba(30,28,28,.10)}
+  .ft__region{transition:transform .25s var(--ease),border-color .25s var(--ease)}
+  .ft__region:hover{transform:translateY(-2px);border-color:var(--ink)}
+
+  /* Footer: salto en redes, desplazamiento en enlaces */
+  .ft__social a{transition:color .15s var(--ease),transform .2s var(--ease)}
+  .ft__social a:hover{transform:translateY(-2px)}
+  .ft__col a{transition:opacity .15s var(--ease),transform .2s var(--ease)}
+  .ft__col a:hover{transform:translateX(3px)}
+
+  @media (max-width:860px){.hero__scroll{display:none}}
+  @media (prefers-reduced-motion:reduce){
+    .hero__scroll::after{animation:none}
+    .btn:hover,.plan:hover,.demo:hover,.ft__region:hover,.ft__social a:hover,.ft__col a:hover{transform:none}
+  }
