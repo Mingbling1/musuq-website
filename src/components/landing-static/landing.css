@@ -20,11 +20,8 @@
   .btn--ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
 
   /* ---- HEADER + MEGA MENU (estilo SumUp) ---- */
-  header.nav{position:sticky;top:0;z-index:60;background:rgba(250,248,245,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line);transition:background-color .35s var(--ease),border-color .35s var(--ease)}
-  header.nav.nav--dark{background:rgba(16,11,9,.30);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border-bottom-color:rgba(255,255,255,.12)}
-  .nav--dark .brand,.nav--dark .nav-trigger,.nav--dark .nav-link,.nav--dark .login{color:var(--canvas)}
-  .nav--dark .nav-trigger:hover,.nav--dark .nav-link:hover,.nav--dark .nav-item:hover .nav-trigger{background:rgba(255,255,255,.10)}
-  .nav--dark .nav__burger span{background:var(--canvas)}
+  header.nav{position:sticky;top:0;z-index:60;border-bottom:1px solid var(--line)}
+  header.nav::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(250,248,245,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4)}
   .nav__bar{max-width:var(--max);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center}
   .brand{display:inline-flex;align-items:center;gap:7px;font-weight:800;font-size:24px;letter-spacing:-.04em;color:var(--ink);text-decoration:none;margin-right:20px;transition:color .35s var(--ease)}
   /* Logo: brote de 3 hojas. currentColor -> hereda el color del texto del wordmark
@@ -38,7 +35,7 @@
   .nav__actions{margin-left:auto;display:flex;align-items:center;gap:8px}
   .nav-cta{padding:11px 20px;font-size:15px;border-radius:10px}
   .login{font-size:15px}
-  .mega{position:absolute;left:0;right:0;top:100%;background:var(--canvas);border-bottom:1px solid var(--line);box-shadow:rgba(0,0,0,.10) 0 14px 28px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s linear .18s;z-index:55}
+  .mega{position:absolute;left:0;right:0;top:100%;background:rgba(250,248,245,.92);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border-bottom:1px solid var(--line);box-shadow:rgba(0,0,0,.10) 0 14px 28px;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .18s var(--ease),transform .18s var(--ease),visibility 0s linear .18s;z-index:55}
   .nav-item.open .mega{opacity:1;visibility:visible;transform:none;transition:opacity .18s var(--ease),transform .18s var(--ease)}
   .mega__inner{max-width:var(--max);margin:0 auto;padding:30px 24px 40px;display:grid;grid-template-columns:300px 1fr;gap:48px}
   .mega__promo{background:var(--subtle);border-radius:var(--r-lg);padding:24px;display:flex;flex-direction:column}
@@ -60,7 +57,7 @@
   }
   @media (max-width:860px){
     .nav__bar{padding:0 16px}
-    .nav__menu{position:fixed;left:0;right:0;top:68px;bottom:0;background:var(--canvas);flex-direction:column;align-items:stretch;gap:0;padding:6px 14px 28px;overflow:auto;transform:translateX(100%);transition:transform .3s var(--ease)}
+    .nav__menu{position:fixed;left:0;right:0;top:68px;bottom:0;background:rgba(250,248,245,.9);-webkit-backdrop-filter:blur(20px) saturate(1.4);backdrop-filter:blur(20px) saturate(1.4);flex-direction:column;align-items:stretch;gap:0;padding:6px 14px 28px;overflow:auto;transform:translateX(100%);transition:transform .3s var(--ease)}
     .nav.open .nav__menu{transform:none}
     .nav-item{border-bottom:1px solid var(--line)}
     .nav-trigger,.nav-link{width:100%;justify-content:space-between;padding:17px 6px;font-size:18px;border-radius:0}
