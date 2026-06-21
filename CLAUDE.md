@@ -8,7 +8,7 @@ Landing de producto de Musuq: app de gestión y punto de venta para micro y pequ
 
 - **Framework:** Next.js 16.2.1 (React Compiler habilitado) — LEER `node_modules/next/dist/docs/` antes de tocar APIs
 - **UI:** React 19, Tailwind CSS 4, Framer Motion, shadcn/ui (base-nova), Lucide React
-- **Fuentes:** Switzer (cuerpo, `--font-sans`), Clash Display (`--font-fraunces`), Anton (`--font-anton`), Caveat (`--font-caveat`)
+- **Fuentes:** Playfair Display (títulos h1/h2, serif) + DM Sans (cuerpo/UI) + Barlow / Barlow Semi Condensed (mockups de la app). *(Anton/Switzer/Clash/Caveat fueron la spec original; ya no se usan en `landing.css`.)*
 - **Paleta:** crema `#FAF8F5` (base) · terracota `#C8553D` (acción) · carbón `#1A1A1A` (tinta/bordes) · marrón `#6B4A33` + copper `#B87333` (terciarios). **Sin verde.**
 - **Lenguaje:** Todo el contenido en espanol
 

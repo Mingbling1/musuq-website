@@ -37,10 +37,9 @@
 
 | Uso | Fuente | Variable CSS |
 |---|---|---|
-| Display / títulos brutalistas (uppercase condensada) | **Anton** | `--font-anton` |
-| Acento manuscrito | **Caveat** | `--font-caveat` |
-| Cuerpo / UI | **Switzer** | `--font-sans` |
-| Wordmark / serif display | **Clash Display** | `--font-fraunces` |
+| Display / títulos | **Playfair Display** (serif) | h1/h2 en `landing.css` |
+| Cuerpo / UI | **DM Sans** | base de `landing.css` |
+| Mockups de la app | **Barlow / Barlow Semi Condensed** | pantallas dibujadas |
 
 ## 4. Layout
 
