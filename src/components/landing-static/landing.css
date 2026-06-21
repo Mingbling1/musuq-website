@@ -79,7 +79,7 @@
   }
 
   .hero{position:relative;min-height:100vh;min-height:100dvh;margin-top:calc(-1 * var(--nav-h));padding-top:var(--nav-h);display:flex;align-items:center;overflow:hidden;background:#1a1310}
-  .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:0}
+  .hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right center;z-index:0}
   .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(100deg,rgba(10,7,6,.82) 0%,rgba(10,7,6,.5) 36%,rgba(10,7,6,.08) 62%,transparent 78%)}
   .hero__sky{position:absolute;inset:0;overflow:hidden;z-index:0}
   .clouds{position:absolute;top:-12%;left:0;width:200%;height:124%;will-change:transform;background-repeat:repeat-x;background-size:50% 100%;animation:cloudDrift 48s linear infinite;
