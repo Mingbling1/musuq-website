@@ -1,8 +1,8 @@
 @AGENTS.md
 
-# musuq | estudio digital
+# musuq | app de gestión y punto de venta
 
-Landing page profesional para estudio digital peruano. Nombre en quechua: "musuq" = nuevo.
+Landing de producto de Musuq: app de gestión y punto de venta para micro y pequeñas empresas (mypes) del Perú. Hoy enfocada en gastronomía/restaurantes, pero no para siempre — la visión es todo el comercio. Nombre en quechua: "musuq" = nuevo.
 
 ## Stack
 
