@@ -135,15 +135,7 @@
   .viz-dev .phone{position:absolute;right:-16px;bottom:-16px;width:62px;height:124px;border-radius:14px;background:#0e0e0e;border:2px solid #565049;padding:6px;box-shadow:-10px 10px 26px rgba(0,0,0,.45);animation:dev-float 5s ease-in-out infinite}
   .viz-dev .phone .ui{height:100%;border-radius:8px;background:linear-gradient(180deg,#FDFCFA,#eeebe4)}
   @keyframes dev-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-  .viz-ai .core{position:relative;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 38% 34%,#F6E0D6,#C8553D 48%,#7A2F20 100%);box-shadow:0 0 60px rgba(200,85,61,.5);animation:ai-pulse 3.4s ease-in-out infinite}
-  @keyframes ai-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
-  .viz-ai .ring{position:absolute;inset:-26px;border-radius:50%;border:1px solid rgba(255,255,255,.16);animation:ai-spin 12s linear infinite}
-  .viz-ai .ring2{position:absolute;inset:-48px;border-radius:50%;border:1px solid rgba(255,255,255,.09);animation:ai-spin 19s linear infinite reverse}
-  .viz-ai .ring2::after{content:"";position:absolute;bottom:-3px;left:50%;width:6px;height:6px;border-radius:50%;background:var(--terra);transform:translateX(-50%)}
-  .viz-ai .ring::after{content:"";position:absolute;top:-4px;left:50%;width:8px;height:8px;border-radius:50%;background:#FDFCFA;transform:translateX(-50%)}
-  @keyframes ai-spin{to{transform:rotate(360deg)}}
-  .viz-ai .spark{position:absolute;color:#FDFCFA;font-size:18px;animation:ai-tw 2.6s ease-in-out infinite}
-  @keyframes ai-tw{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+  /* .viz-ai usa ahora una animacion Lottie (ver Benefits.tsx / LottieViz). */
   .viz-biz{display:grid;place-items:center;perspective:900px}
   .viz-biz .dash{width:208px;border-radius:16px;background:linear-gradient(160deg,#241c19,#15110f);border:1px solid rgba(255,255,255,.12);box-shadow:0 22px 44px rgba(0,0,0,.55);padding:14px;transform:rotateX(9deg) rotateY(-15deg);transition:transform .5s var(--ease)}
   .benefit:hover .viz-biz .dash{transform:rotateX(6deg) rotateY(-8deg) translateY(-3px)}
@@ -164,7 +156,7 @@
     .benefit__more{opacity:1;transform:none}
   }
   @media (prefers-reduced-motion:reduce){
-    .viz-dev .phone,.viz-ai .core,.viz-ai .ring,.viz-ai .ring2,.viz-ai .spark,.viz-pay .waves span{animation:none}
+    .viz-dev .phone,.viz-pay .waves span{animation:none}
   }
 
   .scrolly{position:relative}
