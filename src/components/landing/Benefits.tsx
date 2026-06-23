@@ -1,3 +1,5 @@
+import LottieViz from "./LottieViz";
+
 export default function Benefits() {
   return (
     <section className="benefits" id="bondades"><div className="wrap">
@@ -18,7 +20,7 @@ export default function Benefits() {
         <a className="benefit" href="https://app.musuq.tech">
           <div className="benefit__top"><h3>Potenciado con IA</h3><span className="benefit__arrow">→</span></div>
           <div className="benefit__viz viz-ai">
-            <div className="core"><span className="ring"></span><span className="ring2"></span><span className="spark" style={{ top: '2%', left: '8%' }}>✦</span><span className="spark" style={{ bottom: '6%', right: '2%', animationDelay: '-1.2s' }}>✦</span><span className="spark" style={{ top: '54%', left: '-16%', animationDelay: '-.6s' }}>✧</span><span className="spark" style={{ top: '14%', right: '-12%', animationDelay: '-1.9s' }}>✦</span></div>
+            <LottieViz src="/lottie/ia-core.json" style={{ width: 190, height: 190 }} />
           </div>
           <p className="benefit__more">Sugerencias inteligentes, reportes que se explican solos y automatizaciones que te ahorran tiempo.</p>
         </a>
