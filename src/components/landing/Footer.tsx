@@ -30,11 +30,8 @@ export default function Footer() {
         </div>
         <div className="ft__bottom">
           <div className="ft__legal">
-            <a href="https://app.musuq.tech">Aviso legal</a>
-            <a href="https://app.musuq.tech">Privacidad</a>
-            <a href="https://app.musuq.tech">Términos</a>
-            <a href="https://app.musuq.tech">Cookies</a>
-            <a href="https://app.musuq.tech">Estado del servicio</a>
+            <a href="/terms">Términos y Condiciones</a>
+            <a href="/privacy">Política de Privacidad</a>
           </div>
           <div className="ft__social">
             <a href="https://app.musuq.tech" aria-label="LinkedIn">
